@@ -1,4 +1,4 @@
-const BASE_URL = window.location.origin;
+const BASE_URL = window.location.port === '5173' ? 'http://127.0.0.1:8000' : window.location.origin;
 
 /**
  * Fetch consolidated dashboard summary for a region and year.
