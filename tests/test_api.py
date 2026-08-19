@@ -7,7 +7,8 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Welcome to OncoCare API Server"}
+    assert "text/html" in response.headers.get("content-type", "").lower()
+    assert "<html" in response.text.lower() or "<!doctype html" in response.text.lower()
 
 def test_api_summary():
     # 양천구 2024년 데이터가 정상 로드되었는지 확인하는 summary 테스트

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import os
 from dotenv import load_dotenv
 
@@ -33,6 +34,10 @@ app.include_router(generation_router)
 app.include_router(chat_router)
 app.include_router(auth_router)
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to OncoCare API Server"}
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok", "message": "OncoCare API Server is running"}
+
+# 프론트엔드 정적 파일 마운트 (루트 경로)
+app.mount("/", StaticFiles(directory="web", html=True), name="web")
+

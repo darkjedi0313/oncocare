@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = window.location.origin;
 
 /**
  * Fetch consolidated dashboard summary for a region and year.
