@@ -1,0 +1,91 @@
+/* ============================================================
+   OncoCare — 반응형 레이아웃 & 폰트 스케일
+   ============================================================ */
+
+/* ---------- 기본 레이아웃 ---------- */
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* 1920x1080 고정 제거 → 뷰포트 전체 */
+body.onco-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- 사이드바 ---------- */
+nav.onco-sidebar {
+  width: clamp(180px, 16vw, 260px);
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: width 0.2s;
+}
+
+/* ---------- 메인 콘텐츠 영역 ---------- */
+.onco-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.onco-content {
+  flex: 1;
+  overflow: auto;
+  padding: clamp(16px, 2vw, 32px);
+}
+
+/* ---------- 폰트 스케일 ---------- */
+:root {
+  --fs-display:  clamp(25px, 1.8vw, 28px);
+  --fs-title:    clamp(22px, 1.3vw, 24px);
+  --fs-body:     clamp(20px, 1vw,   21px);
+  --fs-label:    clamp(18px, 0.85vw, 19px);
+  --fs-number:   clamp(20px, 1vw,   21px);
+  --fs-data-lg:  clamp(35px, 3.2vw, 57px);
+}
+
+.text-display-lg, .font-display-lg { font-size: var(--fs-display) !important; line-height: 1.25 !important; }
+.text-title-md,   .font-title-md   { font-size: var(--fs-title)   !important; line-height: 1.3  !important; }
+.text-body-md,    .font-body-md     { font-size: var(--fs-body)    !important; line-height: 1.5  !important; }
+.text-label-sm,   .font-label-sm    { font-size: var(--fs-label)   !important; line-height: 1.4  !important; }
+.text-number-data,.font-number-data { font-size: var(--fs-number)  !important; }
+.text-data-large                    { font-size: var(--fs-data-lg) !important; line-height: 1    !important; }
+
+/* ---------- 헤더 / 푸터 ---------- */
+.onco-header { height: clamp(52px, 5vh, 64px); flex-shrink: 0; }
+.onco-footer { height: clamp(40px, 4vh, 64px); flex-shrink: 0; }
+
+/* ---------- 테이블: 가로 스크롤 유지 ---------- */
+.table-scroll { overflow: auto; }
+.table-scroll table { min-width: 860px; }
+
+/* ---------- 카드 그리드 ---------- */
+.onco-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(12px, 1.5vw, 24px);
+}
+
+/* ---------- 로그인 ---------- */
+body.onco-login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-card { width: min(460px, 92vw); }
+
+/* ---------- 스크롤바 ---------- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-light); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
