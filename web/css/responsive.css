@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    OncoCare — 반응형 레이아웃 & 폰트 스케일
    ============================================================ */
 
@@ -111,8 +111,6 @@ body.onco-login {
 }
 .login-card { width: min(500px, 92vw); }
 
-/* ---------- 챗봇 FAB 레이블 ---------- */
-.fab-label { font-size: 13px !important; }
 
 /* ---------- 원형 숫자 배지 (유사지역 번호 등) ---------- */
 .badge-circle {
@@ -142,3 +140,17 @@ p, span, li, div {
 ::-webkit-scrollbar-track { background: var(--bg-light); }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ---------- 빛반사 (Shimmer) 효과 ---------- */
+@keyframes shimmer {
+  0% {
+    transform: skewX(-30deg) translateX(-150%);
+  }
+  50% {
+    transform: skewX(-30deg) translateX(300%);
+  }
+  100% {
+    transform: skewX(-30deg) translateX(300%);
+  }
+}
+

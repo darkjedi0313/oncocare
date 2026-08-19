@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <script src="js/auth_guard.js"></script>
@@ -66,13 +66,83 @@
         }
     </script>
     <style>
-        /* Custom Styles for Dual Bar Chart Viz */
-        .chart-row { display: flex; flex-direction: column; margin-bottom: 12px; }
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 17px; font-weight: 700; color: var(--ink); }
-        .bar-wrapper { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
-        .bar-label-sub { width: 55px; font-size: 17px; color: #64748b; text-align: right; font-weight: 500; }
-        .bar-container-new { flex: 1; height: 10px; background-color: var(--bg-light); border-radius: 2px; overflow: hidden; position: relative; }
-        .bar-fill-new { height: 100%; border-radius: 2px; transition: width 0.5s ease-in-out; }
+        /* ===== 암종별 수검률 차트 (나란히 정렬) ===== */
+        .chart-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start; /* 내부 요소는 왼쪽 정렬하여 암종명 수직 정렬 유지 */
+            margin: 0 auto 10px auto; /* 가로 중앙 배치로 양쪽 여백 비율을 일치시킴 */
+            width: 96%; /* 빈 여백을 줄이고 화면을 더 채우도록 96%로 변경 */
+            padding: 12px 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e8ecf0;
+            gap: 48px; /* 쾌적한 간격 */
+            transition: background 0.15s;
+        }
+        .chart-row:hover { background: #f1f5f9; }
+        .chart-row:last-child { margin-bottom: 0; }
+
+        .chart-cancer-col {
+            width: 140px; /* 자궁경부암 등 5글자도 1줄에 나오게 넓힘 */
+            flex-shrink: 0;
+            text-align: left; /* 세로 왼쪽 맞춤 정렬 */
+        }
+        .chart-cancer-name {
+            font-size: var(--fs-title) !important; /* 암종명 크게 */
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            white-space: nowrap; /* 줄바꿈 절대 방지 */
+        }
+
+        .chart-bars-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        /* 개별 막대 박스 (전국 평균 / 우리구 세로 정렬) */
+        .bar-set-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 90px 1fr 60px; /* 꼬리표 너비 여유 확보 */
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+        
+        .bar-label-sub {
+            font-size: var(--fs-label);
+            color: #64748b;
+            font-weight: 700;
+            text-align: right;
+            white-space: nowrap;
+        }
+        
+        .bar-container-new {
+            height: 22px; /* 두께 대폭 상향 */
+            background-color: #e8ecf0;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            min-width: 50px;
+        }
+        
+        .bar-fill-new {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(.4,0,.2,1);
+        }
+        
+        .bar-value-end {
+            font-size: var(--fs-body);
+            font-weight: 800;
+            text-align: left;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased onco-layout">
@@ -212,15 +282,15 @@
             <div class="flex gap-grid_gap flex-1 overflow-hidden">
                 <!-- Left Column (62%) - Charts -->
                 <div class="w-[62%] bg-white border border-data-border-gray rounded-card p-6 flex flex-col h-full overflow-y-auto">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex justify-between items-center mb-3">
                         <h3 class="font-title-md text-title-md text-on-background">암종별 수검률</h3>
-                        <div class="flex gap-4 font-label-sm text-label-sm">
-                            <div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-bg-gray rounded-sm"></div>전국 평균</div>
-                            <div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-secondary rounded-sm"></div>우리 구</div>
-                            <div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-alert rounded-sm"></div>주의 필요</div>
+                        <div class="flex gap-5 font-label-sm text-label-sm">
+                            <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-300"></div>전국 평균</div>
+                            <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-data-secondary"></div>우리 구</div>
+                            <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-data-alert"></div>주의 필요</div>
                         </div>
                     </div>
-                    <div class="flex-1 flex flex-col justify-center py-2 space-y-3" id="cancer-chart-container">
+                    <div class="flex-1 flex flex-col py-1" id="cancer-chart-container">
                         <!-- Chart rows rendered dynamically -->
                         <p class="text-center text-on-surface-variant">차트 로딩 중...</p>
                     </div>
@@ -251,13 +321,13 @@
         </footer>
     </div>
 
-    <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+        <!-- Floating Action Button for '온코' — 챗봇 연동 -->
     <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
-        <span class="fab-label font-bold leading-none">온코</span>
+        <span class="text-[10px] font-bold mt-0.5">온코</span>
     </div>
 
-    <!-- Load API client and run binding -->
+
     <script src="js/api.js"></script>
     <script src="js/chatbot.js"></script>
     <script>
@@ -347,29 +417,29 @@
                     
                     const rowHtml = `
                         <div class="chart-row">
-                            <!-- 헤더: 암종명 및 실적 요약 -->
-                            <div class="chart-header">
-                                <span class="${labelColor}">${cancerName}</span>
-                                <span class="font-label-sm text-label-sm font-normal text-slate-500">
-                                    우리 구 <span class="${valueColor}">${rateVal.toFixed(1)}%</span> │ 
-                                    전국 평균 <span class="text-slate-700 font-bold">${natAvg.toFixed(1)}%</span>
-                                </span>
+                            <!-- 좌측: 암종명 크게 -->
+                            <div class="chart-cancer-col">
+                                <span class="chart-cancer-name ${labelColor}">${cancerName}</span>
                             </div>
-                            <!-- 듀얼 막대 그래프 -->
-                            <div class="space-y-1">
-                                <!-- 우리 구 -->
-                                <div class="bar-wrapper">
+                            
+                            <!-- 우측: 전국 평균(위) & 우리구(아래) 세로 정렬 -->
+                            <div class="chart-bars-col">
+                                <!-- 전국 평균 (위) -->
+                                <div class="bar-set-wrapper">
+                                    <span class="bar-label-sub">전국 평균</span>
+                                    <div class="bar-container-new">
+                                        <div class="bar-fill-new bg-slate-400" style="width: ${natAvg}%;"></div>
+                                    </div>
+                                    <span class="bar-value-end text-slate-600">${natAvg.toFixed(1)}%</span>
+                                </div>
+                                
+                                <!-- 우리 구 (아래) -->
+                                <div class="bar-set-wrapper">
                                     <span class="bar-label-sub">우리 구</span>
                                     <div class="bar-container-new">
                                         <div class="bar-fill-new ${barFillColor}" style="width: ${rateVal}%;"></div>
                                     </div>
-                                </div>
-                                <!-- 전국 평균 -->
-                                <div class="bar-wrapper">
-                                    <span class="bar-label-sub">전국 평균</span>
-                                    <div class="bar-container-new">
-                                        <div class="bar-fill-new bg-slate-300" style="width: ${natAvg}%;"></div>
-                                    </div>
+                                    <span class="bar-value-end ${valueColor}">${rateVal.toFixed(1)}%</span>
                                 </div>
                             </div>
                         </div>
@@ -478,9 +548,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-

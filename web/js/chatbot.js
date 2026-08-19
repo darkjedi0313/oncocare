@@ -91,6 +91,24 @@ function initChatbot() {
         if (floatingBtn) {
             floatingBtn.removeAttribute('onclick');
             
+            // 프리미엄 AI 스타일 적용 (더 큰 크기, 입체감 있는 그라데이션, 애니메이션)
+            floatingBtn.className = "fixed bottom-8 right-8 w-[88px] h-[88px] bg-gradient-to-br from-[#1F4E78] via-[#008080] to-[#0EA5E9] rounded-full shadow-2xl flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:from-[#256294] hover:to-[#0284c7] transition-all duration-300 hover:scale-110 border-2 border-white/20 relative overflow-hidden group";
+            
+            floatingBtn.innerHTML = `
+                <!-- Shimmer/빛반사 효과 레이어 -->
+                <div class="absolute inset-0 w-1/2 h-full bg-white/20 -skew-x-[30deg] -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                
+                <!-- AI Sparkle Icon -->
+                <span class="material-symbols-outlined text-[36px] leading-none text-yellow-300 drop-shadow-md group-hover:rotate-[15deg] transition-transform duration-300" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                <span class="font-bold mt-1 text-[13px] leading-none tracking-wider text-slate-100 group-hover:text-white drop-shadow">온코 AI</span>
+                
+                <!-- Glowing Aura/Sparkle Ping -->
+                <span class="absolute top-1.5 right-1.5 flex h-3.5 w-3.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-300 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-yellow-400"></span>
+                </span>
+            `;
+            
             // 중복 바인딩 방지 플래그 체크
             if (!floatingBtn.dataset.bound) {
                 floatingBtn.addEventListener('click', (e) => {
