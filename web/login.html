@@ -51,14 +51,14 @@
                 <label for="username" class="block text-xs font-bold text-slate-600 mb-1.5">아이디</label>
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">account_circle</span>
-                    <input type="text" id="username" required placeholder="아이디를 입력하세요 (예: 보건소)" class="w-full border border-slate-300 rounded px-10 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                    <input type="text" id="username" required placeholder="아이디를 입력하세요 (예: 보건소)" value="보건소" class="w-full border border-slate-300 rounded px-10 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
                 </div>
             </div>
             <div>
                 <label for="password" class="block text-xs font-bold text-slate-600 mb-1.5">비밀번호</label>
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">lock</span>
-                    <input type="password" id="password" required placeholder="비밀번호를 입력하세요" class="w-full border border-slate-300 rounded px-10 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                    <input type="password" id="password" required placeholder="비밀번호를 입력하세요" value="보건소" class="w-full border border-slate-300 rounded px-10 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
                 </div>
             </div>
             <button type="submit" id="btn-submit" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/95 transition-all text-sm shadow flex items-center justify-center gap-2 mt-8">
@@ -82,23 +82,18 @@
     <script>
         const form = document.getElementById('login-form');
         const btnSubmit = document.getElementById('btn-submit');
-        
-        const BASE_URL = 'http://localhost:8000';
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // 배포 환경(Railway 등)과 로컬 개발 모두 동작
+        const BASE_URL = window.location.origin;
 
+        async function doLogin(username, password) {
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = `<span class="animate-spin material-symbols-outlined text-[18px]">sync</span> 로그인 중...`;
 
             try {
                 const response = await fetch(`${BASE_URL}/api/login`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
                 });
 
@@ -108,11 +103,7 @@
                 }
 
                 const data = await response.json();
-                
-                // 로그인 세션 저장
                 localStorage.setItem('onco_session', JSON.stringify(data));
-                
-                // 리다이렉트
                 window.location.href = 'index.html';
 
             } catch (error) {
@@ -120,7 +111,22 @@
                 btnSubmit.disabled = false;
                 btnSubmit.innerHTML = `<span class="material-symbols-outlined text-[18px]">login</span> 로그인`;
             }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            doLogin(
+                document.getElementById('username').value,
+                document.getElementById('password').value
+            );
         });
+
+        // 자동 로그인 — 이미 세션이 있으면 바로 이동, 없으면 기본값(보건소)으로 즉시 로그인
+        if (localStorage.getItem('onco_session')) {
+            window.location.href = 'index.html';
+        } else {
+            doLogin('보건소', '보건소');
+        }
     </script>
 </body>
 </html>

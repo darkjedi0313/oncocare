@@ -1,0 +1,37 @@
+# Railway 배포 제외 목록
+# data/processed/ 는 포함 (API 필수 산출물)
+data/raw/
+data/interim/
+
+# 개발 환경
+.env
+.venv/
+env/
+venv/
+
+# Python 캐시
+__pycache__/
+*.py[cod]
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 파이프라인·분석 — 런타임 불필요
+pipeline/
+analysis/
+
+# 테스트
+tests/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.log
+
+# 기타
+scratch/
+*.zip
+*.tar
+*.gz
+*.rar
