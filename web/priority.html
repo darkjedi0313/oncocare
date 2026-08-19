@@ -223,7 +223,8 @@
                             <tr>
                                 <th class="p-4 w-[80px] font-bold text-center">순위</th>
                                 <th class="p-4 w-[120px] font-bold">시군구</th>
-                                <th class="p-4 w-[180px] font-bold">세그먼트</th>
+                                <th class="p-4 w-[100px] font-bold">암종</th>
+                                <th class="p-4 w-[160px] font-bold">세그먼트</th>
                                 <th class="p-4 w-[130px] font-bold text-right">미수검 인원</th>
                                 <th class="p-4 w-[120px] font-bold text-right">우리 구 실적</th>
                                 <th class="p-4 w-[120px] font-bold text-right">유사 20곳 평균</th>
@@ -236,7 +237,7 @@
                         <tbody class="divide-y divide-data-border-gray font-body-md text-body-md" id="priority-tbody">
                             <!-- Rows rendered dynamically -->
                             <tr>
-                                <td colspan="10" class="text-center py-12 text-on-surface-variant">데이터를 불러오는 중...</td>
+                                <td colspan="11" class="text-center py-12 text-on-surface-variant">데이터를 불러오는 중...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -339,7 +340,7 @@
                 renderTable();
             } catch (error) {
                 console.error("Error loading priority segments:", error);
-                tbody.innerHTML = `<tr><td colspan="10" class="text-center py-12 text-data-alert font-bold">데이터를 로드하는 중 오류가 발생했습니다.<br>${error.message}</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="11" class="text-center py-12 text-data-alert font-bold">데이터를 로드하는 중 오류가 발생했습니다.<br>${error.message}</td></tr>`;
             }
 
             // Render priority table rows
@@ -362,7 +363,7 @@
                 });
 
                 if (filteredSegments.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="10" class="text-center py-12 text-on-surface-variant font-medium">선택한 필터 조건에 부합하는 우선순위 대상이 없습니다.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="11" class="text-center py-12 text-on-surface-variant font-medium">선택한 필터 조건에 부합하는 우선순위 대상이 없습니다.</td></tr>`;
                     selectedSegment = null;
                     toggleActionButtons(false);
                     return;
@@ -389,7 +390,8 @@
                     tr.innerHTML = `
                         <td class="p-4 text-center ${activeBorderClass}">${rankNum}</td>
                         <td class="p-4">${item.시군구}</td>
-                        <td class="p-4">${item.성별} ${item.연령}</td>
+                        <td class="p-4"><span class="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[12px] font-bold rounded">${item.암종}</span></td>
+                        <td class="p-4">${item.성별} · ${item.연령}</td>
                         <td class="p-4 text-right">${unscreenedCount.toLocaleString()}명</td>
                         <td class="p-4 text-right text-data-secondary">${item.수검률.toFixed(1)}%</td>
                         <td class="p-4 text-right font-medium">${item.유사_평균.toFixed(1)}%</td>
