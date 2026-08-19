@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <script src="js/auth_guard.js"></script>
@@ -198,45 +198,71 @@
 
             <!-- Filters Section -->
             <div class="bg-data-bg-gray border border-data-border-gray rounded-card p-4 mb-4 flex-shrink-0 flex items-center justify-between">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-4 flex-wrap">
                     <span class="text-label-sm text-slate-500 font-bold mr-2">필터설정 :</span>
                     
                     <!-- 시도 필터 -->
-                    <select id="select-sido" class="rounded border-data-border-gray text-label-sm py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[160px] font-bold text-slate-700">
-                        <option value="전체">전국 (전체 시도)</option>
-                    </select>
+                    <div class="flex items-center gap-1.5">
+                        <label for="select-sido" class="text-label-sm text-slate-500 font-bold">시도</label>
+                        <select id="select-sido" class="rounded border-data-border-gray py-2 px-4 bg-white focus:outline-none focus:ring-1 focus:ring-primary min-w-[200px] font-bold text-slate-700">
+                            <option value="전체">전국 (전체 시도)</option>
+                        </select>
+                    </div>
+
+                    <!-- 암종 필터 -->
+                    <div class="flex items-center gap-1.5">
+                        <label for="select-cancer" class="text-label-sm text-slate-500 font-bold">암종</label>
+                        <select id="select-cancer" class="rounded border-data-border-gray py-2 px-4 bg-white focus:outline-none focus:ring-1 focus:ring-primary min-w-[180px] font-bold text-slate-700">
+                            <option value="전체">전체 암종</option>
+                            <option value="위암">위암</option>
+                            <option value="대장암">대장암</option>
+                            <option value="간암">간암</option>
+                            <option value="유방암">유방암</option>
+                            <option value="자궁경부암">자궁경부암</option>
+                            <option value="폐암">폐암</option>
+                        </select>
+                    </div>
 
                     <!-- 정렬 기준 필터 -->
-                    <select id="select-sort" class="rounded border-data-border-gray text-label-sm py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[200px] font-bold text-slate-700">
-                        <option value="gap-desc">수검 격차 큰 순 (음의 격차)</option>
-                        <option value="recovery-desc">회복 여지 많은 순</option>
-                        <option value="rate-asc">수검률 낮은 순</option>
-                    </select>
+                    <div class="flex items-center gap-1.5">
+                        <label for="select-sort" class="text-label-sm text-slate-500 font-bold">정렬</label>
+                        <select id="select-sort" class="rounded border-data-border-gray py-2 px-4 bg-white focus:outline-none focus:ring-1 focus:ring-primary min-w-[280px] font-bold text-slate-700">
+                            <option value="recovery-desc" selected>회복 여지 많은 순</option>
+                            <option value="gap-desc">수검 격차 큰 순 (음의 격차)</option>
+                            <option value="rate-asc">수검률 낮은 순</option>
+                        </select>
+                    </div>
+
+                    <!-- 암종별 보기 체크박스 -->
+                    <div class="flex items-center gap-2 ml-4">
+                        <input type="checkbox" id="check-by-cancer" class="w-5 h-5 rounded border-data-border-gray text-primary focus:ring-primary" checked>
+                        <label for="check-by-cancer" class="text-body-md font-bold text-slate-700 cursor-pointer select-none">암종별로 보기</label>
+                    </div>
                 </div>
-                <div class="font-body-md text-label-sm text-slate-500">
-                    💡 행을 클릭하면 해당 시군구의 암종별 격차 및 기대치를 세부 진단할 수 있습니다.
+                <div class="font-body-md text-label-sm text-slate-500 hidden xl:block">
+                    💡 행을 클릭하면 상세 진단을 볼 수 있습니다.
                 </div>
             </div>
 
-            <!-- Main Ranking Table Area -->
             <div class="flex-1 border border-data-border-gray rounded bg-white overflow-hidden flex flex-col mb-4">
-                <div class="flex-1 overflow-y-auto" id="table-container">
-                    <table class="w-full text-label-sm text-left border-collapse">
+                <div class="flex-1 table-scroll" id="table-container">
+                    <table class="w-full text-left border-collapse min-w-[1450px] table-fixed">
                         <thead class="sticky top-0 z-10">
                             <tr class="bg-data-table-header text-slate-600 font-bold border-b border-data-border-gray">
-                                <th class="p-3 border-r border-data-border-gray text-center w-[60px]">순위</th>
-                                <th class="p-3 border-r border-data-border-gray w-[220px]">시도명</th>
-                                <th class="p-3 border-r border-data-border-gray w-[180px]">시군구명</th>
-                                <th class="p-3 border-r border-data-border-gray text-right w-[150px]">평균 수검률</th>
-                                <th class="p-3 border-r border-data-border-gray text-right w-[150px]">여건 기대치</th>
-                                <th class="p-3 border-r border-data-border-gray text-right w-[150px]">유사지역 평균</th>
-                                <th class="p-3 border-r border-data-border-gray text-right w-[160px]">수검 격차</th>
-                                <th class="p-3 text-right">개선 기대 인원 (상한)</th>
+                                <th class="p-4 border-r border-data-border-gray text-center w-[80px]">순위</th>
+                                <th class="p-4 border-r border-data-border-gray w-[120px]">시도명</th>
+                                <th class="p-4 border-r border-data-border-gray w-[150px]">시군구명</th>
+                                <th class="p-4 border-r border-data-border-gray text-center w-[120px]">암종</th>
+                                <th class="p-4 border-r border-data-border-gray text-right w-[180px]">평균 수검률</th>
+                                <th class="p-4 border-r border-data-border-gray text-right w-[180px]">여건 기대치</th>
+                                <th class="p-4 border-r border-data-border-gray text-right w-[200px]">유사지역 평균</th>
+                                <th class="p-4 border-r border-data-border-gray text-right w-[160px]">수검 격차</th>
+                                <th class="p-4 text-right w-[260px] pr-6">개선 기대 인원 (상한)</th>
                             </tr>
                         </thead>
                         <tbody id="ranking-tbody">
                             <tr>
-                                <td colspan="8" class="text-center py-16 text-slate-400 font-bold">전국 데이터를 집계 중입니다...</td>
+                                <td colspan="9" class="text-center py-16 text-slate-400 font-bold">전국 데이터를 집계 중입니다...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -253,7 +279,7 @@
 
     <!-- Details Modal -->
     <div id="details-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-lg shadow-xl border border-data-border-gray w-[700px] max-h-[80%] flex flex-col">
+        <div class="bg-white rounded-lg shadow-xl border border-data-border-gray w-[820px] max-h-[85%] flex flex-col">
             <div class="p-5 border-b border-data-border-gray flex justify-between items-center bg-slate-50">
                 <h3 class="font-title-md text-title-md text-primary font-bold" id="modal-title">시군구 상세 진단</h3>
                 <button class="text-slate-400 hover:text-slate-600" onclick="closeModal()">
@@ -263,15 +289,15 @@
             <div class="p-6 overflow-y-auto space-y-4">
                 <p class="text-label-sm text-slate-500">지자체 세그먼트별 수검률 및 유사 지역 평균 대비 편차 현황 (건강보험 가입자 기준)</p>
                 <div class="border border-data-border-gray rounded overflow-hidden">
-                    <table class="w-full text-label-sm text-left">
+                    <table class="w-full text-left">
                         <thead>
                             <tr class="bg-slate-100 font-bold border-b border-data-border-gray text-slate-600">
-                                <th class="p-2 border-r border-data-border-gray">암종</th>
-                                <th class="p-2 border-r border-data-border-gray text-center">성별</th>
-                                <th class="p-2 border-r border-data-border-gray text-center">연령대</th>
-                                <th class="p-2 border-r border-data-border-gray text-right">수검률</th>
-                                <th class="p-2 border-r border-data-border-gray text-right">유사 평균</th>
-                                <th class="p-2 text-right">편차</th>
+                                <th class="p-3 border-r border-data-border-gray w-[150px]">암종</th>
+                                <th class="p-3 border-r border-data-border-gray text-center w-[90px]">성별</th>
+                                <th class="p-3 border-r border-data-border-gray text-center w-[120px]">연령대</th>
+                                <th class="p-3 border-r border-data-border-gray text-right w-[120px]">수검률</th>
+                                <th class="p-3 border-r border-data-border-gray text-right w-[120px]">유사 평균</th>
+                                <th class="p-3 text-right pr-4">편차</th>
                             </tr>
                         </thead>
                         <tbody id="modal-tbody">
@@ -332,13 +358,25 @@
         
         function rollupSgg() {
             const groups = {};
+            const byCancerChecked = document.getElementById('check-by-cancer').checked;
+            const selectedCancer = document.getElementById('select-cancer').value;
             
             rawPriorityData.forEach(item => {
-                const key = `${item.시도}|${item.시군구}`;
+                // 특정 암종 선택 시 조기 필터링
+                if (selectedCancer !== '전체' && item.암종 !== selectedCancer) {
+                    return;
+                }
+                
+                // 그룹화 키 생성 (암종별 보기 체크 시 암종도 키에 포함)
+                const key = byCancerChecked
+                    ? `${item.시도}|${item.시군구}|${item.암종}`
+                    : `${item.시도}|${item.시군구}`;
+                
                 if (!groups[key]) {
                     groups[key] = {
                         sido: item.시도,
                         sgg: item.시군구,
+                        cancer: byCancerChecked ? item.암종 : '전체',
                         target: 0,
                         screened: 0,
                         sim_sum: 0,
@@ -362,6 +400,7 @@
                 return {
                     sido: g.sido,
                     sgg: g.sgg,
+                    cancer: g.cancer,
                     rate: rate,
                     similar: similar,
                     expected: expected,
@@ -427,7 +466,7 @@
             rankingTbody.innerHTML = '';
             
             if (filtered.length === 0) {
-                rankingTbody.innerHTML = `<tr><td colspan="8" class="text-center py-16 text-slate-400">필터에 해당하는 시군구가 없습니다.</td></tr>`;
+                rankingTbody.innerHTML = `<tr><td colspan="9" class="text-center py-16 text-slate-400">필터에 해당하는 데이터가 없습니다.</td></tr>`;
                 return;
             }
             
@@ -436,16 +475,22 @@
                 const gapSign = r.gap >= 0 ? '+' : '';
                 const gapColor = r.gap < 0 ? 'text-data-alert font-bold' : 'text-data-secondary';
                 
+                // 암종 뱃지 렌더링
+                const cancerBadge = r.cancer === '전체' 
+                    ? `<span class="text-slate-400 font-medium">전체</span>`
+                    : `<span class="inline-block px-2.5 py-0.5 bg-primary/10 text-primary rounded font-bold text-[14px]">${r.cancer}</span>`;
+                
                 const rowHtml = `
                     <tr class="border-b border-slate-100 hover:bg-slate-50 cursor-pointer" onclick="showDetails('${r.sido}|${r.sgg}')">
-                        <td class="p-3 border-r border-data-border-gray text-center font-bold text-slate-500">${rank}</td>
-                        <td class="p-3 border-r border-data-border-gray font-bold text-slate-700">${r.sido}</td>
-                        <td class="p-3 border-r border-data-border-gray font-bold text-primary">${r.sgg}</td>
-                        <td class="p-3 border-r border-data-border-gray text-right font-number-data">${r.rate.toFixed(1)}%</td>
-                        <td class="p-3 border-r border-data-border-gray text-right font-number-data text-slate-500">${r.expected.toFixed(1)}%</td>
-                        <td class="p-3 border-r border-data-border-gray text-right font-number-data text-slate-500">${r.similar.toFixed(1)}%</td>
-                        <td class="p-3 border-r border-data-border-gray text-right font-number-data ${gapColor}">${gapSign}${r.gap.toFixed(1)}%p</td>
-                        <td class="p-3 text-right font-number-data text-data-secondary">${r.recovery.toLocaleString()}명</td>
+                        <td class="p-4 border-r border-data-border-gray text-center font-bold text-slate-500">${rank}</td>
+                        <td class="p-4 border-r border-data-border-gray font-bold text-slate-700">${r.sido}</td>
+                        <td class="p-4 border-r border-data-border-gray font-bold text-primary">${r.sgg}</td>
+                        <td class="p-4 border-r border-data-border-gray text-center">${cancerBadge}</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data">${r.rate.toFixed(1)}%</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data text-slate-500">${r.expected.toFixed(1)}%</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data text-slate-500">${r.similar.toFixed(1)}%</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data ${gapColor}">${gapSign}${r.gap.toFixed(1)}%p</td>
+                        <td class="p-4 text-right font-number-data text-data-secondary pr-6">${r.recovery.toLocaleString()}명</td>
                     </tr>
                 `;
                 rankingTbody.insertAdjacentHTML('beforeend', rowHtml);
@@ -471,12 +516,12 @@
                 
                 const rowHtml = `
                     <tr class="border-b border-slate-100 hover:bg-slate-50">
-                        <td class="p-2 border-r border-data-border-gray font-bold text-primary">${seg.암종}</td>
-                        <td class="p-2 border-r border-data-border-gray text-center text-slate-700">${seg.성별}</td>
-                        <td class="p-2 border-r border-data-border-gray text-center text-slate-600">${seg.연령}세</td>
-                        <td class="p-2 border-r border-data-border-gray text-right font-number-data">${seg.수검률.toFixed(1)}%</td>
-                        <td class="p-2 border-r border-data-border-gray text-right font-number-data text-slate-500">${seg.유사_평균.toFixed(1)}%</td>
-                        <td class="p-2 text-right font-number-data ${gapColor}">${gapSign}${gap.toFixed(1)}%p</td>
+                        <td class="p-3 border-r border-data-border-gray font-bold text-primary">${seg.암종}</td>
+                        <td class="p-3 border-r border-data-border-gray text-center text-slate-700">${seg.성별}</td>
+                        <td class="p-3 border-r border-data-border-gray text-center text-slate-600">${seg.연령}세</td>
+                        <td class="p-3 border-r border-data-border-gray text-right font-number-data">${seg.수검률.toFixed(1)}%</td>
+                        <td class="p-3 border-r border-data-border-gray text-right font-number-data text-slate-500">${seg.유사_평균.toFixed(1)}%</td>
+                        <td class="p-3 text-right font-number-data ${gapColor} pr-4">${gapSign}${gap.toFixed(1)}%p</td>
                     </tr>
                 `;
                 modalTbody.insertAdjacentHTML('beforeend', rowHtml);
@@ -491,6 +536,16 @@
         
         selectSido.addEventListener('change', renderList);
         selectSort.addEventListener('change', renderList);
+        
+        // 신규 필터 및 체크박스 바인딩 추가
+        document.getElementById('select-cancer').addEventListener('change', () => {
+            rollupSgg();
+            renderList();
+        });
+        document.getElementById('check-by-cancer').addEventListener('change', () => {
+            rollupSgg();
+            renderList();
+        });
         
         window.addEventListener('DOMContentLoaded', initPage);
     </script>
