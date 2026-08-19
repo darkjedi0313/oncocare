@@ -121,9 +121,11 @@
             );
         });
 
-        // 자동 로그인 — 이미 세션이 있으면 바로 이동
+        // 자동 로그인 — 이미 세션이 있으면 바로 이동, 없으면 보건소 계정으로 즉시 로그인
         if (localStorage.getItem('onco_session')) {
             window.location.href = 'index.html';
+        } else {
+            doLogin('보건소', '보건소');
         }
     </script>
 </body>
