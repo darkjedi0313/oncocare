@@ -50,6 +50,12 @@ class PriorityResponse(BaseModel):
     목록: List[PriorityItem]
     안내문구: str = "이 값은 평가가 아니라 검토 시작점입니다"
 
+class SimilarRegionDetail(BaseModel):
+    지역명: str
+    수검률: float
+    소득: float
+    인구: int
+
 class CompareResponse(BaseModel):
     연도: int
     지역명: str
@@ -65,6 +71,11 @@ class CompareResponse(BaseModel):
     유사_SE: float
     전국_평균: float
     유사_지역목록: List[str]
+    우리_소득: float = 0.0
+    우리_인구: int = 0
+    우리_도농: str = ""
+    우리_기관밀도: float = 0.0
+    유사_지역_상세: List[SimilarRegionDetail] = []
     안내문구: str = "이 값은 평가가 아니라 검토 시작점입니다"
 
 class FactorSegment(BaseModel):

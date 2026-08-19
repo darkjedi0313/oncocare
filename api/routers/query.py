@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 from api.deps import get_db, DataLoader
-from api.schemas import SummaryResponse, CancerStat, PrioritySegment, PriorityResponse, PriorityItem, CompareResponse, FactorsResponse, FactorSegment, ChangeableFactor, FixedFactor, StrataRow, ActionResponse, ActionItem, SampleRequest, SampleResponse, RecordsResponse, CampaignRecordUpdateRequest
+from api.schemas import SummaryResponse, CancerStat, PrioritySegment, PriorityResponse, PriorityItem, CompareResponse, SimilarRegionDetail, FactorsResponse, FactorSegment, ChangeableFactor, FixedFactor, StrataRow, ActionResponse, ActionItem, SampleRequest, SampleResponse, RecordsResponse, CampaignRecordUpdateRequest
 
 router = APIRouter(prefix="/api", tags=["Query"])
 
@@ -248,19 +248,53 @@ def get_compare(
         sim_se = float(s_row['유사_SE'])
         
     region_display = region.split('|')[1] if '|' in region else region
-    
+
     # 4. 전국 평균 계산
     df_nat = df_exp[
-        (df_exp['성별'] == gender) & 
-        (df_exp['연령'] == age) & 
-        (df_exp['암종'] == cancer) & 
+        (df_exp['성별'] == gender) &
+        (df_exp['연령'] == age) &
+        (df_exp['암종'] == cancer) &
         (df_exp['연도'] == year)
     ]
     nat_avg = df_nat['수검자'].sum() / df_nat['대상자'].sum() * 100 if not df_nat.empty and df_nat['대상자'].sum() > 0 else 56.3
-    
-    # 유사 지역 목록도 사용자 친화적으로 파싱해서 반환 (시군구명만 표시)
+
+    # 5. 우리 지역 여건 프로필 (소득·인구·도농·기관밀도)
+    db_profiles = db.region_profiles
+    our_income, our_pop, our_urban, our_density = 0.0, 0, "", 0.0
+    if not db_profiles.empty:
+        our_row = db_profiles[db_profiles['키'] == region]
+        if not our_row.empty:
+            p = our_row.iloc[0]
+            our_income = round(float(p['소득']), 1)
+            our_pop = int(p['인구'])
+            our_urban = str(p['도농유형'])
+            our_density = round(float(p['기관전체밀도']), 2)
+
+    # 6. 유사 지역 20곳 상세 (수검률 + 소득·인구)
+    similar_details: list[SimilarRegionDetail] = []
+    for sim_key in similar_list:
+        sim_name = sim_key.split('|')[1] if '|' in sim_key else sim_key
+        sim_seg = df_exp[
+            (df_exp['키'] == sim_key) &
+            (df_exp['성별'] == gender) &
+            (df_exp['연령'] == age) &
+            (df_exp['암종'] == cancer) &
+            (df_exp['연도'] == year)
+        ]
+        sim_rate = round(float(sim_seg.iloc[0]['수검률']), 2) if not sim_seg.empty else 0.0
+        sim_income, sim_pop = 0.0, 0
+        if not db_profiles.empty:
+            sim_prof = db_profiles[db_profiles['키'] == sim_key]
+            if not sim_prof.empty:
+                sim_income = round(float(sim_prof.iloc[0]['소득']), 1)
+                sim_pop = int(sim_prof.iloc[0]['인구'])
+        similar_details.append(SimilarRegionDetail(
+            지역명=sim_name, 수검률=sim_rate, 소득=sim_income, 인구=sim_pop
+        ))
+
+    # 유사 지역 목록 (시군구명만)
     similar_list_display = [n.split('|')[1] if '|' in n else n for n in similar_list]
-    
+
     return CompareResponse(
         연도=year,
         지역명=region_display,
@@ -275,7 +309,12 @@ def get_compare(
         유사_최대=round(sim_max, 2),
         유사_SE=round(sim_se, 2),
         전국_평균=round(nat_avg, 2),
-        유사_지역목록=similar_list_display
+        유사_지역목록=similar_list_display,
+        우리_소득=our_income,
+        우리_인구=our_pop,
+        우리_도농=our_urban,
+        우리_기관밀도=our_density,
+        유사_지역_상세=similar_details,
     )
 
 @router.get("/factors", response_model=FactorsResponse)

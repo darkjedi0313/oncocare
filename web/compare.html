@@ -386,20 +386,14 @@
                         차이 <span class="${diffColor}">${diffSign}${diffVal.toFixed(1)}%p</span> (건강보험 가입자 기준)
                     `;
 
-                    // 2. Render Our Region Profile
-                    const defaultProfile = {
-                        income: 1544422,
-                        population: 189000,
-                        urban: '구',
-                        inst_density: 11.1
-                    };
-                    
-                    // Fetch income or apply default values
-                    const incomeFormatted = (defaultProfile.income / 10000).toFixed(0);
-                    document.getElementById('profile-income').innerText = `${parseInt(incomeFormatted).toLocaleString()} 만원`;
-                    document.getElementById('profile-population').innerText = `${defaultProfile.population.toLocaleString()} 명`;
-                    document.getElementById('profile-urban').innerText = defaultProfile.urban;
-                    document.getElementById('profile-density').innerText = `${defaultProfile.inst_density.toFixed(1)} 곳/만명`;
+                    // 2. Render Our Region Profile (실 API 데이터)
+                    document.getElementById('profile-income').innerText = compareData.우리_소득 > 0
+                        ? `${Math.round(compareData.우리_소득).toLocaleString()} 만원` : '–';
+                    document.getElementById('profile-population').innerText = compareData.우리_인구 > 0
+                        ? `${compareData.우리_인구.toLocaleString()} 명` : '–';
+                    document.getElementById('profile-urban').innerText = compareData.우리_도농 || '–';
+                    document.getElementById('profile-density').innerText = compareData.우리_기관밀도 > 0
+                        ? `${compareData.우리_기관밀도.toFixed(1)} 곳/만명` : '–';
 
                     // 3. Render Statistics summary (Right card)
                     document.getElementById('stat-mean').innerText = `${compareData.유사_평균.toFixed(1)} %`;
@@ -414,27 +408,22 @@
                     
                     document.getElementById('stat-our-percentile').innerText = diffVal < 0 ? '하위 15% 수준' : '상위 30% 수준';
 
-                    // 4. Render Similar List Table
+                    // 4. Render Similar List Table (실 API 데이터)
                     const listTbody = document.getElementById('similar-list-tbody');
                     listTbody.innerHTML = '';
 
-                    const similarRegions = compareData.유사_지역목록 || [];
-                    if (similarRegions.length === 0) {
+                    const similarDetails = compareData.유사_지역_상세 || [];
+                    if (similarDetails.length === 0) {
                         listTbody.innerHTML = '<tr><td colspan="4" class="text-center py-6 text-slate-400">유사 지자체 목록이 존재하지 않습니다.</td></tr>';
                     } else {
-                        similarRegions.forEach((reg, index) => {
-                            const pseudoSeed = (reg.charCodeAt(0) + reg.charCodeAt(reg.length - 1)) % 10;
-                            const pseudoRate = compareData.유사_평균 + (pseudoSeed - 5) * 1.2;
-                            const pseudoIncome = defaultProfile.income - (pseudoSeed - 5) * 45000;
-                            const pseudoPop = defaultProfile.population - (pseudoSeed - 5) * 8000;
-
+                        similarDetails.forEach((item) => {
                             const tr = document.createElement('tr');
                             tr.className = 'hover:bg-data-bg-gray/50 border-b border-data-border-gray';
                             tr.innerHTML = `
-                                <td class="p-3 font-medium text-slate-800">${reg}</td>
-                                <td class="p-3 text-right text-slate-600">${Math.round(pseudoIncome/10000).toLocaleString()} 만원</td>
-                                <td class="p-3 text-right text-slate-600">${pseudoPop.toLocaleString()} 명</td>
-                                <td class="p-3 text-right font-bold text-slate-700">${pseudoRate.toFixed(1)}%</td>
+                                <td class="p-3 font-medium text-slate-800">${item.지역명}</td>
+                                <td class="p-3 text-right text-slate-600">${item.소득 > 0 ? Math.round(item.소득).toLocaleString() + ' 만원' : '–'}</td>
+                                <td class="p-3 text-right text-slate-600">${item.인구 > 0 ? item.인구.toLocaleString() + ' 명' : '–'}</td>
+                                <td class="p-3 text-right font-bold text-slate-700">${item.수검률.toFixed(1)}%</td>
                             `;
                             listTbody.appendChild(tr);
                         });

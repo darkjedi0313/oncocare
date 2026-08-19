@@ -4,6 +4,7 @@ from expectation import run_expectation
 from similar import run_similar
 from coefficients import run_coefficients
 from strata import run_strata
+from trend import run_trend
 
 def run_national_avg():
     print("\n========== [build_artifacts.py] 전국 세그먼트 평균 산출 ==========")
@@ -66,9 +67,15 @@ def main():
     if not success_strata:
         print("Error: 층화 분석 교차표 산출 실패")
         return
-        
+
+    # 6. 연도별 추이 산출
+    success_trend = run_trend()
+    if not success_trend:
+        print("Error: 연도별 추이 산출 실패")
+        return
+
     print("\n==================================================")
-    print("      OncoCare 분석 산출물 6종 생성 완료!")
+    print("      OncoCare 분석 산출물 7종 생성 완료!")
     print("==================================================")
 
 if __name__ == '__main__':

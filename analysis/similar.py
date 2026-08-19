@@ -52,6 +52,20 @@ def run_similar():
     with open(output_json, 'w', encoding='utf-8') as f:
         json.dump(similar_regions, f, ensure_ascii=False, indent=2)
     print(f"산출물 저장 완료: {output_json}")
+
+    # 지역 여건 프로필 저장 (compare API에서 실제 소득·인구 반환용)
+    profiles = df_sgg[['시군구', '소득로그', '인구로그', '군', '구', '기관전체밀도']].copy()
+    profiles['소득'] = np.expm1(profiles['소득로그']) / 10000  # 만원 단위
+    profiles['인구'] = np.expm1(profiles['인구로그']).round().astype(int)
+    profiles['도농유형'] = '시'
+    profiles.loc[profiles['군'] == 1, '도농유형'] = '군'
+    profiles.loc[profiles['구'] == 1, '도농유형'] = '구'
+    profiles = profiles[['시군구', '소득', '인구', '도농유형', '기관전체밀도']].copy()
+    profiles.index.name = '키'
+    profiles = profiles.reset_index()
+    output_profiles = "data/processed/region_profiles.parquet"
+    profiles.to_parquet(output_profiles, index=False)
+    print(f"산출물 저장 완료: {output_profiles} ({profiles.shape[0]}행)")
     
     # 도농 일치율 검증
     # 도농 구분은 '군' 및 '구' 피처가 일치하는지 여부로 판정
