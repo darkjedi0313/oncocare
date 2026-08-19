@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <script src="js/auth_guard.js"></script>
@@ -212,32 +212,32 @@
             <div class="flex-1 flex gap-grid_gap mb-4 overflow-hidden">
                 <!-- Left: Phone Simulator (45%) -->
                 <div class="w-[45%] border border-data-border-gray rounded-card p-6 flex flex-col justify-center items-center bg-data-bg-gray overflow-y-auto">
-                    <div class="w-[320px] h-[580px] bg-slate-900 rounded-[36px] p-4 shadow-xl border-4 border-slate-700 flex flex-col relative">
+                    <div class="w-[410px] h-[700px] bg-slate-900 rounded-[44px] p-5 shadow-2xl border-[6px] border-slate-700 flex flex-col relative">
                         <!-- Top notch -->
-                        <div class="w-[120px] h-[20px] bg-slate-700 rounded-b-2xl absolute top-0 left-1/2 transform -translate-x-1/2 z-10 flex items-center justify-center">
-                            <div class="w-[40px] h-[4px] bg-slate-900 rounded-full mb-1"></div>
+                        <div class="w-[150px] h-[24px] bg-slate-700 rounded-b-2xl absolute top-0 left-1/2 transform -translate-x-1/2 z-10 flex items-center justify-center">
+                            <div class="w-[50px] h-[4px] bg-slate-900 rounded-full mb-1"></div>
                         </div>
                         
                         <!-- Phone Header -->
                         <div class="h-[30px] flex justify-between items-center px-4 pt-2 text-label-sm text-white/80 font-bold font-number-data select-none">
                             <span id="phone-time">10:00</span>
-                            <div class="flex items-center gap-1">
+                            <div class="flex items-center gap-1.5">
                                 <span class="material-symbols-outlined text-label-sm">signal_cellular_4_bar</span>
                                 <span class="material-symbols-outlined text-label-sm">wifi</span>
                                 <span class="material-symbols-outlined text-label-sm">battery_std</span>
                             </div>
                         </div>
-
+ 
                         <!-- Phone Body / Chat Room -->
-                        <div class="flex-1 bg-slate-100 rounded-2xl p-3 flex flex-col overflow-hidden mt-2">
+                        <div class="flex-1 bg-slate-100 rounded-3xl p-4 flex flex-col overflow-hidden mt-3">
                             <!-- Sender name -->
-                            <div class="text-center text-label-sm text-slate-500 font-bold mb-2 pb-1.5 border-b border-slate-200">
+                            <div class="text-center text-label-sm text-slate-500 font-bold mb-3 pb-2 border-b border-slate-200">
                                 발신처: <span id="txt-sender">양천구보건소</span>
                             </div>
                             
                             <!-- Bubble Message -->
                             <div class="flex-1 overflow-y-auto pr-1">
-                                <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-3 text-label-sm text-slate-800 leading-relaxed max-w-[90%] break-all shadow-sm" id="msg-text-bubble">
+                                <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-4 text-label-sm text-slate-800 leading-relaxed max-w-[95%] break-all shadow-sm" id="msg-text-bubble">
                                     안내문을 생성하는 중입니다. 잠시만 기다려주세요...
                                 </div>
                             </div>
