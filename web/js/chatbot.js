@@ -1,6 +1,6 @@
 // Onco Chatbot Component
 
-document.addEventListener('DOMContentLoaded', () => {
+function initChatbot() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     if (currentPath === 'login.html') return;
     // 1. Create and inject Chatbot HTML markup to the body
@@ -90,11 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const floatingBtn = document.getElementById('floating-btn') || document.querySelector('button[onclick*="온코"]');
         if (floatingBtn) {
             floatingBtn.removeAttribute('onclick');
-            floatingBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const isOpen = !chatPanel.classList.contains('translate-x-full');
-                toggleChat(!isOpen);
-            });
+            
+            // 중복 바인딩 방지 플래그 체크
+            if (!floatingBtn.dataset.bound) {
+                floatingBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // 이벤트 버블링 차단
+                    
+                    const isOpen = !chatPanel.classList.contains('translate-x-full');
+                    toggleChat(!isOpen);
+                });
+                floatingBtn.dataset.bound = 'true';
+            }
         }
     }
     
@@ -256,4 +263,10 @@ document.addEventListener('DOMContentLoaded', () => {
             sendUserMessage(question);
         }
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatbot);
+} else {
+    initChatbot();
+}

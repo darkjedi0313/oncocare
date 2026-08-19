@@ -19,12 +19,14 @@
     const session = JSON.parse(sessionStr);
     const role = session.role;
 
-    // 2. 보건소만 전국 모니터링 접근 차단
+    // 2. 보건소만 전국 모니터링 접근 차단 (임시 해제)
+    /*
     if (role === 'healthcenter' && currentPath === 'monitoring.html') {
         alert('해당 화면에 접근 권한이 없습니다.');
         window.location.href = 'index.html';
         return;
     }
+    */
 
     // 3. DOM 로드 후 UI 커스텀
     document.addEventListener('DOMContentLoaded', () => {
