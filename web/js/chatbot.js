@@ -92,8 +92,11 @@ function initChatbot() {
             floatingBtn.removeAttribute('onclick');
             
             // 프리미엄 AI 스타일 적용 (더 큰 크기, 입체감 있는 그라데이션, 애니메이션)
-            floatingBtn.className = "fixed bottom-8 right-8 w-[88px] h-[88px] bg-gradient-to-br from-[#1F4E78] via-[#008080] to-[#0EA5E9] rounded-full shadow-2xl flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:from-[#256294] hover:to-[#0284c7] transition-all duration-300 hover:scale-110 border-2 border-white/20 relative overflow-hidden group";
+            floatingBtn.className = "fixed w-[88px] h-[88px] bg-gradient-to-br from-[#1F4E78] via-[#008080] to-[#0EA5E9] rounded-full shadow-2xl flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:from-[#256294] hover:to-[#0284c7] transition-all duration-300 hover:scale-110 border-2 border-white/20 relative overflow-hidden group";
             
+            // 인라인 스타일로 top/left를 무시하고 bottom/right 강제 고정
+            floatingBtn.style.cssText = "bottom: 32px !important; right: 32px !important; top: auto !important; left: auto !important; position: fixed !important;";
+
             floatingBtn.innerHTML = `
                 <!-- Shimmer/빛반사 효과 레이어 -->
                 <div class="absolute inset-0 w-1/2 h-full bg-white/20 -skew-x-[30deg] -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>

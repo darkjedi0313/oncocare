@@ -153,4 +153,12 @@ p, span, li, div {
     transform: skewX(-30deg) translateX(300%);
   }
 }
-
+/* ---------- 온코 AI 플로팅 버튼 우측 하단 고정 강제화 ---------- */
+#floating-btn {
+  position: fixed !important;
+  bottom: 32px !important;
+  right: 32px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 9999 !important; /* 항상 최상위에 뜨도록 처리 */
+}
