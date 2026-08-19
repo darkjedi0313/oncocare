@@ -69,7 +69,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -138,7 +138,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -161,15 +161,15 @@
                 <!-- Top Section: Campaigns Table (60% height) -->
                 <div class="h-[55%] border border-data-border-gray rounded-card flex flex-col bg-white overflow-hidden">
                     <div class="p-4 border-b border-data-border-gray bg-data-bg-gray flex justify-between items-center select-none">
-                        <span class="font-body-md-bold text-primary text-[14px]">구 등록 캠페인 목록 (최신순)</span>
-                        <div class="text-[11px] text-data-alert font-bold flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">shield</span>
+                        <span class="font-body-md-bold text-primary text-body-md">구 등록 캠페인 목록 (최신순)</span>
+                        <div class="text-label-sm text-data-alert font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-body-md">shield</span>
                             <span>개인 식별정보를 저장하지 않습니다. 세그먼트 단위 집계로만 기록됩니다.</span>
                         </div>
                     </div>
                     
                     <div class="flex-1 overflow-y-auto">
-                        <table class="w-full text-left text-xs border-collapse">
+                        <table class="w-full text-left text-label-sm border-collapse">
                             <thead>
                                 <tr class="bg-data-table-header text-slate-600 font-bold border-b border-data-border-gray">
                                     <th class="p-3">ID</th>
@@ -194,62 +194,62 @@
                 <div class="h-[45%] border border-data-border-gray rounded-card bg-white p-5 flex flex-col justify-between overflow-y-auto">
                     <div id="form-empty-state" class="flex-1 flex flex-col justify-center items-center text-slate-400 select-none">
                         <span class="material-symbols-outlined text-[48px] mb-2 text-slate-300">task_alt</span>
-                        <span class="text-xs">수정 및 기록할 캠페인 행을 테이블에서 선택해 주십시오.</span>
+                        <span class="text-label-sm">수정 및 기록할 캠페인 행을 테이블에서 선택해 주십시오.</span>
                     </div>
                     
                     <div id="form-editor-container" class="hidden flex-1 flex flex-col justify-between">
                         <div class="flex justify-between items-center border-b border-data-border-gray pb-2 mb-3 select-none">
-                            <span class="font-body-md-bold text-slate-700 text-[14px]">캠페인 ID <span id="lbl-campaign-id" class="text-primary font-bold">#12</span> 상세 정보 기입</span>
-                            <span class="text-[11px] text-slate-500" id="lbl-segment-info">대장암 · 여자 65~69세</span>
+                            <span class="font-body-md-bold text-slate-700 text-body-md">캠페인 ID <span id="lbl-campaign-id" class="text-primary font-bold">#12</span> 상세 정보 기입</span>
+                            <span class="text-label-sm text-slate-500" id="lbl-segment-info">대장암 · 여자 65~69세</span>
                         </div>
                         
                         <!-- Inputs Grid -->
                         <div class="grid grid-cols-3 gap-6">
                             <!-- 1. 연락 성과 -->
                             <div class="space-y-3">
-                                <span class="font-body-md-bold text-xs text-primary block border-b border-slate-100 pb-1 select-none">📞 1. 전화 연락 성과</span>
+                                <span class="font-body-md-bold text-label-sm text-primary block border-b border-slate-100 pb-1 select-none">📞 1. 전화 연락 성과</span>
                                 <div class="flex items-center gap-4">
                                     <div class="flex-1">
-                                        <label for="input-contacted" class="text-[11px] text-slate-500 font-bold block mb-1">연락 시도 (명)</label>
-                                        <input type="number" id="input-contacted" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-contacted" class="text-label-sm text-slate-500 font-bold block mb-1">연락 시도 (명)</label>
+                                        <input type="number" id="input-contacted" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                     <div class="flex-1">
-                                        <label for="input-reached" class="text-[11px] text-slate-500 font-bold block mb-1">통화 성공 (명)</label>
-                                        <input type="number" id="input-reached" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-reached" class="text-label-sm text-slate-500 font-bold block mb-1">통화 성공 (명)</label>
+                                        <input type="number" id="input-reached" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- 2. 미수검 사유 -->
                             <div class="space-y-3">
-                                <span class="font-body-md-bold text-xs text-primary block border-b border-slate-100 pb-1 select-none">📊 2. 미수검 사유 응답 (통화 성공 중)</span>
+                                <span class="font-body-md-bold text-label-sm text-primary block border-b border-slate-100 pb-1 select-none">📊 2. 미수검 사유 응답 (통화 성공 중)</span>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <label for="input-reason-no-notice" class="text-[10px] text-slate-500 font-bold block mb-1">안내문 미수신</label>
-                                        <input type="number" id="input-reason-no-notice" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-reason-no-notice" class="text-label-sm text-slate-500 font-bold block mb-1">안내문 미수신</label>
+                                        <input type="number" id="input-reason-no-notice" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                     <div>
-                                        <label for="input-reason-have-excuse" class="text-[10px] text-slate-500 font-bold block mb-1">이유 있음</label>
-                                        <input type="number" id="input-reason-have-excuse" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-reason-have-excuse" class="text-label-sm text-slate-500 font-bold block mb-1">이유 있음</label>
+                                        <input type="number" id="input-reason-have-excuse" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                     <div>
-                                        <label for="input-reason-cost-concern" class="text-[10px] text-slate-500 font-bold block mb-1">비용 우려</label>
-                                        <input type="number" id="input-reason-cost-concern" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-reason-cost-concern" class="text-label-sm text-slate-500 font-bold block mb-1">비용 우려</label>
+                                        <input type="number" id="input-reason-cost-concern" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                 </div>
                             </div>
 
                             <!-- 3. 문자 발송 -->
                             <div class="space-y-3">
-                                <span class="font-body-md-bold text-xs text-primary block border-b border-slate-100 pb-1 select-none">💬 3. 단체 문자 발송</span>
+                                <span class="font-body-md-bold text-label-sm text-primary block border-b border-slate-100 pb-1 select-none">💬 3. 단체 문자 발송</span>
                                 <div class="flex items-center gap-4">
                                     <div class="flex-1">
-                                        <label for="input-sms-sent" class="text-[11px] text-slate-500 font-bold block mb-1">발송 건수 (건)</label>
-                                        <input type="number" id="input-sms-sent" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-sms-sent" class="text-label-sm text-slate-500 font-bold block mb-1">발송 건수 (건)</label>
+                                        <input type="number" id="input-sms-sent" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                     <div class="flex-1">
-                                        <label for="input-sms-date" class="text-[11px] text-slate-500 font-bold block mb-1">발송 일자</label>
-                                        <input type="date" id="input-sms-date" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                        <label for="input-sms-date" class="text-label-sm text-slate-500 font-bold block mb-1">발송 일자</label>
+                                        <input type="date" id="input-sms-date" class="w-full text-label-sm rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
                                     </div>
                                 </div>
                             </div>
@@ -257,8 +257,8 @@
                         
                         <!-- Submit area -->
                         <div class="flex justify-between items-center border-t border-data-border-gray pt-3 mt-3">
-                            <span class="text-[11px] text-data-secondary font-bold">※ 연말 실적이 공개되면 연락군과 대기군의 수검률을 대조하여 효과를 자동 분석합니다.</span>
-                            <button id="btn-save-record" class="px-6 py-2 bg-primary text-white font-body-md-bold text-[13px] rounded hover:bg-primary/90 transition-colors shadow-sm">
+                            <span class="text-label-sm text-data-secondary font-bold">※ 연말 실적이 공개되면 연락군과 대기군의 수검률을 대조하여 효과를 자동 분석합니다.</span>
+                            <button id="btn-save-record" class="px-6 py-2 bg-primary text-white font-body-md-bold text-body-md rounded hover:bg-primary/90 transition-colors shadow-sm">
                                 성과 정보 저장하기
                             </button>
                         </div>
@@ -267,7 +267,7 @@
             </div>
 
             <!-- Footer area -->
-            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-[12px] text-slate-500 mt-2">
+            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-label-sm text-slate-500 mt-2">
                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                 <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
             </footer>
@@ -454,5 +454,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

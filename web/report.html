@@ -82,7 +82,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -151,7 +151,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -177,7 +177,7 @@
                     <div id="report-paper-container" class="w-full bg-white p-12 border border-data-border-gray shadow-md rounded flex-1 flex flex-col justify-between min-h-[750px] myeongjo-style relative text-slate-900">
                         
                         <!-- Top Header (Internal draft metadata) -->
-                        <div class="flex justify-between items-start text-[11px] text-slate-500 font-serif border-b border-slate-300 pb-3 mb-6 select-none w-full leading-normal">
+                        <div class="flex justify-between items-start text-label-sm text-slate-500 font-serif border-b border-slate-300 pb-3 mb-6 select-none w-full leading-normal">
                             <div class="space-y-1">
                                 <div>[시행구분] 내부결재</div>
                                 <div>[기안부서] 건강증진과-3482호</div>
@@ -197,7 +197,7 @@
                                 </div>
                                 
                                 <!-- Approval Sign-off Box -->
-                                <table class="border-collapse border border-slate-400 text-center text-[10px] font-serif select-none flex-shrink-0">
+                                <table class="border-collapse border border-slate-400 text-center text-label-sm font-serif select-none flex-shrink-0">
                                     <tr>
                                         <td rowspan="2" class="border border-slate-400 bg-slate-50 px-1 py-3 writing-vertical text-[9px] font-bold text-slate-600 leading-none">결<br><br>재</td>
                                         <td class="border border-slate-400 bg-slate-50 w-[45px] py-0.5 font-bold text-slate-600">담 당</td>
@@ -214,7 +214,7 @@
                             
                             <!-- Document Meta Table -->
                             <div class="mb-8 select-none">
-                                <table class="w-full text-xs border border-slate-300">
+                                <table class="w-full text-label-sm border border-slate-300">
                                     <tr class="border-b border-slate-300">
                                         <td class="bg-slate-50 w-[80px] p-2 font-bold text-slate-600 text-center border-r border-slate-300">수 신</td>
                                         <td class="p-2 border-r border-slate-300">내부결재 (보건소장 전결)</td>
@@ -225,7 +225,7 @@
                             </div>
                             
                             <!-- Generated Content paragraphs (Government Style indentations) -->
-                            <div class="text-[13px] text-slate-800 leading-[1.8] break-all space-y-6" id="doc-content">
+                            <div class="text-body-md text-slate-800 leading-[1.8] break-all space-y-6" id="doc-content">
                                 보고서 데이터를 집계하는 중입니다. 잠시만 기다려주세요...
                             </div>
                         </div>
@@ -241,7 +241,7 @@
                                 </div>
                             </div>
                             
-                            <div class="flex justify-between text-[11px] text-slate-500 mt-2 select-none font-serif">
+                            <div class="flex justify-between text-label-sm text-slate-500 mt-2 select-none font-serif">
                                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                                 <span class="font-bold text-data-alert">이 값은 평가가 아니라 검토 시작점입니다.</span>
                             </div>
@@ -256,22 +256,22 @@
                         
                         <div class="space-y-4 mb-6">
                             <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
-                                <h4 class="text-xs text-slate-500 font-bold mb-1.5 block">1. 국민건강보험공단 검진 결과 데이터</h4>
-                                <p class="text-xs text-slate-700 leading-normal">양천구 지자체 세그먼트별(성별/연령대/암종) 대상자 수 대비 실제 수검 통계 정보 일체 반영</p>
+                                <h4 class="text-label-sm text-slate-500 font-bold mb-1.5 block">1. 국민건강보험공단 검진 결과 데이터</h4>
+                                <p class="text-label-sm text-slate-700 leading-normal">양천구 지자체 세그먼트별(성별/연령대/암종) 대상자 수 대비 실제 수검 통계 정보 일체 반영</p>
                             </div>
                             
                             <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
-                                <h4 class="text-xs text-slate-500 font-bold mb-1.5 block">2. 국민연금공단 평균소득월액 데이터</h4>
-                                <p class="text-xs text-slate-700 leading-normal">가중 연계된 지자체 소득분포와 기대수검률 선형회귀 모델의 계수 통계치를 통한 격차 분석</p>
+                                <h4 class="text-label-sm text-slate-500 font-bold mb-1.5 block">2. 국민연금공단 평균소득월액 데이터</h4>
+                                <p class="text-label-sm text-slate-700 leading-normal">가중 연계된 지자체 소득분포와 기대수검률 선형회귀 모델의 계수 통계치를 통한 격차 분석</p>
                             </div>
                             
                             <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
-                                <h4 class="text-xs text-slate-500 font-bold mb-1.5 block">3. 국가건강검진 기관 현황 (접근성)</h4>
-                                <p class="text-xs text-slate-700 leading-normal">구 단위 의료 접근성 및 특정 세그먼트 암종별 미내원 요인 분석 근거 연계</p>
+                                <h4 class="text-label-sm text-slate-500 font-bold mb-1.5 block">3. 국가건강검진 기관 현황 (접근성)</h4>
+                                <p class="text-label-sm text-slate-700 leading-normal">구 단위 의료 접근성 및 특정 세그먼트 암종별 미내원 요인 분석 근거 연계</p>
                             </div>
                         </div>
 
-                        <div class="p-4 border border-dashed border-data-secondary/30 rounded bg-data-secondary/5 text-xs text-slate-700 leading-relaxed">
+                        <div class="p-4 border border-dashed border-data-secondary/30 rounded bg-data-secondary/5 text-label-sm text-slate-700 leading-relaxed">
                             <span class="font-body-md-bold text-primary block mb-1">💡 공문서 보고서 구성 전략</span>
                             본 보고서는 국가 표준 공문서 기안 서식 규격에 맞춰 결재선, 내부결재 메타 헤더, 발신 소장명 및 **직인 인장**이 디자인에 연동되었습니다. 다운로드 시 인쇄 가능한 완벽한 서식으로 렌더링됩니다.
                         </div>
@@ -292,7 +292,7 @@
             </div>
 
             <!-- Footer area -->
-            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-[12px] text-slate-500 mt-2">
+            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-label-sm text-slate-500 mt-2">
                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                 <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
             </footer>
@@ -359,7 +359,7 @@
                     .replace(/\n\n/g, '<br><br>')
                     .replace(/\n/g, '<br>')
                     // Emphasize section labels like 1., 2., 3., 4.
-                    .replace(/([1-9]\.\s+[^\n<]+)/g, '<strong class="text-slate-900 text-[14px] block mt-4 border-l-2 border-primary pl-2">$1</strong>')
+                    .replace(/([1-9]\.\s+[^\n<]+)/g, '<strong class="text-slate-900 text-body-md block mt-4 border-l-2 border-primary pl-2">$1</strong>')
                     // Add indentation for text lines under lists
                     .replace(/(-\s+[^\n<]+)/g, '<div class="pl-4 py-0.5 text-slate-700">$1</div>');
                 
@@ -455,5 +455,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

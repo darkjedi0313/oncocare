@@ -69,7 +69,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -138,7 +138,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -211,25 +211,25 @@
                         </div>
                         
                         <!-- Phone Header -->
-                        <div class="h-[30px] flex justify-between items-center px-4 pt-2 text-[11px] text-white/80 font-bold font-number-data select-none">
+                        <div class="h-[30px] flex justify-between items-center px-4 pt-2 text-label-sm text-white/80 font-bold font-number-data select-none">
                             <span id="phone-time">10:00</span>
                             <div class="flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px]">signal_cellular_4_bar</span>
-                                <span class="material-symbols-outlined text-[12px]">wifi</span>
-                                <span class="material-symbols-outlined text-[12px]">battery_std</span>
+                                <span class="material-symbols-outlined text-label-sm">signal_cellular_4_bar</span>
+                                <span class="material-symbols-outlined text-label-sm">wifi</span>
+                                <span class="material-symbols-outlined text-label-sm">battery_std</span>
                             </div>
                         </div>
 
                         <!-- Phone Body / Chat Room -->
                         <div class="flex-1 bg-slate-100 rounded-2xl p-3 flex flex-col overflow-hidden mt-2">
                             <!-- Sender name -->
-                            <div class="text-center text-[11px] text-slate-500 font-bold mb-2 pb-1.5 border-b border-slate-200">
+                            <div class="text-center text-label-sm text-slate-500 font-bold mb-2 pb-1.5 border-b border-slate-200">
                                 발신처: <span id="txt-sender">양천구보건소</span>
                             </div>
                             
                             <!-- Bubble Message -->
                             <div class="flex-1 overflow-y-auto pr-1">
-                                <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-3 text-xs text-slate-800 leading-relaxed max-w-[90%] break-all shadow-sm" id="msg-text-bubble">
+                                <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-3 text-label-sm text-slate-800 leading-relaxed max-w-[90%] break-all shadow-sm" id="msg-text-bubble">
                                     안내문을 생성하는 중입니다. 잠시만 기다려주세요...
                                 </div>
                             </div>
@@ -244,7 +244,7 @@
                         
                         <!-- Facts cards -->
                         <div class="space-y-4 mb-6">
-                            <h4 class="font-body-md-bold text-slate-700 text-[14px]">인용한 팩트 정보</h4>
+                            <h4 class="font-body-md-bold text-slate-700 text-body-md">인용한 팩트 정보</h4>
                             <div class="grid grid-cols-2 gap-4" id="facts-check-list">
                                 <!-- Generated Dynamically -->
                             </div>
@@ -252,7 +252,7 @@
 
                         <!-- Reflection checklist -->
                         <div class="space-y-4">
-                            <h4 class="font-body-md-bold text-slate-700 text-[14px]">반영된 조건 가이드</h4>
+                            <h4 class="font-body-md-bold text-slate-700 text-body-md">반영된 조건 가이드</h4>
                             <ul class="space-y-2 text-body-md text-slate-600 list-disc list-inside" id="reflected-check-list">
                                 <!-- Generated Dynamically -->
                             </ul>
@@ -261,7 +261,7 @@
 
                     <!-- Bottom Actions -->
                     <div class="border-t border-data-border-gray pt-6 mt-6 flex flex-col gap-4">
-                        <div class="text-data-alert font-bold text-label-sm text-[12px]" id="txt-warning">
+                        <div class="text-data-alert font-bold text-label-sm text-label-sm" id="txt-warning">
                             경고: 발신 기관명은 보건소입니다. 온코케어를 노출하지 않습니다.
                         </div>
                         <div class="flex justify-between items-center">
@@ -279,7 +279,7 @@
             </div>
 
             <!-- Footer area -->
-            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-[12px] text-slate-500 mt-2">
+            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-label-sm text-slate-500 mt-2">
                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                 <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
             </footer>
@@ -344,7 +344,7 @@
                     <span class="ml-2">안내문을 작성하는 중입니다...</span>
                 </div>
             `;
-            factsCheckList.innerHTML = '<p class="text-slate-400 text-xs">로딩 중...</p>';
+            factsCheckList.innerHTML = '<p class="text-slate-400 text-label-sm">로딩 중...</p>';
             reflectedCheckList.innerHTML = '<li>로딩 중...</li>';
             
             const cancer = selectCancer.value;
@@ -377,8 +377,8 @@
                 genData.facts_used.forEach(f => {
                     factsCheckList.innerHTML += `
                         <div class="p-3 bg-data-bg-gray border border-data-border-gray rounded shadow-sm">
-                            <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">${f.label}</span>
-                            <span class="font-body-md-bold text-xs text-primary">${f.value}</span>
+                            <span class="font-label-sm text-label-sm text-slate-500 mb-1 block">${f.label}</span>
+                            <span class="font-body-md-bold text-label-sm text-primary">${f.value}</span>
                         </div>
                     `;
                 });
@@ -451,5 +451,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

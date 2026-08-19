@@ -68,9 +68,9 @@
     <style>
         /* Custom Styles for Dual Bar Chart Viz */
         .chart-row { display: flex; flex-direction: column; margin-bottom: 12px; }
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--ink); }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 17px; font-weight: 700; color: var(--ink); }
         .bar-wrapper { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
-        .bar-label-sub { width: 55px; font-size: 11px; color: #64748b; text-align: right; font-weight: 500; }
+        .bar-label-sub { width: 55px; font-size: 17px; color: #64748b; text-align: right; font-weight: 500; }
         .bar-container-new { flex: 1; height: 10px; background-color: var(--bg-light); border-radius: 2px; overflow: hidden; position: relative; }
         .bar-fill-new { height: 100%; border-radius: 2px; transition: width 0.5s ease-in-out; }
     </style>
@@ -80,7 +80,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -149,7 +149,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -178,7 +178,7 @@
                     <div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant" id="summary-diff-container">
                         전국 평균 - · -
                     </div>
-                    <p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+                    <p class="font-label-sm text-label-sm text-outline mt-2">* 건강보험 가입자 기준</p>
                 </div>
                 <!-- Card 2 -->
                 <div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
@@ -187,7 +187,7 @@
                         <span class="text-[48px] font-bold text-data-primary leading-none" id="summary-unscreened">-</span>
                     </div>
                     <p class="font-label-sm text-label-sm text-on-surface-variant" id="summary-total-target">대상 -명 중</p>
-                    <p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+                    <p class="font-label-sm text-label-sm text-outline mt-2">* 건강보험 가입자 기준</p>
                 </div>
                 <!-- Card 3 -->
                 <div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
@@ -196,7 +196,7 @@
                         <span class="text-[48px] font-bold text-data-primary leading-none" id="summary-rank">-</span>
                     </div>
                     <p class="font-label-sm text-label-sm text-on-surface-variant" id="summary-total-sgg">-개 시군구 중</p>
-                    <p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+                    <p class="font-label-sm text-label-sm text-outline mt-2">* 건강보험 가입자 기준</p>
                 </div>
             </div>
 
@@ -216,7 +216,7 @@
                         <!-- Chart rows rendered dynamically -->
                         <p class="text-center text-on-surface-variant">차트 로딩 중...</p>
                     </div>
-                    <p class="font-label-sm text-[11px] text-outline mt-4 text-right">* 건강보험 가입자 기준</p>
+                    <p class="font-label-sm text-label-sm text-outline mt-4 text-right">* 건강보험 가입자 기준</p>
                 </div>
 
                 <!-- Right Column (38%) - Action Items -->
@@ -246,7 +246,7 @@
     <!-- Floating Action Button for '온코' — 챗봇 연동 -->
     <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
-        <span class="text-[10px] font-bold mt-0.5">온코</span>
+        <span class="fab-label font-bold leading-none">온코</span>
     </div>
 
     <!-- Load API client and run binding -->
@@ -342,7 +342,7 @@
                             <!-- 헤더: 암종명 및 실적 요약 -->
                             <div class="chart-header">
                                 <span class="${labelColor}">${cancerName}</span>
-                                <span class="font-label-sm text-[12px] font-normal text-slate-500">
+                                <span class="font-label-sm text-label-sm font-normal text-slate-500">
                                     우리 구 <span class="${valueColor}">${rateVal.toFixed(1)}%</span> │ 
                                     전국 평균 <span class="text-slate-700 font-bold">${natAvg.toFixed(1)}%</span>
                                 </span>
@@ -470,5 +470,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

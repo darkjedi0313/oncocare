@@ -74,7 +74,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -143,7 +143,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -206,16 +206,16 @@
                     
                     <div class="grid grid-cols-2 gap-6 mb-8">
                         <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
-                            <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">대상 세그먼트 전체 미수검자 수</span>
+                            <span class="font-label-sm text-label-sm text-slate-500 mb-1 block">대상 세그먼트 전체 미수검자 수</span>
                             <span class="font-title-md text-[20px] text-primary font-bold" id="txt-unscreened-count">조회 중...</span>
                         </div>
                         
                         <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded flex items-center justify-between">
                             <div>
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">우리 구 실제 수검률</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1 block">우리 구 실제 수검률</span>
                                 <span class="font-title-md text-[20px] text-slate-700 font-bold" id="txt-our-rate">- %</span>
                             </div>
-                            <span class="font-label-sm text-[11px] text-outline">건강보험 가입자 기준</span>
+                            <span class="font-label-sm text-label-sm text-outline">건강보험 가입자 기준</span>
                         </div>
                     </div>
 
@@ -223,11 +223,11 @@
                     <div class="space-y-4 mb-8">
                         <div class="flex items-center gap-6">
                             <div class="flex flex-col w-[200px]">
-                                <label for="input-sample-n" class="font-label-sm text-[12px] text-on-background mb-1.5 font-bold">연락 가능 인원 (N)</label>
+                                <label for="input-sample-n" class="font-label-sm text-label-sm text-on-background mb-1.5 font-bold">연락 가능 인원 (N)</label>
                                 <input type="number" id="input-sample-n" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-full" value="300" min="1">
                             </div>
                             <div class="flex flex-col w-[200px]">
-                                <label for="input-seed" class="font-label-sm text-[12px] text-on-background mb-1.5 font-bold">무작위 난수 시드 (Seed)</label>
+                                <label for="input-seed" class="font-label-sm text-label-sm text-on-background mb-1.5 font-bold">무작위 난수 시드 (Seed)</label>
                                 <input type="number" id="input-seed" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-full" value="42">
                             </div>
                             
@@ -247,22 +247,22 @@
                         
                         <div class="grid grid-cols-3 gap-4 mb-6">
                             <div class="bg-white p-3 rounded border border-data-border-gray text-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">캠페인 ID</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1 block">캠페인 ID</span>
                                 <span class="font-body-md-bold text-[15px] text-primary" id="res-campaign-id">-</span>
                             </div>
                             <div class="bg-white p-3 rounded border border-data-border-gray text-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">연락 대상군 (Target)</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1 block">연락 대상군 (Target)</span>
                                 <span class="font-body-md-bold text-[15px] text-data-secondary font-bold" id="res-contact-n">- 명</span>
                             </div>
                             <div class="bg-white p-3 rounded border border-data-border-gray text-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">자연 대조군 (Control)</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1 block">자연 대조군 (Control)</span>
                                 <span class="font-body-md-bold text-[15px] text-slate-600 font-bold" id="res-control-n">- 명</span>
                             </div>
                         </div>
 
                         <div class="flex justify-between items-center bg-white p-4 rounded border border-data-border-gray">
-                            <span class="font-label-sm text-[12px] text-outline">배정 방식: 무작위 분할 (난수 시드 고정)</span>
-                            <button id="btn-download-guide" class="px-4 py-1.5 bg-data-secondary text-white font-body-md-bold text-body-md-bold rounded hover:bg-data-secondary/90 transition-colors shadow-sm text-center flex items-center gap-1 text-[13px]">
+                            <span class="font-label-sm text-label-sm text-outline">배정 방식: 무작위 분할 (난수 시드 고정)</span>
+                            <button id="btn-download-guide" class="px-4 py-1.5 bg-data-secondary text-white font-body-md-bold text-body-md-bold rounded hover:bg-data-secondary/90 transition-colors shadow-sm text-center flex items-center gap-1 text-body-md">
                                 <span class="material-symbols-outlined text-[16px]">download</span>
                                 <span>추출 가이드 다운로드</span>
                             </button>
@@ -284,11 +284,11 @@
 
                         <!-- Absolute Data Privacy Warning Box -->
                         <div class="bg-data-alert/5 border border-data-alert/20 rounded p-4">
-                            <h4 class="font-body-md-bold text-data-alert text-[13px] mb-2 flex items-center gap-1 font-bold">
+                            <h4 class="font-body-md-bold text-data-alert text-body-md mb-2 flex items-center gap-1 font-bold">
                                 <span class="material-symbols-outlined text-[16px]">lock</span>
                                 개인정보 보호 가이드라인 (필독)
                             </h4>
-                            <p class="font-label-sm text-[12px] text-on-background leading-relaxed">
+                            <p class="font-label-sm text-label-sm text-on-background leading-relaxed">
                                 ⚠️ 온코케어 시스템은 주민번호, 전화번호, 이름 등 <strong>어떠한 개인식별 정보도 저장하거나 명단 파일로 반환하지 않습니다.</strong><br><br>
                                 `[추출 가이드]` 다운로드 시에는 추출 조건과 배정 시드(Seed)값만 텍스트 파일로 내려받으며, 실제 대상자 명단 추출은 이 가이드를 지참하여 보건소 관내 내부 망 시스템에서 직접 수행하셔야 합니다.
                             </p>
@@ -319,7 +319,7 @@
     <!-- Floating Action Button for '온코' — 챗봇 연동 -->
     <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
-        <span class="text-[10px] font-bold mt-0.5">온코</span>
+        <span class="fab-label font-bold leading-none">온코</span>
     </div>
 
     <script src="js/api.js"></script>
@@ -548,5 +548,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

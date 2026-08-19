@@ -69,7 +69,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -138,7 +138,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -202,19 +202,19 @@
                         <h3 class="font-body-md-bold text-body-md-bold text-primary mb-3">우리 구 지역 여건 프로필</h3>
                         <div class="grid grid-cols-4 gap-4">
                             <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1">평균소득월액</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1">평균소득월액</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-income">- 만원</span>
                             </div>
                             <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1">건강보험 적용인구</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1">건강보험 적용인구</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-population">- 명</span>
                             </div>
                             <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1">도농 구분</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1">도농 구분</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-urban">-</span>
                             </div>
                             <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
-                                <span class="font-label-sm text-[11px] text-slate-500 mb-1">검진기관 밀도</span>
+                                <span class="font-label-sm text-label-sm text-slate-500 mb-1">검진기관 밀도</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-density">- 곳/만명</span>
                             </div>
                         </div>
@@ -224,10 +224,10 @@
                     <div class="flex-1 border border-data-border-gray rounded-card bg-white flex flex-col overflow-hidden">
                         <div class="p-4 border-b border-data-border-gray bg-data-bg-gray flex justify-between items-center">
                             <h3 class="font-body-md-bold text-body-md-bold text-primary">여건이 비슷한 지자체 20곳 실적 목록</h3>
-                            <span class="font-label-sm text-[12px] text-slate-500">정렬: 시군구명 순</span>
+                            <span class="font-label-sm text-label-sm text-slate-500">정렬: 시군구명 순</span>
                         </div>
                         <div class="flex-1 overflow-y-auto">
-                            <table class="w-full text-left border-collapse font-body-md text-[14px]">
+                            <table class="w-full text-left border-collapse font-body-md text-body-md">
                                 <thead>
                                     <tr class="bg-data-table-header border-b border-data-border-gray text-slate-700 sticky top-0 z-10">
                                         <th class="p-3 font-bold">시군구</th>
@@ -285,11 +285,11 @@
 
                         <!-- Warnings & Limitations -->
                         <div class="bg-data-alert/5 border border-data-alert/20 rounded p-4">
-                            <h4 class="font-body-md-bold text-data-alert text-[13px] mb-2 flex items-center gap-1">
+                            <h4 class="font-body-md-bold text-data-alert text-body-md mb-2 flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[16px]">info</span>
                                 주의 및 한계 사항
                             </h4>
-                            <p class="font-label-sm text-[12px] text-on-background leading-relaxed">
+                            <p class="font-label-sm text-label-sm text-on-background leading-relaxed">
                                 여건 유사 20곳은 소득·인구·도농·전체 검진기관 밀도가 가장 유사하게 매칭된 지자체 그룹입니다. 다만, 암종별 검진기관 유무는 매칭 변수에 포함되지 않으므로 개별 의료 접근성 차이는 반영되지 않습니다.
                             </p>
                         </div>
@@ -318,7 +318,7 @@
     <!-- Floating Action Button for '온코' — 챗봇 연동 -->
     <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
-        <span class="text-[10px] font-bold mt-0.5">온코</span>
+        <span class="fab-label font-bold leading-none">온코</span>
     </div>
 
     <script src="js/api.js"></script>
@@ -474,5 +474,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

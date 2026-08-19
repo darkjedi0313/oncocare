@@ -78,7 +78,7 @@
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
             <li>
@@ -147,7 +147,7 @@
         </ul>
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
                 이 값은 평가가 아니라<br>검토 시작점입니다.
             </p>
         </div>
@@ -204,12 +204,12 @@
                             <span>결과보기</span>
                         </button>
                     </div>
-                    <span class="text-[12px] text-slate-500 font-bold select-none">* 건강보험 가입자 기준</span>
+                    <span class="text-label-sm text-slate-500 font-bold select-none">* 건강보험 가입자 기준</span>
                 </div>
 
                 <!-- 세그먼트 상세 데이터 표 -->
                 <div class="w-full bg-white rounded border border-data-border-gray overflow-hidden shadow-sm">
-                    <table class="w-full text-xs text-left border-collapse">
+                    <table class="w-full text-label-sm text-left border-collapse">
                         <thead>
                             <tr class="bg-data-table-header text-slate-600 font-bold border-b border-data-border-gray">
                                 <th class="p-2 border-r border-data-border-gray w-[25%]">조회 세그먼트</th>
@@ -223,11 +223,11 @@
                         <tbody>
                             <tr class="hover:bg-slate-50 font-medium">
                                 <td class="p-2.5 border-r border-data-border-gray font-bold text-slate-700" id="tbl-segment-name">로딩 중...</td>
-                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-800 text-[13px]" id="tbl-our-rate">-</td>
-                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-[13px]" id="tbl-expected-rate">-</td>
-                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-[13px]" id="tbl-similar-rate">-</td>
-                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-[13px]" id="tbl-national-rate">-</td>
-                                <td class="p-2.5 text-right font-number-data text-[13px]" id="tbl-gap-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-800 text-body-md" id="tbl-our-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-body-md" id="tbl-expected-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-body-md" id="tbl-similar-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-body-md" id="tbl-national-rate">-</td>
+                                <td class="p-2.5 text-right font-number-data text-body-md" id="tbl-gap-rate">-</td>
                             </tr>
                         </tbody>
                     </table>
@@ -254,7 +254,7 @@
                 <div class="w-[38%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto justify-between">
                     <div>
                         <h3 class="font-title-md text-title-md text-primary font-bold mb-2">통화 수집용 표준 3문항</h3>
-                        <p class="font-label-sm text-[12px] text-data-secondary font-bold mb-6">
+                        <p class="font-label-sm text-label-sm text-data-secondary font-bold mb-6">
                             💡 응답이 쌓이면 내년 기대치 모델링과 요인 분석의 정밀도가 올라갑니다.
                         </p>
                         
@@ -266,7 +266,7 @@
                     
                     <!-- Bottom Action Link -->
                     <div class="mt-6 pt-4 border-t border-data-border-gray">
-                        <p class="font-label-sm text-[11px] text-slate-500 mb-3 leading-relaxed">
+                        <p class="font-label-sm text-label-sm text-slate-500 mb-3 leading-relaxed">
                             * 안내문 작성을 원하시는 경우 아래 버튼을 통해 AI 생성기로 바로 연동할 수 있습니다.
                         </p>
                         <a href="message.html" class="w-full py-3 bg-primary text-white font-body-md-bold text-body-md-bold rounded hover:bg-primary/90 transition-colors shadow-sm text-center flex items-center justify-center gap-1" id="link-next-action">
@@ -291,7 +291,7 @@
     <!-- Floating Action Button for '온코' — 챗봇 연동 -->
     <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
-        <span class="text-[10px] font-bold mt-0.5">온코</span>
+        <span class="fab-label font-bold leading-none">온코</span>
     </div>
 
     <script src="js/api.js"></script>
@@ -367,7 +367,7 @@
                     document.getElementById('tbl-national-rate').innerText = `${parseFloat(natRate).toFixed(1)}%`;
                     
                     const gapTd = document.getElementById('tbl-gap-rate');
-                    gapTd.className = `p-2.5 text-right font-number-data text-[13px] ${diffColor}`;
+                    gapTd.className = `p-2.5 text-right font-number-data text-body-md ${diffColor}`;
                     gapTd.innerText = `${diffSign}${diffVal.toFixed(1)}%p`;
 
                     // 2. Render Applied Rule Badge
@@ -394,7 +394,7 @@
                         ` : '';
 
                         const expectedHtml = act.expected ? `
-                            <div class="flex items-center gap-1.5 mt-2 font-body-md text-[13px] text-data-secondary font-bold">
+                            <div class="flex items-center gap-1.5 mt-2 font-body-md text-body-md text-data-secondary font-bold">
                                 <span class="material-symbols-outlined text-[16px]">trending_up</span>
                                 <span>예상 효과: ${act.expected}</span>
                             </div>
@@ -405,7 +405,7 @@
                                 <div>
                                     <div class="flex justify-between items-start mb-2">
                                         <h4 class="font-body-md-bold text-body-md-bold text-primary text-[16px]">${idx + 1}. ${act.title}</h4>
-                                        <span class="text-[11px] font-label-sm text-outline border border-data-border-gray px-2 py-0.5 rounded-sm bg-slate-50">${act.evidence}</span>
+                                        <span class="text-label-sm font-label-sm text-outline border border-data-border-gray px-2 py-0.5 rounded-sm bg-slate-50">${act.evidence}</span>
                                     </div>
                                     <p class="font-body-md text-[13.5px] text-on-background leading-relaxed">
                                         ${act.why}
@@ -425,8 +425,8 @@
                     actionsData.survey_questions.forEach((q, idx) => {
                         const qHtml = `
                             <div class="flex items-center gap-3 p-4 bg-data-bg-gray border border-data-border-gray rounded">
-                                <span class="w-6 h-6 rounded-full bg-primary text-white font-bold text-[13px] flex items-center justify-center flex-shrink-0">Q${idx + 1}</span>
-                                <span class="font-body-md text-[14px] text-on-background font-medium">${q}</span>
+                                <span class="badge-circle rounded-full bg-primary text-white font-bold flex items-center justify-center flex-shrink-0">Q${idx + 1}</span>
+                                <span class="font-body-md text-body-md text-on-background font-medium">${q}</span>
                             </div>
                         `;
                         surveyContainer.insertAdjacentHTML('beforeend', qHtml);
@@ -473,5 +473,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 
