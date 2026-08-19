@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <script src="js/auth_guard.js"></script>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -227,7 +230,7 @@
                     <div class="flex items-center gap-1.5">
                         <label for="select-sort" class="text-label-sm text-slate-500 font-bold">정렬</label>
                         <select id="select-sort" class="rounded border-data-border-gray py-2 px-4 bg-white focus:outline-none focus:ring-1 focus:ring-primary min-w-[280px] font-bold text-slate-700">
-                            <option value="recovery-desc" selected>회복 여지 많은 순</option>
+                            <option value="recovery-desc" selected>개선 기대 인원 많은 순</option>
                             <option value="gap-desc">수검 격차 큰 순 (음의 격차)</option>
                             <option value="rate-asc">수검률 낮은 순</option>
                         </select>
@@ -246,12 +249,12 @@
 
             <div class="flex-1 border border-data-border-gray rounded bg-white overflow-hidden flex flex-col mb-4">
                 <div class="flex-1 table-scroll" id="table-container">
-                    <table class="w-full text-left border-collapse min-w-[1450px] table-fixed">
+                    <table class="w-full text-left border-collapse min-w-[1560px] table-fixed">
                         <thead class="sticky top-0 z-10">
                             <tr class="bg-data-table-header text-slate-600 font-bold border-b border-data-border-gray">
                                 <th class="p-4 border-r border-data-border-gray text-center w-[80px]">순위</th>
-                                <th class="p-4 border-r border-data-border-gray w-[120px]">시도명</th>
-                                <th class="p-4 border-r border-data-border-gray w-[150px]">시군구명</th>
+                                <th class="p-4 border-r border-data-border-gray w-[220px]">시도명</th>
+                                <th class="p-4 border-r border-data-border-gray w-[180px]">시군구명</th>
                                 <th class="p-4 border-r border-data-border-gray text-center w-[120px]">암종</th>
                                 <th class="p-4 border-r border-data-border-gray text-right w-[180px]">평균 수검률</th>
                                 <th class="p-4 border-r border-data-border-gray text-right w-[180px]">여건 기대치</th>
@@ -551,6 +554,9 @@
     </script>
 </body>
 </html>
+
+
+
 
 
 
