@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온코케어 (OncoCare) - 로그인</title>
+    <!-- Google Fonts & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tokens.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--onco-navy)',
+                        'data-secondary': 'var(--care-teal)',
+                        'data-alert': 'var(--alert-coral)',
+                        'data-bg-gray': 'var(--bg-light)',
+                        'data-border-gray': '#E2E8F0'
+                    },
+                    fontFamily: {
+                        sans: ["Public Sans", "Noto Sans KR", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Public Sans', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #E2E8F0 100%);
+        }
+    </style>
+</head>
+<body class="w-[1920px] h-[1080px] flex items-center justify-center overflow-hidden mx-auto relative">
+    <div class="w-[450px] bg-white rounded-2xl shadow-xl border border-data-border-gray p-10 flex flex-col justify-between">
+        <!-- Logo & Title -->
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-primary rounded-2xl mx-auto flex items-center justify-center text-white mb-4 shadow-md">
+                <span class="material-symbols-outlined text-[36px]">shield_heart</span>
+            </div>
+            <h1 class="font-bold text-2xl text-primary tracking-tight">온코케어 (OncoCare)</h1>
+            <p class="text-slate-500 text-xs mt-2">공공데이터 결합 기반 국가암검진 예산 배분 진단 서비스</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="space-y-5">
+            <div>
+                <label for="username" class="block text-xs font-bold text-slate-600 mb-1.5">아이디</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">account_circle</span>
+                    <input type="text" id="username" required placeholder="아이디를 입력하세요 (예: 보건소)" class="w-full border border-slate-300 rounded px-10 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block text-xs font-bold text-slate-600 mb-1.5">비밀번호</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">lock</span>
+                    <input type="password" id="password" required placeholder="비밀번호를 입력하세요" class="w-full border border-slate-300 rounded px-10 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                </div>
+            </div>
+            <button type="submit" id="btn-submit" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/95 transition-all text-sm shadow flex items-center justify-center gap-2 mt-8">
+                <span class="material-symbols-outlined text-[18px]">login</span>
+                로그인
+            </button>
+        </form>
+
+        <!-- Guide Box -->
+        <div class="mt-8 pt-6 border-t border-slate-100 text-[11px] text-slate-500 space-y-1.5 bg-slate-50 p-4 rounded-lg">
+            <p class="font-bold text-slate-700">🔒 권한별 로그인 가이드 (아이디 = 비밀번호)</p>
+            <ul class="list-disc pl-4 space-y-1">
+                <li>보건소: <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">healthcenter</code> 또는 <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">보건소</code></li>
+                <li>보건복지부: <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">mohw</code> 또는 <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">보건복지부</code></li>
+                <li>국립암센터: <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">ncc</code> 또는 <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">국립암센터</code></li>
+                <li>지역암센터: <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">rcc</code> 또는 <code class="bg-slate-200 px-1 rounded font-mono text-[10px]">지역암센터</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const btnSubmit = document.getElementById('btn-submit');
+        
+        const BASE_URL = 'http://localhost:8000';
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<span class="animate-spin material-symbols-outlined text-[18px]">sync</span> 로그인 중...`;
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.detail || '로그인 실패');
+                }
+
+                const data = await response.json();
+                
+                // 로그인 세션 저장
+                localStorage.setItem('onco_session', JSON.stringify(data));
+                
+                // 리다이렉트
+                window.location.href = 'index.html';
+
+            } catch (error) {
+                alert(error.message);
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = `<span class="material-symbols-outlined text-[18px]">login</span> 로그인`;
+            }
+        });
+    </script>
+</body>
+</html>

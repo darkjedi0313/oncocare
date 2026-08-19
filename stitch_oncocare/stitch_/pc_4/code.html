@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>온코케어 - 무엇을 할까</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#700602",
+                        "inverse-primary": "#a0cafb",
+                        "on-tertiary-fixed": "#410100",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffa596",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface": "#1b1c1c",
+                        "primary-fixed-dim": "#a0cafb",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary-fixed": "#002020",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface-variant": "#42474e",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "primary-container": "#1f4e78",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#72777f",
+                        "on-tertiary-fixed-variant": "#8a1c10",
+                        "surface": "#fcf9f8",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001d35",
+                        "inverse-surface": "#303030",
+                        "surface-tint": "#35618c",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#93f2f2",
+                        "surface-container": "#f0eded",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#194973",
+                        "tertiary-container": "#912115",
+                        "secondary": "#006a6a",
+                        "background": "#fcf9f8",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d0e4ff",
+                        "secondary-container": "#90efef",
+                        "outline-variant": "#c2c7cf",
+                        "on-primary-container": "#95bff0",
+                        "primary": "#00375e",
+                        "on-secondary-container": "#006e6e",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "inverse-on-surface": "#f3f0ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid_gap": "24px",
+                        "container_padding": "32px",
+                        "section_margin": "40px",
+                        "main_content_width": "1660px",
+                        "sidebar_width": "260px"
+                    },
+                    "fontFamily": {
+                        "body-md-bold": ["Public Sans", "sans-serif"],
+                        "number-data": ["Public Sans", "sans-serif"],
+                        "display-lg": ["Public Sans", "sans-serif"],
+                        "body-md": ["Public Sans", "sans-serif"],
+                        "title-md": ["Public Sans", "sans-serif"],
+                        "label-sm": ["Public Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md-bold": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "number-data": ["15px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "display-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background w-[1920px] h-[1080px] overflow-hidden flex relative">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container-low w-[260px] h-[1080px] border-r border-outline-variant dark:border-outline-variant flex flex-col py-6 px-4 z-20 shrink-0">
+<div class="mb-8 px-4 flex flex-col items-start gap-2">
+<span class="font-display-lg text-display-lg text-primary dark:text-on-primary-fixed">온코케어</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">공공보건 데이터 분석</span>
+</div>
+<div class="flex flex-col gap-1 flex-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                우리 구 현황
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+                어디부터 할까
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">query_stats</span>
+                왜 낮을까
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">map</span>
+                다른 지역은
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary text-on-primary font-body-md-bold text-body-md-bold transition-colors duration-200" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>무엇을 할까</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">group_add</span>
+                연락 명단 만들기
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+                안내문 만들기
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">assessment</span>
+                보고서 만들기
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                실행 기록
+            </a>
+</div>
+</nav>
+<div class="flex-1 flex flex-col h-[1080px]">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface h-[64px] border-b border-outline-variant dark:border-outline-variant flex justify-between items-center px-container_padding shrink-0">
+<div class="hidden font-display-lg text-display-lg text-primary dark:text-inverse-primary">온코케어</div>
+<div class="flex-1"></div>
+<div class="flex items-center gap-6">
+<span class="font-body-md text-body-md text-on-surface-variant">서울특별시 &gt; 양천구 | 2024년</span>
+<div class="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-body-md-bold text-body-md-bold text-primary dark:text-inverse-primary">양천구보건소 김주임</span>
+</div>
+</div>
+</header>
+<!-- Main Content Stage -->
+<main class="flex-1 flex flex-col p-container_padding overflow-hidden relative">
+<!-- Header / Subtitle -->
+<div class="mb-section_margin flex items-center justify-between shrink-0">
+<div class="flex items-center gap-4">
+<h1 class="font-display-lg text-display-lg text-on-background">대구 수성구 세그먼트 정보</h1>
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-3 py-1 rounded-full font-label-sm text-label-sm">수검률 30% 미만 구간</span>
+</div>
+<button class="bg-primary-container text-on-primary border border-transparent hover:bg-primary-fixed-variant hover:shadow-sm px-6 py-2.5 rounded transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="font-body-md-bold text-body-md-bold">안내문 만들기</span>
+</button>
+</div>
+<!-- Content Grid (62:38 ratio) -->
+<div class="flex gap-grid_gap flex-1 overflow-hidden pb-4">
+<!-- Left Column: 권장 개입 (62%) -->
+<div class="w-[62%] flex flex-col gap-6 overflow-y-auto pr-2 custom-scrollbar">
+<h2 class="font-title-md text-title-md text-on-surface border-b border-outline-variant pb-2 shrink-0">권장 개입</h2>
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-6 relative overflow-hidden flex gap-6 hover:shadow-sm transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-secondary"></div>
+<div class="w-1/3 border-r border-outline-variant/50 pr-6 flex flex-col justify-center">
+<h3 class="font-body-md-bold text-body-md-bold text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+                                우편 FIT 발송
+                            </h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">수검률이 가장 낮은 노년층 1인가구 대상</p>
+</div>
+<div class="w-2/3 grid grid-cols-2 gap-4">
+<div>
+<span class="block font-label-sm text-label-sm text-outline mb-1">왜/근거</span>
+<p class="font-body-md text-body-md text-on-background">이동 불편으로 인한 물리적 장벽 해소 및 검체 채취 용이성 확보</p>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-outline mb-1">효과/주의</span>
+<p class="font-body-md text-body-md text-on-background"><span class="text-secondary font-body-md-bold">예상 수검률 15% 상승.</span> 반송률 관리가 필요하며 회수용 봉투 동봉 필수.</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-6 relative overflow-hidden flex gap-6 hover:shadow-sm transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-secondary"></div>
+<div class="w-1/3 border-r border-outline-variant/50 pr-6 flex flex-col justify-center">
+<h3 class="font-body-md-bold text-body-md-bold text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                                통장 통한 사전 배부
+                            </h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">지역 커뮤니티 결속력이 높은 구도심 지역</p>
+</div>
+<div class="w-2/3 grid grid-cols-2 gap-4">
+<div>
+<span class="block font-label-sm text-label-sm text-outline mb-1">왜/근거</span>
+<p class="font-body-md text-body-md text-on-background">친숙한 이웃(통장)을 통한 전달로 정보 신뢰도 상승 및 수령 확인 용이</p>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-outline mb-1">효과/주의</span>
+<p class="font-body-md text-body-md text-on-background"><span class="text-secondary font-body-md-bold">참여 의향 20% 증가.</span> 통장 교육 및 배부 수당 등 행정적 지원 체계 선행 필요.</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-6 relative overflow-hidden flex gap-6 hover:shadow-sm transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-secondary"></div>
+<div class="w-1/3 border-r border-outline-variant/50 pr-6 flex flex-col justify-center">
+<h3 class="font-body-md-bold text-body-md-bold text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">sms</span>
+                                맞춤형 문자 발송
+                            </h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">40-50대 직장인 밀집 구간 대상</p>
+</div>
+<div class="w-2/3 grid grid-cols-2 gap-4">
+<div>
+<span class="block font-label-sm text-label-sm text-outline mb-1">왜/근거</span>
+<p class="font-body-md text-body-md text-on-background">업무 중 빠른 확인이 가능하며, 모바일 예약 링크 연동으로 즉각적 행동 유도</p>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-outline mb-1">효과/주의</span>
+<p class="font-body-md text-body-md text-on-background"><span class="text-secondary font-body-md-bold">클릭률 대비 예약 전환율 높음.</span> 스팸 오인 방지를 위한 명확한 발신처 표기 및 시간대 설정 주의.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: 통화 시 물어볼 것 (38%) -->
+<div class="w-[38%] flex flex-col gap-6 bg-surface-container-low border border-outline-variant rounded p-6 overflow-y-auto custom-scrollbar">
+<h2 class="font-title-md text-title-md text-on-surface flex items-center gap-2 shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+                    통화 시 물어볼 것
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant shrink-0">대상자 유선 안내 시 아래 질문을 통해 미수검 원인을 파악하세요.</p>
+<div class="flex flex-col gap-3 flex-1">
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex gap-3 items-start">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-number-data text-[13px] flex items-center justify-center shrink-0 mt-0.5">1</span>
+<p class="font-body-md text-body-md text-on-background">최근 1년 이내에 개인적으로 대장 내시경 검사를 받으신 적이 있으신가요?</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex gap-3 items-start">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-number-data text-[13px] flex items-center justify-center shrink-0 mt-0.5">2</span>
+<p class="font-body-md text-body-md text-on-background">올해 국가암검진 대상자이신데, 혹시 검사 안내문을 우편이나 문자로 받아보신 적이 있으신가요?</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex gap-3 items-start">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-number-data text-[13px] flex items-center justify-center shrink-0 mt-0.5">3</span>
+<p class="font-body-md text-body-md text-on-background">검사를 받으시는데 교통편이나 병원 예약 등 특별히 어려우신 점이 있으신가요?</p>
+</div>
+</div>
+<div class="mt-4 bg-surface-variant/50 rounded p-4 border border-outline-variant/30 shrink-0">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline text-[18px]">info</span>
+<span class="font-body-md-bold text-body-md-bold text-on-surface-variant">응답 누적 안내</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">수집된 응답 데이터는 '왜 낮을까' 메뉴의 원인 분석 모델 학습에 자동 반영되어 향후 개입 전략의 정확도를 높입니다.</p>
+</div>
+</div>
+</div>
+<button class="absolute bottom-8 right-8 w-[72px] h-[72px] bg-primary text-on-primary rounded-full shadow-lg flex flex-col items-center justify-center gap-0.5 hover:opacity-90 transition-opacity z-50"><span class="material-symbols-outlined text-[24px]">chat_bubble</span><span class="text-[12px] font-body-md-bold">온코</span></button></main>
+<!-- Footer -->
+<footer class="bg-background h-[72px] border-t border-outline-variant/30 flex items-center justify-start px-container_padding shrink-0 z-10 w-full">
+<div class="flex items-center gap-6">
+<span class="font-label-sm text-label-sm text-outline">데이터 출처: 공공보건 의료기관 데이터베이스</span>
+<div class="flex gap-4">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface" href="#">이용약관</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface" href="#">개인정보처리방침</a>
+</div>
+</div>
+</footer>
+</div>
+<style>
+    /* Custom Scrollbar for inner elements if needed, but the prompt asks for no vertical scrolling of the main layout */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--color-outline-variant, #c2c7cf);
+        border-radius: 20px;
+    }
+</style>
+</body></html>

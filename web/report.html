@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+    <script src="js/auth_guard.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>온코케어 - 보고서 만들기</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tokens.css">
+    
+    <!-- PDF Export Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "var(--onco-navy)",
+                      "outline-variant": "var(--bg-light)",
+                      "primary": "var(--onco-navy)",
+                      "background": "#fcf9f8",
+                      "on-background": "var(--ink)",
+                      "data-primary": "var(--onco-navy)",
+                      "data-secondary": "var(--care-teal)",
+                      "data-alert": "var(--alert-coral)",
+                      "data-bg-gray": "var(--bg-light)",
+                      "data-border-gray": "#DDE2E8",
+                      "data-table-header": "#F8F9FA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "card": "4px"
+              },
+              "spacing": {
+                      "grid_gap": "24px",
+                      "container_padding": "32px",
+                      "section_margin": "40px",
+                      "main_content_width": "1660px",
+                      "sidebar_width": "260px"
+              },
+              "fontFamily": {
+                      "body-md-bold": ["Public Sans"],
+                      "number-data": ["Public Sans"],
+                      "display-lg": ["Public Sans"],
+                      "body-md": ["Public Sans"],
+                      "title-md": ["Public Sans"],
+                      "label-sm": ["Public Sans"]
+              },
+              "fontSize": {
+                      "body-md-bold": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700"}],
+                      "number-data": ["15px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "data-large": ["48px", {"lineHeight": "1", "fontWeight": "700"}]
+              }
+            },
+          }
+        }
+    </script>
+    <style>
+        .myeongjo-style {
+            font-family: 'KoPub Batang', 'Nanum Myeongjo', 'Batang', Georgia, serif;
+        }
+        .writing-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased w-[1920px] h-[1080px] overflow-hidden mx-auto relative flex">
+    <!-- SideNavBar -->
+    <nav class="bg-data-bg-gray border-r border-data-border-gray w-[260px] h-full flex-shrink-0 flex flex-col py-6 px-4 z-20 overflow-y-auto">
+        <div class="mb-8 px-2">
+            <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+        </div>
+        <ul class="space-y-1 flex-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="index.html">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    우리 구 현황
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="priority.html">
+                    <span class="material-symbols-outlined">analytics</span>
+                    어디부터 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="factors.html">
+                    <span class="material-symbols-outlined">query_stats</span>
+                    왜 낮을까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="compare.html">
+                    <span class="material-symbols-outlined">map</span>
+                    다른 지역은
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="monitoring.html">
+                    <span class="material-symbols-outlined">monitoring</span>
+                    전국 모니터링
+                </a>
+            </li>
+            <li class="pt-4 pb-2">
+                <div class="border-t border-data-border-gray w-full"></div>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="strategy.html">
+                    <span class="material-symbols-outlined">assignment</span>
+                    무엇을 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="contact.html">
+                    <span class="material-symbols-outlined">group_add</span>
+                    연락 명단 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="message.html">
+                    <span class="material-symbols-outlined">description</span>
+                    안내문 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="report.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assessment</span>
+                    보고서 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html">
+                    <span class="material-symbols-outlined">history</span>
+                    실행 기록
+                </a>
+            </li>
+        </ul>
+        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
+        <div class="mt-auto pt-4 border-t border-data-border-gray">
+            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray h-[64px] flex-shrink-0 flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">보고서 만들기 (공공 기안문 서식 보고서 생성)</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">서울특별시|양천구 · 2024년</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="flex-1 p-container_padding bg-white overflow-hidden flex flex-col justify-between">
+            <!-- 2-Column layout -->
+            <div class="flex-1 flex gap-grid_gap mb-4 overflow-hidden">
+                <!-- Left: Document Preview (62%) -->
+                <div class="w-[62%] border border-data-border-gray rounded-card p-8 flex flex-col bg-slate-50 overflow-y-auto">
+                    <!-- Paper Mockup (A4 Ratio styling & Government style) -->
+                    <div id="report-paper-container" class="w-full bg-white p-12 border border-data-border-gray shadow-md rounded flex-1 flex flex-col justify-between min-h-[750px] myeongjo-style relative text-slate-900">
+                        
+                        <!-- Top Header (Internal draft metadata) -->
+                        <div class="flex justify-between items-start text-[11px] text-slate-500 font-serif border-b border-slate-300 pb-3 mb-6 select-none w-full leading-normal">
+                            <div class="space-y-1">
+                                <div>[시행구분] 내부결재</div>
+                                <div>[기안부서] 건강증진과-3482호</div>
+                                <div>[시행일자] <span id="lbl-draft-date">2026. 08. 18.</span></div>
+                            </div>
+                            <div class="space-y-1 text-right">
+                                <div>[보존기간] 5년</div>
+                                <div>[공개구분] 부분공개</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <!-- Header Layout: Title & Approvers -->
+                            <div class="flex justify-between items-start mb-8">
+                                <div class="flex-1 pr-6">
+                                    <h2 class="text-[24px] text-slate-900 font-bold tracking-normal leading-normal border-b-4 border-double border-primary pb-2" id="doc-title">서울특별시 양천구 2024년 국가암검진 보고서</h2>
+                                </div>
+                                
+                                <!-- Approval Sign-off Box -->
+                                <table class="border-collapse border border-slate-400 text-center text-[10px] font-serif select-none flex-shrink-0">
+                                    <tr>
+                                        <td rowspan="2" class="border border-slate-400 bg-slate-50 px-1 py-3 writing-vertical text-[9px] font-bold text-slate-600 leading-none">결<br><br>재</td>
+                                        <td class="border border-slate-400 bg-slate-50 w-[45px] py-0.5 font-bold text-slate-600">담 당</td>
+                                        <td class="border border-slate-400 bg-slate-50 w-[45px] py-0.5 font-bold text-slate-600">과 장</td>
+                                        <td class="border border-slate-400 bg-slate-50 w-[45px] py-0.5 font-bold text-slate-600">소 장</td>
+                                    </tr>
+                                    <tr class="h-[35px]">
+                                        <td class="border border-slate-400 px-1 py-3 text-slate-400 font-bold align-middle">김주임</td>
+                                        <td class="border border-slate-400"></td>
+                                        <td class="border border-slate-400"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <!-- Document Meta Table -->
+                            <div class="mb-8 select-none">
+                                <table class="w-full text-xs border border-slate-300">
+                                    <tr class="border-b border-slate-300">
+                                        <td class="bg-slate-50 w-[80px] p-2 font-bold text-slate-600 text-center border-r border-slate-300">수 신</td>
+                                        <td class="p-2 border-r border-slate-300">내부결재 (보건소장 전결)</td>
+                                        <td class="bg-slate-50 w-[80px] p-2 font-bold text-slate-600 text-center border-r border-slate-300">제 목</td>
+                                        <td class="p-2 font-bold" id="tbl-subject">2024년도 국가암검진 결과 분석 및 차년도 개선 보고</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <!-- Generated Content paragraphs (Government Style indentations) -->
+                            <div class="text-[13px] text-slate-800 leading-[1.8] break-all space-y-6" id="doc-content">
+                                보고서 데이터를 집계하는 중입니다. 잠시만 기다려주세요...
+                            </div>
+                        </div>
+                        
+                        <!-- Footer Section with sender title and red seal stamp -->
+                        <div class="mt-14 pt-6 border-t border-slate-200">
+                            <div class="relative flex justify-center items-center py-6 select-none">
+                                <span class="text-[20px] font-bold tracking-[8px] text-slate-900 z-10" id="doc-footer-sender">서울특별시 양천구보건소장</span>
+                                
+                                <!-- CSS Red Seal Stamp -->
+                                <div class="absolute right-[22%] w-[44px] h-[44px] border-[2px] border-[#E05A47] rounded-full flex items-center justify-center rotate-12 select-none pointer-events-none bg-white/30 z-20">
+                                    <span class="text-[#E05A47] font-serif text-[8px] font-bold leading-tight text-center">양천구<br>보건소장<br>인</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between text-[11px] text-slate-500 mt-2 select-none font-serif">
+                                <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
+                                <span class="font-bold text-data-alert">이 값은 평가가 아니라 검토 시작점입니다.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Metadata & Actions (38%) -->
+                <div class="w-[38%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto justify-between">
+                    <div>
+                        <h3 class="font-title-md text-title-md text-primary font-bold mb-6">사용된 분석 데이터 출처</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
+                                <h4 class="text-xs text-slate-500 font-bold mb-1.5 block">1. 국민건강보험공단 검진 결과 데이터</h4>
+                                <p class="text-xs text-slate-700 leading-normal">양천구 지자체 세그먼트별(성별/연령대/암종) 대상자 수 대비 실제 수검 통계 정보 일체 반영</p>
+                            </div>
+                            
+                            <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
+                                <h4 class="text-xs text-slate-500 font-bold mb-1.5 block">2. 국민연금공단 평균소득월액 데이터</h4>
+                                <p class="text-xs text-slate-700 leading-normal">가중 연계된 지자체 소득분포와 기대수검률 선형회귀 모델의 계수 통계치를 통한 미달 분석</p>
+                            </div>
+                            
+                            <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
+                                <h4 class="text-xs text-slate-500 font-bold mb-1.5 block">3. 국가건강검진 기관 현황 (접근성)</h4>
+                                <p class="text-xs text-slate-700 leading-normal">구 단위 의료 접근성 및 특정 세그먼트 암종별 미내원 요인 분석 근거 연계</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 border border-dashed border-data-secondary/30 rounded bg-data-secondary/5 text-xs text-slate-700 leading-relaxed">
+                            <span class="font-body-md-bold text-primary block mb-1">💡 공문서 보고서 구성 전략</span>
+                            본 보고서는 국가 표준 공문서 기안 서식 규격에 맞춰 결재선, 내부결재 메타 헤더, 발신 소장명 및 **직인 인장**이 디자인에 연동되었습니다. 다운로드 시 인쇄 가능한 완벽한 서식으로 렌더링됩니다.
+                        </div>
+                    </div>
+
+                    <!-- Export Actions Box -->
+                    <div class="pt-6 border-t border-data-border-gray mt-6 flex flex-col gap-3">
+                        <button id="btn-export-docx" class="w-full py-3 bg-primary text-white font-body-md-bold text-body-md-bold rounded hover:bg-primary/90 transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">download</span>
+                            <span>Word 파일 내보내기 (.docx)</span>
+                        </button>
+                        <button id="btn-export-pdf" class="w-full py-3 border border-primary text-primary font-body-md-bold text-body-md-bold rounded hover:bg-primary/5 transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">picture_as_pdf</span>
+                            <span>PDF 파일 내보내기 (.pdf)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer area -->
+            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-[12px] text-slate-500 mt-2">
+                <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
+                <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Floating UI for 2nd stage development -->
+    <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <span class="material-symbols-outlined text-[36px]">forum</span>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+        let currentRegion = '서울특별시|양천구';
+        let currentYear = 2024;
+        
+        const docTitle = document.getElementById('doc-title');
+        const tblSubject = document.getElementById('tbl-subject');
+        const docContent = document.getElementById('doc-content');
+        const headerRegionYear = document.getElementById('header-region-year');
+        const lblDraftDate = document.getElementById('lbl-draft-date');
+        const docFooterSender = document.getElementById('doc-footer-sender');
+        
+        const btnExportDocx = document.getElementById('btn-export-docx');
+        const btnExportPdf = document.getElementById('btn-export-pdf');
+        
+        function initParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('region')) currentRegion = urlParams.get('region');
+            if (urlParams.has('year')) currentYear = parseInt(urlParams.get('year'));
+            
+            const rName = currentRegion.split('|')[1] || currentRegion;
+            docTitle.textContent = `${currentRegion.split('|')[0] || ''} ${rName} ${currentYear}년 국가암검진 보고서`;
+            tblSubject.textContent = `${currentYear}년도 국가암검진 결과 분석 및 차년도 개선 보고`;
+            headerRegionYear.textContent = `${currentRegion} · ${currentYear}년`;
+            docFooterSender.textContent = `${currentRegion.split('|')[0] || ''} ${rName}보건소장`;
+            
+            // Set today date for draft info
+            const today = new Date();
+            lblDraftDate.textContent = `${today.getFullYear()}. ${String(today.getMonth() + 1).padStart(2, '0')}. ${String(today.getDate()).padStart(2, '0')}.`;
+        }
+        
+        async function loadReportPreview() {
+            docContent.innerHTML = `
+                <div class="flex items-center justify-center py-12">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    <span class="ml-3 font-bold text-slate-600">보고서 데이터를 집계하고 분석 내용을 서술하는 중입니다...</span>
+                </div>
+            `;
+            
+            try {
+                const payload = {
+                    region: currentRegion,
+                    year: currentYear,
+                    format: 'json'
+                };
+                
+                const data = await postReportGeneration(payload);
+                
+                // Format the text content for official document look
+                // Add margins and official indentation spaces
+                let formattedText = data.text
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n/g, '<br>')
+                    // Emphasize section labels like 1., 2., 3., 4.
+                    .replace(/([1-9]\.\s+[^\n<]+)/g, '<strong class="text-slate-900 text-[14px] block mt-4 border-l-2 border-primary pl-2">$1</strong>')
+                    // Add indentation for text lines under lists
+                    .replace(/(-\s+[^\n<]+)/g, '<div class="pl-4 py-0.5 text-slate-700">$1</div>');
+                
+                docContent.innerHTML = formattedText;
+                
+            } catch (err) {
+                console.error(err);
+                docContent.innerHTML = `<span class="text-red-500 font-bold">보고서 미리보기 로드 오류: ${err.message}</span>`;
+            }
+        }
+        
+        // Word export handler
+        btnExportDocx.addEventListener('click', async () => {
+            btnExportDocx.disabled = true;
+            const originalContent = btnExportDocx.innerHTML;
+            btnExportDocx.innerHTML = `
+                <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white inline-block mr-2"></div>
+                <span>파일 빌딩 중...</span>
+            `;
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        region: currentRegion,
+                        year: currentYear,
+                        format: 'docx'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('파일 다운로드 요청 실패');
+                }
+                
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                
+                const rName = currentRegion.split('|')[1] || currentRegion;
+                a.download = `OncoCare_Report_${rName}_${currentYear}.docx`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+                
+            } catch (err) {
+                alert('Word 내보내기 실패: ' + err.message);
+            } finally {
+                btnExportDocx.disabled = false;
+                btnExportDocx.innerHTML = originalContent;
+            }
+        });
+        
+        // PDF export handler (html2pdf)
+        btnExportPdf.addEventListener('click', () => {
+            btnExportPdf.disabled = true;
+            const originalContent = btnExportPdf.innerHTML;
+            btnExportPdf.innerHTML = `
+                <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-primary inline-block mr-2"></div>
+                <span>PDF 변환 중...</span>
+            `;
+            
+            const element = document.getElementById('report-paper-container');
+            const rName = currentRegion.split('|')[1] || currentRegion;
+            
+            const opt = {
+                margin:       [15, 15, 15, 15],
+                filename:     `OncoCare_Report_${rName}_${currentYear}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                btnExportPdf.disabled = false;
+                btnExportPdf.innerHTML = originalContent;
+            }).catch(err => {
+                alert('PDF 내보내기 실패: ' + err.message);
+                btnExportPdf.disabled = false;
+                btnExportPdf.innerHTML = originalContent;
+            });
+        });
+
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            initParams();
+            loadReportPreview();
+        });
+    </script>
+</body>
+</html>

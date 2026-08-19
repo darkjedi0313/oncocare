@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>온코케어 - 우리 구 현황</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#700602",
+                      "inverse-primary": "#a0cafb",
+                      "on-tertiary-fixed": "#410100",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-container": "#ffa596",
+                      "on-background": "#1b1c1c",
+                      "tertiary-fixed": "#ffdad4",
+                      "surface-dim": "#dcd9d9",
+                      "on-surface": "#1b1c1c",
+                      "primary-fixed-dim": "#a0cafb",
+                      "surface-variant": "#e5e2e1",
+                      "on-secondary-fixed": "#002020",
+                      "surface-container-low": "#f6f3f2",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#fcf9f8",
+                      "on-surface-variant": "#42474e",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "primary-container": "#1f4e78",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#72777f",
+                      "on-tertiary-fixed-variant": "#8a1c10",
+                      "surface": "#fcf9f8",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#001d35",
+                      "inverse-surface": "#303030",
+                      "surface-tint": "#35618c",
+                      "tertiary-fixed-dim": "#ffb4a8",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#93f2f2",
+                      "surface-container": "#f0eded",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#eae7e7",
+                      "on-primary-fixed-variant": "#194973",
+                      "tertiary-container": "#912115",
+                      "secondary": "#006a6a",
+                      "background": "#fcf9f8",
+                      "on-error": "#ffffff",
+                      "primary-fixed": "#d0e4ff",
+                      "secondary-container": "#90efef",
+                      "outline-variant": "#c2c7cf",
+                      "on-primary-container": "#95bff0",
+                      "primary": "#00375e",
+                      "on-secondary-container": "#006e6e",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "inverse-on-surface": "#f3f0ef",
+                      
+                      // Custom Colors from prompt
+                      "data-primary": "#1F4E78",
+                      "data-secondary": "#008080",
+                      "data-alert": "#E05A47",
+                      "data-bg-gray": "#F2F4F7",
+                      "data-border-gray": "#DDE2E8",
+                      "data-table-header": "#F8F9FA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "card": "4px"
+              },
+              "spacing": {
+                      "grid_gap": "24px",
+                      "container_padding": "32px",
+                      "section_margin": "40px",
+                      "main_content_width": "1660px",
+                      "sidebar_width": "260px"
+              },
+              "fontFamily": {
+                      "body-md-bold": ["Public Sans"],
+                      "number-data": ["Public Sans"],
+                      "display-lg": ["Public Sans"],
+                      "body-md": ["Public Sans"],
+                      "title-md": ["Public Sans"],
+                      "label-sm": ["Public Sans"]
+              },
+              "fontSize": {
+                      "body-md-bold": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700"}],
+                      "number-data": ["15px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "data-large": ["48px", {"lineHeight": "1", "fontWeight": "700"}]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        /* Custom Styles for Specific Data Viz */
+        .bar-container { position: relative; height: 24px; background-color: #F2F4F7; border-radius: 2px; width: 100%; margin-bottom: 12px; }
+        .bar-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 2px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px;}
+        .bar-label { position: absolute; left: -100px; width: 90px; text-align: right; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 500; color: #42474e;}
+        .bar-value { position: absolute; right: -50px; width: 40px; text-align: left; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 700; color: #1b1c1c;}
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased w-[1920px] h-[1080px] overflow-hidden mx-auto relative flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low border-r border-outline-variant w-[260px] h-full flex-shrink-0 flex flex-col py-6 px-4 z-20 overflow-y-auto">
+<div class="mb-8 px-2">
+<h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+</div>
+<ul class="space-y-1 flex-1">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 bg-primary text-on-primary font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    우리 구 현황
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    어디부터 할까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+                    왜 낮을까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">map</span>
+                    다른 지역은
+                </a>
+</li>
+<li class="pt-4 pb-2">
+<div class="border-t border-outline-variant/30 w-full"></div>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">assignment</span>
+                    무엇을 할까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group_add</span>
+                    연락 명단 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+                    안내문 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                    보고서 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+                    실행 기록
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant h-[64px] flex-shrink-0 flex justify-between items-center px-grid_gap z-10">
+<div class="font-title-md text-title-md text-primary font-bold">우리 구 현황</div>
+<div class="flex items-center gap-6">
+<span class="text-on-surface-variant font-body-md text-body-md">서울특별시 &gt; 양천구 | 2024년</span>
+<div class="flex items-center gap-2 text-primary font-body-md-bold text-body-md-bold cursor-pointer hover:text-primary/80 transition-opacity">
+<span class="material-symbols-outlined">account_circle</span>
+                    양천구보건소 김주임
+                </div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 p-container_padding bg-white overflow-hidden flex flex-col">
+<!-- Top Summary Cards -->
+<div class="grid grid-cols-3 gap-grid_gap mb-section_margin flex-shrink-0">
+<!-- Card 1 -->
+<div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
+<h2 class="font-title-md text-title-md text-on-surface mb-2">6대암 통합 수검률</h2>
+<div class="flex items-baseline gap-3 mb-1">
+<span class="text-[48px] font-bold text-data-primary leading-none">55.5%</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="">전국 평균 56.3%</span>
+<span class="text-data-alert">· -0.8%p</span>
+</div>
+<p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
+<h2 class="font-title-md text-title-md text-on-surface mb-2">미수검 인원</h2>
+<div class="flex items-baseline gap-3 mb-1">
+<span class="text-[48px] font-bold text-data-primary leading-none">168,440<span class="text-[24px]">명</span></span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">대상 378,581명 중</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
+<h2 class="font-title-md text-title-md text-on-surface mb-2">전국 순위</h2>
+<div class="flex items-baseline gap-3 mb-1">
+<span class="text-[48px] font-bold text-data-primary leading-none">148<span class="text-[24px]">위</span></span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">251개 시군구 중</p>
+</div>
+</div>
+<!-- 2-Column Layout (62:38) -->
+<div class="flex gap-grid_gap flex-1 overflow-hidden">
+<!-- Left Column (62%) - Charts -->
+<div class="w-[62%] bg-white border border-data-border-gray rounded-card p-6 flex flex-col h-full overflow-y-auto">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-md text-title-md text-on-surface">암종별 수검률</h3>
+<div class="flex gap-4 font-label-sm text-label-sm">
+<div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-bg-gray rounded-sm"></div>전국 평균</div>
+<div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-secondary rounded-sm"></div>우리 구</div>
+<div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-alert rounded-sm"></div>주의 필요</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-center pl-[100px] pr-[60px] py-4 space-y-6">
+<!-- Chart Rows -->
+<div class="relative">
+<div class="bar-label">간암</div>
+<div class="bar-container">
+<div class="bar-fill bg-data-secondary" style="width: 71.9%;"></div>
+<div class="absolute top-0 left-0 h-full border-r-2 border-outline-variant z-10" style="width: 72.5%;"></div> <!-- National Avg Marker -->
+</div>
+<div class="bar-value">71.9%</div>
+</div>
+<div class="relative">
+<div class="bar-label">유방암</div>
+<div class="bar-container">
+<div class="bar-fill bg-data-secondary" style="width: 62.3%;"></div>
+<div class="absolute top-0 left-0 h-full border-r-2 border-outline-variant z-10" style="width: 63.1%;"></div>
+</div>
+<div class="bar-value">62.3%</div>
+</div>
+<div class="relative">
+<div class="bar-label">위암</div>
+<div class="bar-container">
+<div class="bar-fill bg-data-secondary" style="width: 61.5%;"></div>
+<div class="absolute top-0 left-0 h-full border-r-2 border-outline-variant z-10" style="width: 62.0%;"></div>
+</div>
+<div class="bar-value">61.5%</div>
+</div>
+<div class="relative">
+<div class="bar-label font-body-md-bold text-data-alert">대장암</div>
+<div class="bar-container">
+<div class="bar-fill bg-data-alert" style="width: 38.2%;"></div>
+<div class="absolute top-0 left-0 h-full border-r-2 border-outline-variant z-10" style="width: 42.5%;"></div>
+</div>
+<div class="bar-value text-data-alert">38.2%</div>
+</div>
+<div class="relative">
+<div class="bar-label">자궁경부암</div>
+<div class="bar-container">
+<div class="bar-fill bg-data-secondary" style="width: 58.1%;"></div>
+<div class="absolute top-0 left-0 h-full border-r-2 border-outline-variant z-10" style="width: 59.2%;"></div>
+</div>
+<div class="bar-value">58.1%</div>
+</div>
+<div class="relative">
+<div class="bar-label">폐암</div>
+<div class="bar-container">
+<div class="bar-fill bg-data-secondary" style="width: 45.4%;"></div>
+<div class="absolute top-0 left-0 h-full border-r-2 border-outline-variant z-10" style="width: 46.1%;"></div>
+</div>
+<div class="bar-value">45.4%</div>
+</div>
+</div>
+</div>
+<!-- Right Column (38%) - Action Items -->
+<div class="w-[38%] flex flex-col gap-4 h-full overflow-y-auto">
+<div class="flex justify-between items-center bg-white border border-data-border-gray rounded-card p-4">
+<h3 class="font-title-md text-title-md text-on-surface">지금 연락해야 할 곳</h3>
+<a class="font-label-sm text-label-sm text-data-primary hover:underline" href="#">전체 순위 보기 →</a>
+</div>
+<!-- Action Card 1 -->
+<div class="bg-white border border-data-alert/30 rounded-card p-5 relative overflow-hidden shadow-sm">
+<div class="absolute top-0 left-0 w-1 h-full bg-data-alert"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block bg-data-alert/10 text-data-alert font-label-sm text-label-sm px-2 py-0.5 rounded mr-2">1순위</span>
+<h4 class="inline-block font-title-md text-title-md text-on-surface">여성 65~69세 · 대장암</h4>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">미수검 인원</p>
+<p class="font-number-data text-number-data text-on-surface">6,497명</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">전국 평균 대비</p>
+<p class="font-number-data text-number-data text-data-alert">-9.1%p</p>
+</div>
+</div>
+<div class="bg-data-bg-gray p-3 rounded flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">수검 독려 시 기대 회복 인원</span>
+<span class="font-number-data text-number-data text-data-secondary">1,034명</span>
+</div>
+</div>
+<!-- Action Card 2 (Placeholder for stacking visual) -->
+<div class="bg-white border border-data-border-gray rounded-card p-5 relative overflow-hidden opacity-70">
+<div class="absolute top-0 left-0 w-1 h-full bg-outline-variant"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded mr-2">2순위</span>
+<h4 class="inline-block font-title-md text-title-md text-on-surface">남성 50~54세 · 위암</h4>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-number-data text-[13px] text-on-surface">미수검 4,210명</p>
+</div>
+<div>
+<p class="font-number-data text-[13px] text-data-alert">-5.2%p</p>
+</div>
+</div>
+</div>
+<!-- Action Card 3 (Placeholder for stacking visual) -->
+<div class="bg-white border border-data-border-gray rounded-card p-5 relative overflow-hidden opacity-50">
+<div class="absolute top-0 left-0 w-1 h-full bg-outline-variant"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded mr-2">3순위</span>
+<h4 class="inline-block font-title-md text-title-md text-on-surface">여성 40~44세 · 유방암</h4>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-number-data text-[13px] text-on-surface">미수검 3,892명</p>
+</div>
+<div>
+<p class="font-number-data text-[13px] text-data-alert">-4.8%p</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-transparent w-full h-[64px] flex-shrink-0 border-t border-outline-variant/30 flex items-center justify-start px-container_padding">
+<span class="font-label-sm text-label-sm text-outline mr-6">데이터 출처: 공공보건 의료기관 데이터베이스 (2024)</span>
+<div class="flex gap-4">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">이용약관</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">개인정보처리방침</a>
+</div>
+</footer>
+</div>
+<!-- Floating Action Button (Contextual - although prompt asks to include, design system says suppress on dashboards unless perfectly aligned. Assuming 'Create Report' or 'Action' is relevant here based on the 'What to do' flow) -->
+<button class="fixed bottom-8 right-8 bg-primary text-on-primary w-[72px] h-[72px] rounded-full flex flex-col items-center justify-center shadow-lg hover:bg-primary/90 transition-colors z-50 font-label-sm"><span class="material-symbols-outlined">add</span><span class="">온코</span></button>
+</body></html>

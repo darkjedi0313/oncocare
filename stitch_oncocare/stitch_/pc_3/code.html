@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>온코케어 - 어디부터 할까</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#700602",
+                        "inverse-primary": "#a0cafb",
+                        "on-tertiary-fixed": "#410100",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffa596",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface": "#1b1c1c",
+                        "primary-fixed-dim": "#a0cafb",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary-fixed": "#002020",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface-variant": "#42474e",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "primary-container": "#1f4e78",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#72777f",
+                        "on-tertiary-fixed-variant": "#8a1c10",
+                        "surface": "#fcf9f8",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001d35",
+                        "inverse-surface": "#303030",
+                        "surface-tint": "#35618c",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#93f2f2",
+                        "surface-container": "#f0eded",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#194973",
+                        "tertiary-container": "#912115",
+                        "secondary": "#006a6a",
+                        "background": "#fcf9f8",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d0e4ff",
+                        "secondary-container": "#90efef",
+                        "outline-variant": "#c2c7cf",
+                        "on-primary-container": "#95bff0",
+                        "primary": "#00375e",
+                        "on-secondary-container": "#006e6e",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "inverse-on-surface": "#f3f0ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid_gap": "24px",
+                        "container_padding": "32px",
+                        "section_margin": "40px",
+                        "main_content_width": "1660px",
+                        "sidebar_width": "260px"
+                    },
+                    "fontFamily": {
+                        "body-md-bold": ["Public Sans"],
+                        "number-data": ["Public Sans"],
+                        "display-lg": ["Public Sans"],
+                        "body-md": ["Public Sans"],
+                        "title-md": ["Public Sans"],
+                        "label-sm": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "body-md-bold": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "number-data": ["15px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "display-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; background-color: #FFFFFF; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { text-align: left; padding: 12px 16px; height: 40px; }
+        th { background-color: #F8F9FA; border-bottom: 2px solid #DDE2E8; }
+        td { border-bottom: 1px solid #DDE2E8; }
+        tr:last-child td { border-bottom: none; }
+        .table-container { border: 1px solid #DDE2E8; border-radius: 0.25rem; overflow: hidden; }
+        /* Custom Checkbox Toggle */
+        .toggle-checkbox:checked { right: 0; border-color: #00375e; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #00375e; }
+        .toggle-checkbox:checked + .toggle-label:after { transform: translateX(100%); border-color: white; }
+    </style>
+</head>
+<body class="text-on-background bg-background w-[1920px] h-[1080px] overflow-hidden mx-auto relative flex">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen shrink-0 bg-surface-container-low border-r border-outline-variant flex flex-col py-6 px-4 z-20">
+<div class="flex flex-col items-center mb-8 w-full">
+<h1 class="font-display-lg text-display-lg text-primary text-center">온코케어</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center mt-1">공공보건 데이터 분석</p>
+</div>
+<ul class="flex flex-col gap-2 w-full flex-grow">
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    우리 구 현황
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 bg-primary text-on-primary font-body-md-bold text-body-md-bold" href="#">
+<span class="material-symbols-outlined filled-icon">analytics</span>
+                    어디부터 할까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+                    왜 낮을까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">map</span>
+                    다른 지역은
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">assignment</span>
+                    무엇을 할까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">group_add</span>
+                    연락 명단 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">description</span>
+                    안내문 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                    보고서 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">history</span>
+                    실행 기록
+                </a>
+</li>
+</ul>
+</nav>
+<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-[64px] shrink-0 bg-surface border-b border-outline-variant flex justify-between items-center px-grid_gap z-10">
+<div class="flex-1"></div>
+<div class="flex items-center gap-6">
+<span class="text-on-surface-variant font-body-md text-body-md">서울특별시 &gt; 양천구 | 2024년</span>
+<div class="flex items-center gap-2 text-primary font-body-md-bold text-body-md-bold cursor-pointer transition-opacity hover:opacity-80">
+<span class="material-symbols-outlined">account_circle</span>
+                    양천구보건소 김주임
+                </div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-hidden">
+<div class="grid grid-cols-[62%_38%] h-full w-full">
+<!-- Left Column (62%) -->
+<div class="h-full flex flex-col border-r border-outline-variant/30 overflow-hidden">
+<div class="flex-1 px-container_padding py-8 flex flex-col overflow-hidden">
+<h2 class="font-display-lg text-display-lg text-primary mb-6 shrink-0">어디부터 할까</h2>
+<!-- Filters -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-6 mb-8 flex flex-wrap items-center justify-between gap-6 shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant mb-1">암종</label>
+<select class="border-outline-variant text-on-surface rounded-md focus:border-primary focus:ring-1 focus:ring-primary h-[40px] pl-3 pr-8 min-w-[140px] font-body-md text-body-md bg-white">
+<option>전체</option>
+<option>위암</option>
+<option>대장암</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant mb-1">성별</label>
+<select class="border-outline-variant text-on-surface rounded-md focus:border-primary focus:ring-1 focus:ring-primary h-[40px] pl-3 pr-8 min-w-[120px] font-body-md text-body-md bg-white">
+<option>전체</option>
+<option>남성</option>
+<option>여성</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant mb-1">연령</label>
+<select class="border-outline-variant text-on-surface rounded-md focus:border-primary focus:ring-1 focus:ring-primary h-[40px] pl-3 pr-8 min-w-[120px] font-body-md text-body-md bg-white">
+<option>전체</option>
+<option>40대</option>
+<option>50대</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="font-body-md-bold text-body-md-bold text-primary">미수검 500명 이상만</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200 ease-in-out" id="toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200 ease-in-out" for="toggle"></label>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="table-container bg-white mb-6 flex-grow overflow-y-auto overflow-x-auto flex flex-col">
+<div class="flex-grow">
+<table class="w-full text-left">
+<thead class="bg-primary text-on-primary sticky top-0 z-10">
+<tr>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none">행정동</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none">대상 암종</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-right">대상자 수</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-right">미수검자 수</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-right">수검률</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-right">유사 여건 20곳 평균</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-right">차이</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-right">회복 여지</th>
+<th class="font-body-md-bold text-body-md-bold !bg-primary !text-on-primary border-none text-center">여건 유사 20곳</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="bg-[#FFF5F4] hover:bg-surface-variant transition-colors">
+<td class="font-body-md-bold text-body-md-bold">대구 수성구 지산1동</td>
+<td class="">대장암</td>
+<td class="font-number-data text-number-data text-right">2,450</td>
+<td class="font-number-data text-number-data text-right">1,210</td>
+<td class="font-number-data text-number-data text-right">50.6%</td>
+<td class="font-number-data text-number-data text-right">58.2%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-7.6%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">186명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="">부산 해운대구 우동</td>
+<td class="">위암</td>
+<td class="font-number-data text-number-data text-right">3,120</td>
+<td class="font-number-data text-number-data text-right">1,450</td>
+<td class="font-number-data text-number-data text-right">53.5%</td>
+<td class="font-number-data text-number-data text-right">59.0%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-5.5%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">171명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="">서울 노원구 상계1동</td>
+<td class="">전립선암</td>
+<td class="font-number-data text-number-data text-right">1,890</td>
+<td class="font-number-data text-number-data text-right">980</td>
+<td class="font-number-data text-number-data text-right">48.1%</td>
+<td class="font-number-data text-number-data text-right">53.2%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-5.1%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">96명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="">경기 성남시 분당구 야탑동</td>
+<td class="">유방암</td>
+<td class="font-number-data text-number-data text-right">4,200</td>
+<td class="font-number-data text-number-data text-right">1,600</td>
+<td class="font-number-data text-number-data text-right">61.9%</td>
+<td class="font-number-data text-number-data text-right">66.5%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-4.6%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">193명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="font-body-md-bold text-body-md-bold">서울 양천구 목1동</td>
+<td class="">자궁경부암</td>
+<td class="font-number-data text-number-data text-right">2,800</td>
+<td class="font-number-data text-number-data text-right">1,050</td>
+<td class="font-number-data text-number-data text-right">62.5%</td>
+<td class="font-number-data text-number-data text-right">66.8%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-4.3%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">120명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="">인천 연수구 송도1동</td>
+<td class="">대장암</td>
+<td class="font-number-data text-number-data text-right">1,560</td>
+<td class="font-number-data text-number-data text-right">700</td>
+<td class="font-number-data text-number-data text-right">55.1%</td>
+<td class="font-number-data text-number-data text-right">58.9%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-3.8%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">59명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="">대전 서구 둔산2동</td>
+<td class="">간암</td>
+<td class="font-number-data text-number-data text-right">980</td>
+<td class="font-number-data text-number-data text-right">410</td>
+<td class="font-number-data text-number-data text-right">58.2%</td>
+<td class="font-number-data text-number-data text-right">61.5%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-3.3%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">32명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="">광주 서구 치평동</td>
+<td class="">위암</td>
+<td class="font-number-data text-number-data text-right">2,100</td>
+<td class="font-number-data text-number-data text-right">920</td>
+<td class="font-number-data text-number-data text-right">56.2%</td>
+<td class="font-number-data text-number-data text-right">59.1%</td>
+<td class="font-number-data text-number-data text-right text-[#E05A47]">-2.9%p</td>
+<td class="font-number-data text-number-data text-right text-[#008080]">60명</td>
+<td class="text-center">
+<a class="inline-flex items-center text-primary hover:underline text-label-sm font-label-sm" href="#">
+                                                    목록 <span class="material-symbols-outlined text-[16px] ml-1">open_in_new</span>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Notice Box -->
+<div class="bg-surface-container-low border-l-4 border-[#E05A47] rounded-r-lg p-4 shrink-0">
+<h4 class="font-title-md text-title-md text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[#E05A47]">info</span>
+                                주의사항
+                            </h4>
+<ul class="list-disc list-inside font-body-md text-body-md text-on-surface-variant space-y-1">
+<li class=""><strong>회복 여지:</strong> 유사 여건 20곳의 평균 수검률까지 달성하기 위해 추가로 수검해야 하는 인원수입니다. 이는 상한 안내선으로 참고하시기 바랍니다.</li>
+<li class="">본 데이터는 <strong>건강보험 가입자 기준</strong>으로 산출되었으며, 의료급여 수급권자는 포함되지 않았습니다.</li>
+</ul>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full h-[64px] border-t border-outline-variant/30 flex items-center justify-between px-container_padding bg-transparent shrink-0">
+<span class="text-outline font-label-sm text-label-sm">데이터 출처: 공공보건 의료기관 데이터베이스 (2024)</span>
+<div class="flex gap-6">
+<a class="text-outline font-label-sm text-label-sm hover:text-on-surface transition-colors" href="#">이용약관</a>
+<a class="text-outline font-label-sm text-label-sm hover:text-on-surface transition-colors" href="#">개인정보처리방침</a>
+</div>
+</footer>
+</div>
+<!-- Right Column (38%) -->
+<div class="h-full flex flex-col bg-surface-container-lowest overflow-hidden">
+<div class="flex-1 p-container_padding flex flex-col items-center justify-center text-center">
+<div class="w-24 h-24 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[48px] text-outline">analytics</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">분석 대상을 선택해주세요</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md">왼쪽 표에서 행정동을 선택하면 상세 현황과 비교 데이터를 확인할 수 있습니다.</p>
+</div>
+<!-- Action Buttons -->
+<div class="p-container_padding border-t border-outline-variant/30 shrink-0">
+<div class="flex justify-end gap-4">
+<button class="px-6 py-3 border border-primary text-primary font-body-md-bold text-body-md-bold rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-2 bg-white">
+<span class="material-symbols-outlined">query_stats</span>
+                                왜 낮을까
+                            </button>
+<button class="px-6 py-3 border border-primary text-primary font-body-md-bold text-body-md-bold rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-2 bg-white">
+<span class="material-symbols-outlined">group_add</span>
+                                연락 명단 만들기
+                            </button>
+<button class="px-6 py-3 bg-primary text-on-primary font-body-md-bold text-body-md-bold rounded-lg hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined">assignment</span>
+                                무엇을 할까
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button - Suppressed based on layout rules for this specific dense data view -->
+<button class="fixed bottom-8 right-8 w-[72px] h-[72px] bg-primary text-on-primary rounded-full shadow-lg flex flex-col items-center justify-center z-50 hover:bg-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[24px]">medical_services</span>
+<span class="text-[12px] font-bold">온코</span>
+</button></body></html>

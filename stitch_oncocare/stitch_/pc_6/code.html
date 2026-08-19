@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>안내문 만들기 - 온코케어</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#700602",
+                        "inverse-primary": "#a0cafb",
+                        "on-tertiary-fixed": "#410100",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffa596",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface": "#1b1c1c",
+                        "primary-fixed-dim": "#a0cafb",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary-fixed": "#002020",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface-variant": "#42474e",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "primary-container": "#1f4e78",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#72777f",
+                        "on-tertiary-fixed-variant": "#8a1c10",
+                        "surface": "#fcf9f8",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001d35",
+                        "inverse-surface": "#303030",
+                        "surface-tint": "#35618c",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#93f2f2",
+                        "surface-container": "#f0eded",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#194973",
+                        "tertiary-container": "#912115",
+                        "secondary": "#006a6a",
+                        "background": "#fcf9f8",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d0e4ff",
+                        "secondary-container": "#90efef",
+                        "outline-variant": "#c2c7cf",
+                        "on-primary-container": "#95bff0",
+                        "primary": "#00375e",
+                        "on-secondary-container": "#006e6e",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "inverse-on-surface": "#f3f0ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid_gap": "24px",
+                        "container_padding": "32px",
+                        "section_margin": "40px",
+                        "main_content_width": "1660px",
+                        "sidebar_width": "260px"
+                    },
+                    "fontFamily": {
+                        "body-md-bold": ["Public Sans"],
+                        "number-data": ["Public Sans"],
+                        "display-lg": ["Public Sans"],
+                        "body-md": ["Public Sans"],
+                        "title-md": ["Public Sans"],
+                        "label-sm": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "body-md-bold": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "number-data": ["15px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "display-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { margin: 0; padding: 0; overflow-x: hidden; background-color: #fcf9f8; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background w-[1920px] h-[1080px] overflow-hidden flex font-body-md mx-auto relative">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-[1080px] shrink-0 bg-surface-container-low border-r border-outline-variant flex flex-col py-6 px-4 z-20">
+<div class="flex items-center gap-3 mb-10 px-2">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="health_and_safety">health_and_safety</span>
+<div>
+<h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">공공보건 데이터 분석</p>
+</div>
+</div>
+<ul class="flex flex-col gap-1 flex-1">
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>우리 구 현황
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>어디부터 할까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>왜 낮을까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>다른 지역은
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>무엇을 할까
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group_add">group_add</span>연락 명단 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined filled-icon" data-icon="description">description</span>안내문 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>보고서 만들기
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>실행 기록
+                </a>
+</li>
+</ul>
+</nav>
+<div class="flex-1 flex flex-col h-[1080px] overflow-hidden relative">
+<!-- TopNavBar -->
+<header class="h-[64px] shrink-0 bg-surface border-b border-outline-variant flex justify-between items-center px-grid_gap z-10">
+<div class="text-on-surface-variant font-body-md text-body-md font-medium">서울특별시 &gt; 양천구 | 2024년</div>
+<div class="flex items-center gap-4">
+<span class="text-on-surface font-body-md-bold text-body-md-bold">양천구보건소 김주임</span>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-body-md-bold">김</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col p-container_padding overflow-hidden">
+<header class="mb-section_margin shrink-0">
+<p class="font-label-sm text-label-sm text-outline mb-1">서울 양천구 세그먼트 정보</p>
+<h2 class="font-display-lg text-display-lg text-on-surface">안내문 만들기</h2>
+</header>
+<div class="flex gap-grid_gap flex-1 overflow-hidden">
+<!-- Left Column: Smartphone Preview (62%) -->
+<div class="w-[62%] flex flex-col overflow-hidden">
+<h3 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2 shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="smartphone">smartphone</span>문자 미리보기
+                </h3>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-8 flex-1 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Smartphone Mockup -->
+<div class="w-[320px] h-[600px] bg-white border-[8px] border-surface-variant rounded-[2.5rem] shadow-sm overflow-hidden flex flex-col relative shrink-0">
+<!-- Screen Header -->
+<div class="h-14 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-center px-4 shrink-0">
+<span class="font-body-md-bold text-body-md-bold text-on-surface">양천구보건소</span>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 bg-surface-bright p-4 flex flex-col gap-4 overflow-y-auto">
+<!-- System/Date Notice -->
+<div class="text-center">
+<span class="bg-surface-variant/50 text-on-surface-variant px-3 py-1 rounded-full text-[11px] font-medium">2024년 10월 24일 목요일</span>
+</div>
+<!-- Message Bubble -->
+<div class="bg-primary-container text-on-primary-container p-4 rounded-2xl rounded-tl-sm shadow-sm max-w-[85%] border border-primary-container/20">
+<p class="text-[14px] leading-relaxed whitespace-pre-line mb-3">안녕하세요. 양천구보건소입니다.
+
+올해는 귀하의 대장암 무료 검진 해입니다. 
+가까운 병의원이나 보건소에서 '채변통'을 수령하시어 검진에 참여해 주시기 바랍니다.
+
+- 비용: 무료 (국가 지원)
+- 문의: 02-2620-3880
+
+건강한 내일을 위해 꼭 참여해 주세요.</p>
+</div>
+</div>
+<!-- Bottom Nav Mockup -->
+<div class="h-12 bg-surface-container-low border-t border-outline-variant/30 flex items-center justify-around shrink-0 text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="mic">mic</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="mood">mood</span>
+</div>
+</div>
+<p class="mt-4 font-label-sm text-label-sm text-outline shrink-0">총 187자 / 1건당 단문(SMS) 발송 기준</p>
+</div>
+</div>
+<!-- Right Column: Applied Content & Actions (38%) -->
+<div class="w-[38%] flex flex-col overflow-hidden">
+<h3 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2 shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="checklist">checklist</span>반영한 내용
+                </h3>
+<div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col gap-6 flex-1 shadow-sm overflow-y-auto">
+<ul class="flex flex-col gap-4">
+<li class="flex items-start gap-3">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div>
+<h4 class="font-body-md-bold text-body-md-bold text-on-surface mb-1">검진 주기 명시</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">올해가 대상자임을 명확히 하여 행동을 촉구했습니다.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div>
+<h4 class="font-body-md-bold text-body-md-bold text-on-surface mb-1">채변통 수령처 안내</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">병의원 및 보건소에서 수령 가능함을 구체적으로 안내하여 허들을 낮췄습니다.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div>
+<h4 class="font-body-md-bold text-body-md-bold text-on-surface mb-1">비용 부담 해소</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">국가 지원으로 '무료'임을 강조하여 경제적 부담 우려를 제거했습니다.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div>
+<h4 class="font-body-md-bold text-body-md-bold text-on-surface mb-1">발신처 신뢰 확보</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">양천구보건소 및 공식 문의처를 명시하여 스팸으로 오인될 확률을 낮췄습니다.</p>
+</div>
+</li>
+</ul>
+<div class="mt-auto shrink-0 border-l-4 border-tertiary-container bg-error-container/30 p-4 rounded-r-lg">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary-container mt-0.5" data-icon="info">info</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+                                이 메시지는 대상자의 특성을 반영하여 AI가 초안을 작성했습니다. 발송 전 실제 기관의 안내 지침과 전화번호가 정확한지 반드시 확인해 주세요.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-4 mt-6 justify-end shrink-0">
+<button class="px-6 py-2 rounded-lg border border-primary text-primary font-body-md-bold hover:bg-primary/5 transition-colors duration-200">
+                        수정
+                    </button>
+<button class="px-6 py-2 rounded-lg border border-primary text-primary font-body-md-bold hover:bg-primary/5 transition-colors duration-200">
+                        다른 톤으로
+                    </button>
+<button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-body-md-bold hover:bg-primary/90 shadow-sm transition-all duration-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>복사
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full h-[96px] shrink-0 flex items-center justify-start px-container_padding border-t border-outline-variant/30 bg-transparent z-10">
+<p class="font-label-sm text-label-sm text-outline mr-auto">데이터 출처: 공공보건 의료기관 통합 데이터베이스 (2024)</p>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface" href="#">이용약관</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface" href="#">개인정보처리방침</a>
+</div>
+</footer>
+<button class="absolute bottom-8 right-8 w-[72px] h-[72px] bg-primary text-on-primary rounded-full shadow-lg flex flex-col items-center justify-center z-50 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-[24px]">health_and_safety</span>
+<span class="text-[12px] font-bold">온코</span>
+</button>
+</div>
+</body></html>

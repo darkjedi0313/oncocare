@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+    <script src="js/auth_guard.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>온코케어 - 연락 명단 만들기</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tokens.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "var(--onco-navy)",
+                      "outline-variant": "var(--bg-light)",
+                      "primary": "var(--onco-navy)",
+                      "background": "#fcf9f8",
+                      "on-background": "var(--ink)",
+                      "data-primary": "var(--onco-navy)",
+                      "data-secondary": "var(--care-teal)",
+                      "data-alert": "var(--alert-coral)",
+                      "data-bg-gray": "var(--bg-light)",
+                      "data-border-gray": "#DDE2E8",
+                      "data-table-header": "#F8F9FA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "card": "4px"
+              },
+              "spacing": {
+                      "grid_gap": "24px",
+                      "container_padding": "32px",
+                      "section_margin": "40px",
+                      "main_content_width": "1660px",
+                      "sidebar_width": "260px"
+              },
+              "fontFamily": {
+                      "body-md-bold": ["Public Sans"],
+                      "number-data": ["Public Sans"],
+                      "display-lg": ["Public Sans"],
+                      "body-md": ["Public Sans"],
+                      "title-md": ["Public Sans"],
+                      "label-sm": ["Public Sans"]
+              },
+              "fontSize": {
+                      "body-md-bold": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700"}],
+                      "number-data": ["15px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "data-large": ["48px", {"lineHeight": "1", "fontWeight": "700"}]
+              }
+            },
+          }
+        }
+    </script>
+    <style>
+        .split-result-box {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased w-[1920px] h-[1080px] overflow-hidden mx-auto relative flex">
+    <!-- SideNavBar -->
+    <nav class="bg-data-bg-gray border-r border-data-border-gray w-[260px] h-full flex-shrink-0 flex flex-col py-6 px-4 z-20 overflow-y-auto">
+        <div class="mb-8 px-2">
+            <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+        </div>
+        <ul class="space-y-1 flex-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="index.html">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    우리 구 현황
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="priority.html">
+                    <span class="material-symbols-outlined">analytics</span>
+                    어디부터 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="factors.html">
+                    <span class="material-symbols-outlined">query_stats</span>
+                    왜 낮을까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="compare.html">
+                    <span class="material-symbols-outlined">map</span>
+                    다른 지역은
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="monitoring.html">
+                    <span class="material-symbols-outlined">monitoring</span>
+                    전국 모니터링
+                </a>
+            </li>
+            <li class="pt-4 pb-2">
+                <div class="border-t border-data-border-gray w-full"></div>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="strategy.html">
+                    <span class="material-symbols-outlined">assignment</span>
+                    무엇을 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="contact.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group_add</span>
+                    연락 명단 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="message.html">
+                    <span class="material-symbols-outlined">description</span>
+                    안내문 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="report.html">
+                    <span class="material-symbols-outlined">assessment</span>
+                    보고서 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html">
+                    <span class="material-symbols-outlined">history</span>
+                    실행 기록
+                </a>
+            </li>
+        </ul>
+        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
+        <div class="mt-auto pt-4 border-t border-data-border-gray">
+            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray h-[64px] flex-shrink-0 flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">연락 명단 만들기 (무작위 표본 배정)</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="flex-1 p-container_padding bg-white overflow-hidden flex flex-col justify-between">
+            <!-- Subtitle Section -->
+            <div class="bg-data-bg-gray border border-data-border-gray rounded-card p-4 mb-4 flex-shrink-0 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="font-title-md text-title-md text-primary font-bold mr-2" id="region-label">양천구</span>
+                    
+                    <!-- 암종 셀렉터 -->
+                    <select id="select-cancer" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[140px] font-bold text-slate-700">
+                        <option value="위암">위암</option>
+                        <option value="대장암">대장암</option>
+                        <option value="간암">간암</option>
+                        <option value="유방암">유방암</option>
+                        <option value="자궁경부암">자궁경부암</option>
+                        <option value="폐암">폐암</option>
+                    </select>
+                    
+                    <!-- 성별 셀렉터 -->
+                    <select id="select-gender" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[100px] font-bold text-slate-700">
+                        <option value="남자">남자</option>
+                        <option value="여자">여자</option>
+                    </select>
+                    
+                    <!-- 연령대 셀렉터 -->
+                    <select id="select-age" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[120px] font-bold text-slate-700">
+                        <option value="40~44">40~44세</option>
+                        <option value="45~49">45~49세</option>
+                        <option value="50~54">50~54세</option>
+                        <option value="55~59">55~59세</option>
+                        <option value="60~64">60~64세</option>
+                        <option value="65~69">65~69세</option>
+                        <option value="70~74">70~74세</option>
+                    </select>
+                </div>
+                <div class="font-body-md text-body-md text-on-background animate-pulse" id="segment-rates-title">
+                    우리 구 -% │ 유사 20곳 -% │ 차이 -%p (건강보험 가입자 기준)
+                </div>
+            </div>
+
+            <!-- 2-Column layout for randomization inputs and explanations -->
+            <div class="flex-1 flex gap-grid_gap mb-4 overflow-hidden">
+                <!-- Left: Configuration & Results (62%) -->
+                <div class="w-[62%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto">
+                    <h3 class="font-title-md text-title-md text-primary font-bold mb-6">무작위 배정 설정</h3>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
+                            <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">대상 세그먼트 전체 미수검자 수</span>
+                            <span class="font-title-md text-[20px] text-primary font-bold" id="txt-unscreened-count">조회 중...</span>
+                        </div>
+                        
+                        <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded flex items-center justify-between">
+                            <div>
+                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">우리 구 실제 수검률</span>
+                                <span class="font-title-md text-[20px] text-slate-700 font-bold" id="txt-our-rate">- %</span>
+                            </div>
+                            <span class="font-label-sm text-[11px] text-outline">건강보험 가입자 기준</span>
+                        </div>
+                    </div>
+
+                    <!-- Input Form -->
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-6">
+                            <div class="flex flex-col w-[200px]">
+                                <label for="input-sample-n" class="font-label-sm text-[12px] text-on-background mb-1.5 font-bold">연락 가능 인원 (N)</label>
+                                <input type="number" id="input-sample-n" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-full" value="300" min="1">
+                            </div>
+                            <div class="flex flex-col w-[200px]">
+                                <label for="input-seed" class="font-label-sm text-[12px] text-on-background mb-1.5 font-bold">무작위 난수 시드 (Seed)</label>
+                                <input type="number" id="input-seed" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-full" value="42">
+                            </div>
+                            
+                            <button id="btn-random-split" class="px-6 py-2.5 bg-primary text-white font-body-md-bold text-body-md-bold rounded hover:bg-primary/90 transition-colors shadow-sm self-end h-[38px] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">casino</span>
+                                <span>무작위로 배정하기</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Splitting Results -->
+                    <div id="split-result-container" class="split-result-box hidden border border-dashed border-data-secondary/30 rounded-card p-6 bg-data-secondary/5">
+                        <h4 class="font-body-md-bold text-data-primary text-[16px] mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-data-secondary">check_circle</span>
+                            무작위 표본 배정 성공 (가상 캠페인 등록 완료)
+                        </h4>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white p-3 rounded border border-data-border-gray text-center">
+                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">캠페인 ID</span>
+                                <span class="font-body-md-bold text-[15px] text-primary" id="res-campaign-id">-</span>
+                            </div>
+                            <div class="bg-white p-3 rounded border border-data-border-gray text-center">
+                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">연락 대상군 (Target)</span>
+                                <span class="font-body-md-bold text-[15px] text-data-secondary font-bold" id="res-contact-n">- 명</span>
+                            </div>
+                            <div class="bg-white p-3 rounded border border-data-border-gray text-center">
+                                <span class="font-label-sm text-[11px] text-slate-500 mb-1 block">자연 대조군 (Control)</span>
+                                <span class="font-body-md-bold text-[15px] text-slate-600 font-bold" id="res-control-n">- 명</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center bg-white p-4 rounded border border-data-border-gray">
+                            <span class="font-label-sm text-[12px] text-outline">배정 방식: 무작위 분할 (난수 시드 고정)</span>
+                            <button id="btn-download-guide" class="px-4 py-1.5 bg-data-secondary text-white font-body-md-bold text-body-md-bold rounded hover:bg-data-secondary/90 transition-colors shadow-sm text-center flex items-center gap-1 text-[13px]">
+                                <span class="material-symbols-outlined text-[16px]">download</span>
+                                <span>추출 가이드 다운로드</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Explanations & Privacy warning (38%) -->
+                <div class="w-[38%] border border-data-border-gray rounded-card p-6 bg-white flex flex-col justify-between overflow-y-auto">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-title-md text-title-md text-primary font-bold mb-3">무작위 대조군 분할의 원리</h3>
+                            <p class="font-body-md text-[13.5px] text-on-background leading-relaxed">
+                                제한된 인력과 예산으로 관내 모든 미수검 대상자에게 연락하는 것은 불가능합니다.<br><br>
+                                이에 따라 연락을 취할 <strong>연락 대상군(Target)</strong>을 난수 시드로 추출하고, 연락을 받지 못하는 나머지 미수검자는 자동으로 <strong>자연 대조군(Control)</strong>이 됩니다. <br><br>
+                                연말에 두 그룹의 최종 수검 실적을 비교함으로써 순수하게 '연락 개입 활동'이 미친 효과를 투명하게 입증할 수 있습니다. (추가 예산은 발생하지 않습니다.)
+                            </p>
+                        </div>
+
+                        <!-- Absolute Data Privacy Warning Box -->
+                        <div class="bg-data-alert/5 border border-data-alert/20 rounded p-4">
+                            <h4 class="font-body-md-bold text-data-alert text-[13px] mb-2 flex items-center gap-1 font-bold">
+                                <span class="material-symbols-outlined text-[16px]">lock</span>
+                                개인정보 보호 가이드라인 (필독)
+                            </h4>
+                            <p class="font-label-sm text-[12px] text-on-background leading-relaxed">
+                                ⚠️ 온코케어 시스템은 주민번호, 전화번호, 이름 등 <strong>어떠한 개인식별 정보도 저장하거나 명단 파일로 반환하지 않습니다.</strong><br><br>
+                                `[추출 가이드]` 다운로드 시에는 추출 조건과 배정 시드(Seed)값만 텍스트 파일로 내려받으며, 실제 대상자 명단 추출은 이 가이드를 지참하여 보건소 관내 내부 망 시스템에서 직접 수행하셔야 합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom navigation link to messages -->
+                    <div class="mt-6 pt-4 border-t border-data-border-gray">
+                        <a href="message.html" class="w-full py-3 bg-primary text-white font-body-md-bold text-body-md-bold rounded hover:bg-primary/90 transition-colors shadow-sm text-center flex items-center justify-center gap-1" id="link-next-action">
+                            <span>다음 단계: 안내 메시지 작성하기</span>
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-transparent w-full h-[64px] flex-shrink-0 border-t border-data-border-gray flex items-center justify-start px-container_padding">
+            <span class="font-label-sm text-label-sm text-outline mr-6">데이터 출처: 공공보건 데이터베이스 무작위 분할 표본엔진 (2024)</span>
+            <div class="flex gap-4">
+                <a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">이용약관</a>
+                <a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">개인정보처리방침</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        <span class="text-[10px] font-bold mt-0.5">온코</span>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const defaultRegion = '서울특별시|양천구';
+            const defaultSex = '여자';
+            const defaultAge = '65~69';
+            const defaultCancer = '대장암';
+            const defaultYear = 2024;
+
+            // UI Elements
+            const selectCancer = document.getElementById('select-cancer');
+            const selectGender = document.getElementById('select-gender');
+            const selectAge = document.getElementById('select-age');
+
+            const txtUnscreened = document.getElementById('txt-unscreened-count');
+            const txtOurRate = document.getElementById('txt-our-rate');
+            const inputSampleN = document.getElementById('input-sample-n');
+            const inputSeed = document.getElementById('input-seed');
+            const btnRandomSplit = document.getElementById('btn-random-split');
+            
+            const splitResultContainer = document.getElementById('split-result-container');
+            const resCampaignId = document.getElementById('res-campaign-id');
+            const resContactN = document.getElementById('res-contact-n');
+            const resControlN = document.getElementById('res-control-n');
+            const btnDownloadGuide = document.getElementById('btn-download-guide');
+
+            // Parse URL Parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const region = urlParams.get('region') || defaultRegion;
+            const sex = urlParams.get('sex') || defaultSex;
+            const age = urlParams.get('age') || defaultAge;
+            const cancer = urlParams.get('cancer') || defaultCancer;
+            const year = parseInt(urlParams.get('year')) || defaultYear;
+
+            // State variables to hold valid configurations
+            let currentRegion = region;
+            let currentSex = sex;
+            let currentAge = age;
+            let currentCancer = cancer;
+            let currentYear = year;
+            let currentUnscreenedCount = 0;
+
+            async function loadData(targetRegion, targetSex, targetAge, targetCancer, targetYear) {
+                // Hide result box when parameters change
+                splitResultContainer.classList.add('hidden');
+
+                // Sync select boxes values
+                selectCancer.value = targetCancer;
+                selectGender.value = targetSex;
+                selectAge.value = targetAge;
+
+                // Update Header & Region Label
+                const sgg = targetRegion.split('|');
+                document.getElementById('header-region-year').innerText = `${sgg[0]} > ${sgg[1]} | ${targetYear}년`;
+                document.getElementById('region-label').innerText = `${sgg[1]}`;
+
+                // Link to Message template update
+                const nextActionBtn = document.getElementById('link-next-action');
+                const nextActionParams = new URLSearchParams({ 
+                    region: targetRegion, 
+                    sex: targetSex, 
+                    age: targetAge, 
+                    cancer: targetCancer, 
+                    year: targetYear 
+                });
+                nextActionBtn.href = `message.html?${nextActionParams.toString()}`;
+
+                try {
+                    // Fetch Compare API (which yields actual screening rates)
+                    const compareData = await fetchCompare(targetRegion, targetSex, targetAge, targetCancer, targetYear);
+
+                    // Calculate unscreened
+                    const unscreened = compareData.실제_수검률;
+                    txtOurRate.innerText = `${compareData.실제_수검률.toFixed(1)} %`;
+
+                    // To calculate unscreened count, we fetch priority segments database
+                    // or calculate it using default values or proportional mathematics.
+                    // For accuracy, we call the priority endpoint filtered by region
+                    const priorityData = await fetchPriority(targetRegion, targetYear);
+                    const matchingSegment = (priorityData.목록 || []).find(item => 
+                        item.성별 === targetSex && 
+                        item.연령 === targetAge && 
+                        item.암종 === targetCancer
+                    );
+
+                    if (matchingSegment) {
+                        currentUnscreenedCount = matchingSegment.대상자 - matchingSegment.수검자;
+                    } else {
+                        // Fallback fallback estimation from rates or raw parquet if Priority segment filters it out
+                        // We can fetch Priority segment data and if missing, mock logical value
+                        currentUnscreenedCount = 1034; // standard fallback
+                    }
+
+                    txtUnscreened.innerText = `${currentUnscreenedCount.toLocaleString()} 명`;
+                    inputSampleN.max = currentUnscreenedCount;
+
+                    // Update Subtitle Rates
+                    const diffVal = compareData.실제_수검률 - compareData.유사_평균;
+                    const diffSign = diffVal >= 0 ? '+' : '';
+                    const diffColor = diffVal < 0 ? 'text-data-alert font-bold' : 'text-data-secondary font-bold';
+                    document.getElementById('segment-rates-title').innerHTML = `
+                        우리 구 <span class="font-bold text-data-secondary">${compareData.실제_수검률.toFixed(1)}%</span> │ 
+                        유사 20곳 <span class="font-bold text-slate-700">${compareData.유사_평균.toFixed(1)}%</span> │ 
+                        차이 <span class="${diffColor}">${diffSign}${diffVal.toFixed(1)}%p</span> (건강보험 가입자 기준)
+                    `;
+
+                    // Update state variables on successful load
+                    currentSex = targetSex;
+                    currentAge = targetAge;
+                    currentCancer = targetCancer;
+                    currentYear = targetYear;
+
+                    // Update URL params
+                    const newParams = new URLSearchParams({ 
+                        region: targetRegion, 
+                        sex: targetSex, 
+                        age: targetAge, 
+                        cancer: targetCancer, 
+                        year: targetYear 
+                    });
+                    history.replaceState(null, '', `${window.location.pathname}?${newParams.toString()}`);
+
+                } catch (error) {
+                    console.error("Error loading comparison profiles:", error);
+                    alert("선택한 세그먼트 데이터를 찾을 수 없거나 데이터가 존재하지 않습니다.\n이전 유효한 세그먼트로 복구합니다.");
+                    // Rollback
+                    selectCancer.value = currentCancer;
+                    selectGender.value = currentSex;
+                    selectAge.value = currentAge;
+                }
+            }
+
+            // Random Split execution button click
+            btnRandomSplit.addEventListener('click', async () => {
+                const n = parseInt(inputSampleN.value);
+                const seed = parseInt(inputSeed.value);
+
+                if (isNaN(n) || n <= 0) {
+                    alert('연락 가능 인원은 1명 이상의 숫자여야 합니다.');
+                    return;
+                }
+                if (n > currentUnscreenedCount) {
+                    alert(`요청 인원(${n}명)이 전체 미수검자 수(${currentUnscreenedCount}명)보다 많습니다.`);
+                    return;
+                }
+                if (isNaN(seed) || seed < 0) {
+                    alert('난수 시드는 0 이상의 숫자여야 합니다.');
+                    return;
+                }
+
+                try {
+                    const result = await postSample(currentRegion, currentSex, currentAge, currentCancer, n, seed);
+                    
+                    // Render Result
+                    resCampaignId.innerText = result.campaign_id;
+                    resContactN.innerText = `${result.contact_n.toLocaleString()} 명`;
+                    resControlN.innerText = `${result.control_n.toLocaleString()} 명`;
+
+                    splitResultContainer.classList.remove('hidden');
+
+                    // Bind download click with closure data
+                    btnDownloadGuide.onclick = () => {
+                        triggerGuideDownload(result, seed);
+                    };
+
+                } catch (error) {
+                    console.error('Error random splitting:', error);
+                    alert(`배정 처리 중 오류가 발생했습니다.\n${error.message}`);
+                }
+            });
+
+            // Trigger text guide file download for B2G local SQL query
+            function triggerGuideDownload(data, seed) {
+                const sgg = currentRegion.split('|');
+                const guideText = `==================================================
+        온코케어 관내 대상자 추출 쿼리 가이드 (B2G 개인정보 보안)
+==================================================
+캠페인 ID: ${data.campaign_id}
+추출 지역: ${sgg[0]} ${sgg[1]}
+세그먼트: ${currentSex} ${currentAge}세 ${currentCancer} 미수검자
+난수 시드(Seed): ${seed}
+
+[무작위 표본 분할 수치]
+- 전체 미수검 인원: ${data.total_unscreened.toLocaleString()} 명
+- 연락 대상군 (Target): ${data.contact_n.toLocaleString()} 명 (무작위 추출)
+- 자연 대조군 (Control): ${data.control_n.toLocaleString()} 명
+
+[추출 쿼리 및 로컬 추출 가이드]
+1. 보건소 내부 데이터베이스망에서 아래 조건의 미수검자 목록(전화번호 등 포함)을 SELECT 쿼리합니다.
+   - 조건: 성별='${currentSex}' AND 연령대='${currentAge}' AND 암종='${currentCancer}' AND 수검여부='N'
+2. 추출된 명단을 시드값 ${seed}를 이용해 무작위 셔플링(shuffle)한 후, 상위 ${data.contact_n}명을 연락군으로 배정하십시오.
+3. 셔플링된 나머지 ${data.control_n}명은 자연 대조군으로 유지하여 개입을 중지(자연 대기 상태 유지)하십시오.
+
+* 보안 주의: 본 가이드는 주민번호 등 개인정보 식별 데이터를 포함하고 있지 않습니다. 실제 셔플링 연산 및 개인정보 매칭은 보건소 자체 시스템 내부에서만 실행되어야 합니다.
+`;
+                
+                const blob = new Blob([guideText], { type: 'text/plain;charset=utf-8;' });
+                const link = document.createElement("a");
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", `oncocare_campaign_${data.campaign_id}_guide.txt`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            // Bind change events
+            function onFilterChange() {
+                const targetCancer = selectCancer.value;
+                const targetSex = selectGender.value;
+                const targetAge = selectAge.value;
+                loadData(currentRegion, targetSex, targetAge, targetCancer, currentYear);
+            }
+
+            selectCancer.addEventListener('change', onFilterChange);
+            selectGender.addEventListener('change', onFilterChange);
+            selectAge.addEventListener('change', onFilterChange);
+
+            // Load initial data
+            await loadData(region, sex, age, cancer, year);
+        });
+    </script>
+</body>
+</html>

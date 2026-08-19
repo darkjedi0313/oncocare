@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+    <script src="js/auth_guard.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>온코케어 - 실행 기록</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tokens.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "var(--onco-navy)",
+                      "outline-variant": "var(--bg-light)",
+                      "primary": "var(--onco-navy)",
+                      "background": "#fcf9f8",
+                      "on-background": "var(--ink)",
+                      "data-primary": "var(--onco-navy)",
+                      "data-secondary": "var(--care-teal)",
+                      "data-alert": "var(--alert-coral)",
+                      "data-bg-gray": "var(--bg-light)",
+                      "data-border-gray": "#DDE2E8",
+                      "data-table-header": "#F8F9FA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "card": "4px"
+              },
+              "spacing": {
+                      "grid_gap": "24px",
+                      "container_padding": "32px",
+                      "section_margin": "40px",
+                      "main_content_width": "1660px",
+                      "sidebar_width": "260px"
+              },
+              "fontFamily": {
+                      "body-md-bold": ["Public Sans"],
+                      "number-data": ["Public Sans"],
+                      "display-lg": ["Public Sans"],
+                      "body-md": ["Public Sans"],
+                      "title-md": ["Public Sans"],
+                      "label-sm": ["Public Sans"]
+              },
+              "fontSize": {
+                      "body-md-bold": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700"}],
+                      "number-data": ["15px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "data-large": ["48px", {"lineHeight": "1", "fontWeight": "700"}]
+              }
+            },
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased w-[1920px] h-[1080px] overflow-hidden mx-auto relative flex">
+    <!-- SideNavBar -->
+    <nav class="bg-data-bg-gray border-r border-data-border-gray w-[260px] h-full flex-shrink-0 flex flex-col py-6 px-4 z-20 overflow-y-auto">
+        <div class="mb-8 px-2">
+            <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+        </div>
+        <ul class="space-y-1 flex-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="index.html">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    우리 구 현황
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="priority.html">
+                    <span class="material-symbols-outlined">analytics</span>
+                    어디부터 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="factors.html">
+                    <span class="material-symbols-outlined">query_stats</span>
+                    왜 낮을까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="compare.html">
+                    <span class="material-symbols-outlined">map</span>
+                    다른 지역은
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="monitoring.html">
+                    <span class="material-symbols-outlined">monitoring</span>
+                    전국 모니터링
+                </a>
+            </li>
+            <li class="pt-4 pb-2">
+                <div class="border-t border-data-border-gray w-full"></div>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="strategy.html">
+                    <span class="material-symbols-outlined">assignment</span>
+                    무엇을 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="contact.html">
+                    <span class="material-symbols-outlined">group_add</span>
+                    연락 명단 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="message.html">
+                    <span class="material-symbols-outlined">description</span>
+                    안내문 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="report.html">
+                    <span class="material-symbols-outlined">assessment</span>
+                    보고서 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="history.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+                    실행 기록
+                </a>
+            </li>
+        </ul>
+        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
+        <div class="mt-auto pt-4 border-t border-data-border-gray">
+            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray h-[64px] flex-shrink-0 flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">실행 기록 (캠페인 성과 및 사유 집계)</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">서울특별시|양천구 · 2024년</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="flex-1 p-container_padding bg-white overflow-hidden flex flex-col justify-between">
+            <!-- Split Grid Layout -->
+            <div class="flex-1 flex flex-col gap-4 overflow-hidden mb-4">
+                <!-- Top Section: Campaigns Table (60% height) -->
+                <div class="h-[55%] border border-data-border-gray rounded-card flex flex-col bg-white overflow-hidden">
+                    <div class="p-4 border-b border-data-border-gray bg-data-bg-gray flex justify-between items-center select-none">
+                        <span class="font-body-md-bold text-primary text-[14px]">구 등록 캠페인 목록 (최신순)</span>
+                        <div class="text-[11px] text-data-alert font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">shield</span>
+                            <span>개인 식별정보를 저장하지 않습니다. 세그먼트 단위 집계로만 기록됩니다.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 overflow-y-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-data-table-header text-slate-600 font-bold border-b border-data-border-gray">
+                                    <th class="p-3">ID</th>
+                                    <th class="p-3">생성일</th>
+                                    <th class="p-3">세그먼트</th>
+                                    <th class="p-3 text-right">연락군 (Target)</th>
+                                    <th class="p-3 text-right">대기군 (Control)</th>
+                                    <th class="p-3 text-right">연락 시도</th>
+                                    <th class="p-3 text-right">통화 성공</th>
+                                    <th class="p-3 text-right">문자 발송</th>
+                                    <th class="p-3">발송 일자</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-campaigns-body" class="divide-y divide-data-border-gray">
+                                <!-- Generated Dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Bottom Section: Update Form (45% height) -->
+                <div class="h-[45%] border border-data-border-gray rounded-card bg-white p-5 flex flex-col justify-between overflow-y-auto">
+                    <div id="form-empty-state" class="flex-1 flex flex-col justify-center items-center text-slate-400 select-none">
+                        <span class="material-symbols-outlined text-[48px] mb-2 text-slate-300">task_alt</span>
+                        <span class="text-xs">수정 및 기록할 캠페인 행을 테이블에서 선택해 주십시오.</span>
+                    </div>
+                    
+                    <div id="form-editor-container" class="hidden flex-1 flex flex-col justify-between">
+                        <div class="flex justify-between items-center border-b border-data-border-gray pb-2 mb-3 select-none">
+                            <span class="font-body-md-bold text-slate-700 text-[14px]">캠페인 ID <span id="lbl-campaign-id" class="text-primary font-bold">#12</span> 상세 정보 기입</span>
+                            <span class="text-[11px] text-slate-500" id="lbl-segment-info">대장암 · 여자 65~69세</span>
+                        </div>
+                        
+                        <!-- Inputs Grid -->
+                        <div class="grid grid-cols-3 gap-6">
+                            <!-- 1. 연락 성과 -->
+                            <div class="space-y-3">
+                                <span class="font-body-md-bold text-xs text-primary block border-b border-slate-100 pb-1 select-none">📞 1. 전화 연락 성과</span>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-1">
+                                        <label for="input-contacted" class="text-[11px] text-slate-500 font-bold block mb-1">연락 시도 (명)</label>
+                                        <input type="number" id="input-contacted" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <div class="flex-1">
+                                        <label for="input-reached" class="text-[11px] text-slate-500 font-bold block mb-1">통화 성공 (명)</label>
+                                        <input type="number" id="input-reached" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 2. 미수검 사유 -->
+                            <div class="space-y-3">
+                                <span class="font-body-md-bold text-xs text-primary block border-b border-slate-100 pb-1 select-none">📊 2. 미수검 사유 응답 (통화 성공 중)</span>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label for="input-reason-no-notice" class="text-[10px] text-slate-500 font-bold block mb-1">안내문 미수신</label>
+                                        <input type="number" id="input-reason-no-notice" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <div>
+                                        <label for="input-reason-have-excuse" class="text-[10px] text-slate-500 font-bold block mb-1">이유 있음</label>
+                                        <input type="number" id="input-reason-have-excuse" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <div>
+                                        <label for="input-reason-cost-concern" class="text-[10px] text-slate-500 font-bold block mb-1">비용 우려</label>
+                                        <input type="number" id="input-reason-cost-concern" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. 문자 발송 -->
+                            <div class="space-y-3">
+                                <span class="font-body-md-bold text-xs text-primary block border-b border-slate-100 pb-1 select-none">💬 3. 단체 문자 발송</span>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-1">
+                                        <label for="input-sms-sent" class="text-[11px] text-slate-500 font-bold block mb-1">발송 건수 (건)</label>
+                                        <input type="number" id="input-sms-sent" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <div class="flex-1">
+                                        <label for="input-sms-date" class="text-[11px] text-slate-500 font-bold block mb-1">발송 일자</label>
+                                        <input type="date" id="input-sms-date" class="w-full text-xs rounded border-data-border-gray py-1 px-2 focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit area -->
+                        <div class="flex justify-between items-center border-t border-data-border-gray pt-3 mt-3">
+                            <span class="text-[11px] text-data-secondary font-bold">※ 연말 실적이 공개되면 연락군과 대기군의 수검률을 대조하여 효과를 자동 분석합니다.</span>
+                            <button id="btn-save-record" class="px-6 py-2 bg-primary text-white font-body-md-bold text-[13px] rounded hover:bg-primary/90 transition-colors shadow-sm">
+                                성과 정보 저장하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer area -->
+            <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-[12px] text-slate-500 mt-2">
+                <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
+                <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Floating UI for 2nd stage development -->
+    <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <span class="material-symbols-outlined text-[36px]">forum</span>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+        let currentRegion = '서울특별시|양천구';
+        let currentYear = 2024;
+        let campaigns = [];
+        let selectedCampaignId = null;
+        
+        const headerRegionYear = document.getElementById('header-region-year');
+        const tableBody = document.getElementById('table-campaigns-body');
+        
+        const formEmptyState = document.getElementById('form-empty-state');
+        const formEditorContainer = document.getElementById('form-editor-container');
+        
+        const lblCampaignId = document.getElementById('lbl-campaign-id');
+        const lblSegmentInfo = document.getElementById('lbl-segment-info');
+        
+        // Form Inputs
+        const inputContacted = document.getElementById('input-contacted');
+        const inputReached = document.getElementById('input-reached');
+        const inputReasonNoNotice = document.getElementById('input-reason-no-notice');
+        const inputReasonHaveExcuse = document.getElementById('input-reason-have-excuse');
+        const inputReasonCostConcern = document.getElementById('input-reason-cost-concern');
+        const inputSmsSent = document.getElementById('input-sms-sent');
+        const inputSmsDate = document.getElementById('input-sms-date');
+        const btnSaveRecord = document.getElementById('btn-save-record');
+        
+        function initParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('region')) currentRegion = urlParams.get('region');
+            if (urlParams.has('year')) currentYear = parseInt(urlParams.get('year'));
+            
+            headerRegionYear.textContent = `${currentRegion} · ${currentYear}년`;
+        }
+
+        async function loadRecordsList() {
+            tableBody.innerHTML = '<tr><td colspan="9" class="p-4 text-center text-slate-400">데이터를 불러오는 중입니다...</td></tr>';
+            try {
+                const data = await fetchRecords(currentRegion, currentYear);
+                campaigns = data.campaigns;
+                
+                if (campaigns.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="9" class="p-4 text-center text-slate-400">등록된 캠페인 내역이 없습니다. 먼저 [연락 명단 만들기]를 실행해 주십시오.</td></tr>';
+                    return;
+                }
+                
+                tableBody.innerHTML = '';
+                campaigns.forEach(c => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-100';
+                    row.dataset.id = c.id;
+                    
+                    const segText = `${c.segment.cancer} · ${c.segment.sex} ${c.segment.age}`;
+                    const contactedText = c.contacted !== null ? `${c.contacted}명` : '-';
+                    const reachedText = c.reached !== null ? `${c.reached}명` : '-';
+                    const smsSentText = c.sms_sent !== null ? `${c.sms_sent}건` : '-';
+                    const smsDateText = c.sms_date !== null ? c.sms_date : '-';
+                    
+                    row.innerHTML = `
+                        <td class="p-3 font-bold text-primary">#${c.id}</td>
+                        <td class="p-3 text-slate-500">${c.created}</td>
+                        <td class="p-3 font-bold text-slate-800">${segText}</td>
+                        <td class="p-3 text-right font-number-data text-slate-600">${c.contact_n}명</td>
+                        <td class="p-3 text-right font-number-data text-slate-400">${c.control_n}명</td>
+                        <td class="p-3 text-right font-number-data text-slate-600">${contactedText}</td>
+                        <td class="p-3 text-right font-number-data text-data-secondary">${reachedText}</td>
+                        <td class="p-3 text-right font-number-data text-slate-600">${smsSentText}</td>
+                        <td class="p-3 text-slate-500">${smsDateText}</td>
+                    `;
+                    
+                    row.addEventListener('click', () => handleRowSelection(c.id));
+                    tableBody.appendChild(row);
+                });
+                
+                // If there's a selected campaign, preserve highlighting
+                if (selectedCampaignId) {
+                    const activeRow = Array.from(tableBody.children).find(r => parseInt(r.dataset.id) === selectedCampaignId);
+                    if (activeRow) activeRow.classList.add('bg-primary/5', 'font-bold');
+                }
+                
+            } catch (err) {
+                console.error(err);
+                tableBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-red-500">기록 로드 실패: ${err.message}</td></tr>`;
+            }
+        }
+        
+        function handleRowSelection(id) {
+            selectedCampaignId = id;
+            
+            // Remove previous active classes
+            Array.from(tableBody.children).forEach(r => r.classList.remove('bg-primary/5', 'font-bold'));
+            
+            // Add active to selected
+            const selectedRow = Array.from(tableBody.children).find(r => parseInt(r.dataset.id) === id);
+            if (selectedRow) selectedRow.classList.add('bg-primary/5', 'font-bold');
+            
+            const camp = campaigns.find(c => c.id === id);
+            if (camp) {
+                // Show Editor
+                formEmptyState.classList.add('hidden');
+                formEditorContainer.classList.remove('hidden');
+                
+                lblCampaignId.textContent = `#${camp.id}`;
+                lblSegmentInfo.textContent = `${camp.segment.cancer} · ${camp.segment.sex} ${camp.segment.age}`;
+                
+                // Set Values
+                inputContacted.value = camp.contacted !== null ? camp.contacted : camp.contact_n;
+                inputReached.value = camp.reached !== null ? camp.reached : '';
+                inputReasonNoNotice.value = camp.reasons ? camp.reasons.안내문_미수신 : '';
+                inputReasonHaveExcuse.value = camp.reasons ? camp.reasons.이유있음 : '';
+                inputReasonCostConcern.value = camp.reasons ? camp.reasons.비용우려 : '';
+                inputSmsSent.value = camp.sms_sent !== null ? camp.sms_sent : '';
+                
+                // Default sms_date to created date if null
+                inputSmsDate.value = camp.sms_date !== null ? camp.sms_date : camp.created;
+            }
+        }
+        
+        btnSaveRecord.addEventListener('click', async () => {
+            if (!selectedCampaignId) return;
+            
+            const contacted = parseInt(inputContacted.value) || 0;
+            const reached = parseInt(inputReached.value) || 0;
+            
+            if (reached > contacted) {
+                alert('통화 성공자 수(Reached)는 연락 시도자 수(Contacted)보다 클 수 없습니다.');
+                return;
+            }
+            
+            const noNotice = parseInt(inputReasonNoNotice.value) || 0;
+            const haveExcuse = parseInt(inputReasonHaveExcuse.value) || 0;
+            const costConcern = parseInt(inputReasonCostConcern.value) || 0;
+            
+            const sumReasons = noNotice + haveExcuse + costConcern;
+            if (sumReasons > reached) {
+                alert('사유 응답자 수의 총합이 통화 성공자 수(Reached)를 초과할 수 없습니다.');
+                return;
+            }
+            
+            const smsSent = parseInt(inputSmsSent.value) || 0;
+            const smsDate = inputSmsDate.value;
+            
+            try {
+                const payload = {
+                    campaign_id: selectedCampaignId,
+                    contacted: contacted,
+                    reached: reached,
+                    reasons: {
+                        "안내문_미수신": noNotice,
+                        "이유있음": haveExcuse,
+                        "비용우려": costConcern
+                    },
+                    sms_sent: smsSent,
+                    sms_date: smsDate
+                };
+                
+                await updateRecord(payload);
+                alert('성과 정보가 안전하게 SQLite 데이터베이스에 영속화되었습니다.');
+                
+                // Reload list
+                await loadRecordsList();
+                
+            } catch (err) {
+                alert('기록 업데이트 실패: ' + err.message);
+            }
+        });
+
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            initParams();
+            loadRecordsList();
+        });
+    </script>
+</body>
+</html>

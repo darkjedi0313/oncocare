@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+    <script src="js/auth_guard.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>온코케어 - 우리 구 현황</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tokens.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "var(--onco-navy)",
+                      "outline-variant": "var(--bg-light)",
+                      "primary": "var(--onco-navy)",
+                      "background": "#fcf9f8",
+                      "on-background": "var(--ink)",
+                      
+                      // Custom Colors bound to CSS tokens.css
+                      "data-primary": "var(--onco-navy)",
+                      "data-secondary": "var(--care-teal)",
+                      "data-alert": "var(--alert-coral)",
+                      "data-bg-gray": "var(--bg-light)",
+                      "data-border-gray": "#DDE2E8",
+                      "data-table-header": "#F8F9FA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "card": "4px"
+              },
+              "spacing": {
+                      "grid_gap": "24px",
+                      "container_padding": "32px",
+                      "section_margin": "40px",
+                      "main_content_width": "1660px",
+                      "sidebar_width": "260px"
+              },
+              "fontFamily": {
+                      "body-md-bold": ["Public Sans"],
+                      "number-data": ["Public Sans"],
+                      "display-lg": ["Public Sans"],
+                      "body-md": ["Public Sans"],
+                      "title-md": ["Public Sans"],
+                      "label-sm": ["Public Sans"]
+              },
+              "fontSize": {
+                      "body-md-bold": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700"}],
+                      "number-data": ["15px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "data-large": ["48px", {"lineHeight": "1", "fontWeight": "700"}]
+              }
+            },
+          }
+        }
+    </script>
+    <style>
+        /* Custom Styles for Dual Bar Chart Viz */
+        .chart-row { display: flex; flex-direction: column; margin-bottom: 12px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--ink); }
+        .bar-wrapper { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+        .bar-label-sub { width: 55px; font-size: 11px; color: #64748b; text-align: right; font-weight: 500; }
+        .bar-container-new { flex: 1; height: 10px; background-color: var(--bg-light); border-radius: 2px; overflow: hidden; position: relative; }
+        .bar-fill-new { height: 100%; border-radius: 2px; transition: width 0.5s ease-in-out; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased w-[1920px] h-[1080px] overflow-hidden mx-auto relative flex">
+    <!-- SideNavBar -->
+    <nav class="bg-data-bg-gray border-r border-data-border-gray w-[260px] h-full flex-shrink-0 flex flex-col py-6 px-4 z-20 overflow-y-auto">
+        <div class="mb-8 px-2">
+            <h1 class="font-display-lg text-display-lg text-primary">온코케어</h1>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">공공보건 데이터 분석</p>
+        </div>
+        <ul class="space-y-1 flex-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="index.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    우리 구 현황
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="priority.html">
+                    <span class="material-symbols-outlined">analytics</span>
+                    어디부터 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="factors.html">
+                    <span class="material-symbols-outlined">query_stats</span>
+                    왜 낮을까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="compare.html">
+                    <span class="material-symbols-outlined">map</span>
+                    다른 지역은
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="monitoring.html">
+                    <span class="material-symbols-outlined">monitoring</span>
+                    전국 모니터링
+                </a>
+            </li>
+            <li class="pt-4 pb-2">
+                <div class="border-t border-data-border-gray w-full"></div>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="strategy.html">
+                    <span class="material-symbols-outlined">assignment</span>
+                    무엇을 할까
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="contact.html">
+                    <span class="material-symbols-outlined">group_add</span>
+                    연락 명단 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="message.html">
+                    <span class="material-symbols-outlined">description</span>
+                    안내문 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="report.html">
+                    <span class="material-symbols-outlined">assessment</span>
+                    보고서 만들기
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html">
+                    <span class="material-symbols-outlined">history</span>
+                    실행 기록
+                </a>
+            </li>
+        </ul>
+        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
+        <div class="mt-auto pt-4 border-t border-data-border-gray">
+            <p class="font-label-sm text-[11px] text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray h-[64px] flex-shrink-0 flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">우리 구 현황</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="flex-1 p-container_padding bg-white overflow-hidden flex flex-col">
+            <!-- Top Summary Cards -->
+            <div class="grid grid-cols-3 gap-grid_gap mb-section_margin flex-shrink-0">
+                <!-- Card 1 -->
+                <div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
+                    <h2 class="font-title-md text-title-md text-on-background mb-2">6대암 통합 수검률</h2>
+                    <div class="flex items-baseline gap-3 mb-1">
+                        <span class="text-[48px] font-bold text-data-primary leading-none" id="summary-total-rate">-</span>
+                    </div>
+                    <div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant" id="summary-diff-container">
+                        전국 평균 - · -
+                    </div>
+                    <p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
+                    <h2 class="font-title-md text-title-md text-on-background mb-2">미수검 인원</h2>
+                    <div class="flex items-baseline gap-3 mb-1">
+                        <span class="text-[48px] font-bold text-data-primary leading-none" id="summary-unscreened">-</span>
+                    </div>
+                    <p class="font-label-sm text-label-sm text-on-surface-variant" id="summary-total-target">대상 -명 중</p>
+                    <p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
+                    <h2 class="font-title-md text-title-md text-on-background mb-2">전국 순위</h2>
+                    <div class="flex items-baseline gap-3 mb-1">
+                        <span class="text-[48px] font-bold text-data-primary leading-none" id="summary-rank">-</span>
+                    </div>
+                    <p class="font-label-sm text-label-sm text-on-surface-variant" id="summary-total-sgg">-개 시군구 중</p>
+                    <p class="font-label-sm text-[11px] text-outline mt-2">* 건강보험 가입자 기준</p>
+                </div>
+            </div>
+
+            <!-- 2-Column Layout (62:38) -->
+            <div class="flex gap-grid_gap flex-1 overflow-hidden">
+                <!-- Left Column (62%) - Charts -->
+                <div class="w-[62%] bg-white border border-data-border-gray rounded-card p-6 flex flex-col h-full overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-title-md text-title-md text-on-background">암종별 수검률</h3>
+                        <div class="flex gap-4 font-label-sm text-label-sm">
+                            <div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-bg-gray rounded-sm"></div>전국 평균</div>
+                            <div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-secondary rounded-sm"></div>우리 구</div>
+                            <div class="flex items-center gap-1"><div class="w-3 h-3 bg-data-alert rounded-sm"></div>주의 필요</div>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center py-2 space-y-3" id="cancer-chart-container">
+                        <!-- Chart rows rendered dynamically -->
+                        <p class="text-center text-on-surface-variant">차트 로딩 중...</p>
+                    </div>
+                    <p class="font-label-sm text-[11px] text-outline mt-4 text-right">* 건강보험 가입자 기준</p>
+                </div>
+
+                <!-- Right Column (38%) - Action Items -->
+                <div class="w-[38%] flex flex-col gap-4 h-full overflow-y-auto">
+                    <div class="flex justify-between items-center bg-white border border-data-border-gray rounded-card p-4">
+                        <h3 class="font-title-md text-title-md text-on-background">지금 연락해야 할 곳</h3>
+                        <a class="font-label-sm text-label-sm text-data-primary hover:underline" href="priority.html">전체 순위 보기 →</a>
+                    </div>
+                    <div class="flex flex-col gap-4" id="priority-cards-container">
+                        <!-- Priority Cards rendered dynamically -->
+                        <p class="text-center text-on-surface-variant">우선 대상 로딩 중...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-transparent w-full h-[64px] flex-shrink-0 border-t border-data-border-gray flex items-center justify-start px-container_padding">
+            <span class="font-label-sm text-label-sm text-outline mr-6">데이터 출처: 공공보건 의료기관 데이터베이스 (2024)</span>
+            <div class="flex gap-4">
+                <a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">이용약관</a>
+                <a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">개인정보처리방침</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        <span class="text-[10px] font-bold mt-0.5">온코</span>
+    </div>
+
+    <!-- Load API client and run binding -->
+    <script src="js/api.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const defaultRegion = '서울특별시|양천구';
+            const defaultYear = 2024;
+            
+            try {
+                // 1. API Calls
+                const summaryData = await fetchSummary(defaultRegion, defaultYear);
+                
+                // 2. Update Header
+                const sidoSgg = defaultRegion.split('|');
+                document.getElementById('header-region-year').innerText = `${sidoSgg[0]} > ${sidoSgg[1]}`;
+                
+                // 3. Update Cards
+                // Card 1: 6대암 통합 수검률 (\ud1b5\ud569_\uc218\uac80\ub960)
+                const totalRate = summaryData["\ud1b5\ud569_\uc218\uac80\ub960"];
+                document.getElementById('summary-total-rate').innerText = `${totalRate.toFixed(1)}%`;
+                
+                // Calculate consolidated national average using weighted region target sizes
+                let totalNatScreened = 0;
+                let totalRegionTarget = 0;
+                
+                // 암종별_현황 -> \uc554\uc885\ubcc4_\ud604\ud669
+                const cancerStats = summaryData["\uc554\uc885\ubcc4_\ud604\ud669"];
+                
+                cancerStats.forEach(c => {
+                    // 전국_평균 -> \uc804\uad6d_\ud3c9\uade0
+                    // 대상자 -> \ub300\uc0c1\uc790
+                    const natAvg = c["\uc804\uad6d_\ud3c9\uade0"];
+                    const target = c["\ub300\uc0c1\uc790"];
+                    
+                    totalNatScreened += (natAvg / 100) * target;
+                    totalRegionTarget += target;
+                });
+                
+                const nationalAvgRate = totalRegionTarget > 0 ? (totalNatScreened / totalRegionTarget) * 100 : 56.3;
+                const diffRate = totalRate - nationalAvgRate;
+                const diffSign = diffRate >= 0 ? '+' : '';
+                const diffColorClass = diffRate < 0 ? 'text-data-alert' : 'text-data-secondary';
+                
+                document.getElementById('summary-diff-container').innerHTML = `
+                    전국 평균 ${nationalAvgRate.toFixed(1)}%
+                    <span class="${diffColorClass} font-bold">· ${diffSign}${diffRate.toFixed(1)}%p</span>
+                `;
+                
+                // Card 2: 미수검 인원 (\ubbf8\uc218\uac80_\uc778\uc6d0)
+                const unscreenedCountVal = summaryData["\ubbf8\uc218\uac80_\uc778\uc6d0"];
+                document.getElementById('summary-unscreened').innerHTML = `${unscreenedCountVal.toLocaleString()}<span class="text-[24px]">명</span>`;
+                document.getElementById('summary-total-target').innerText = `대상 ${totalRegionTarget.toLocaleString()}명 중`;
+                
+                // Card 3: 전국 순위 (\uc804\uad6d_\uc21c\uc704) & 전체_시군구수 (\uc804\uccb4_\uc2dc\uad70\uad6c\uc218)
+                const rankVal = summaryData["\uc804\uad6d_\uc21c\uc704"];
+                const totalSggVal = summaryData["\uc804\uccb4_\uc2dc\uad70\uad6c\uc218"];
+                document.getElementById('summary-rank').innerHTML = `${rankVal}<span class="text-[24px]">위</span>`;
+                document.getElementById('summary-total-sgg').innerText = `${totalSggVal}개 시군구 중`;
+                
+                // 4. Update Cancer Chart
+                // Find the worst performing cancer compared to its national average to mark as Alert
+                let worstCancer = null;
+                let maxDeficit = 0;
+                
+                cancerStats.forEach(c => {
+                    const cancerName = c["\uc554\uc885"];
+                    const rateVal = c["\uc218\uac80\ub960"];
+                    const natAvg = c["\uc804\uad6d_\ud3c9\uade0"];
+                    const deficit = natAvg - rateVal;
+                    if (deficit > maxDeficit) {
+                        maxDeficit = deficit;
+                        worstCancer = cancerName;
+                    }
+                });
+                
+                const chartContainer = document.getElementById('cancer-chart-container');
+                chartContainer.innerHTML = '';
+                
+                cancerStats.forEach(c => {
+                    const cancerName = c["\uc554\uc885"];
+                    const rateVal = c["\uc218\uac80\ub960"];
+                    const natAvg = c["\uc804\uad6d_\ud3c9\uade0"];
+                    
+                    const isAlert = cancerName === worstCancer && maxDeficit > 0;
+                    const barFillColor = isAlert ? 'bg-data-alert' : 'bg-data-secondary';
+                    const labelColor = isAlert ? 'text-data-alert font-bold' : 'text-primary';
+                    const valueColor = isAlert ? 'text-data-alert font-bold' : 'text-data-secondary font-bold';
+                    
+                    const rowHtml = `
+                        <div class="chart-row">
+                            <!-- 헤더: 암종명 및 실적 요약 -->
+                            <div class="chart-header">
+                                <span class="${labelColor}">${cancerName}</span>
+                                <span class="font-label-sm text-[12px] font-normal text-slate-500">
+                                    우리 구 <span class="${valueColor}">${rateVal.toFixed(1)}%</span> │ 
+                                    전국 평균 <span class="text-slate-700 font-bold">${natAvg.toFixed(1)}%</span>
+                                </span>
+                            </div>
+                            <!-- 듀얼 막대 그래프 -->
+                            <div class="space-y-1">
+                                <!-- 우리 구 -->
+                                <div class="bar-wrapper">
+                                    <span class="bar-label-sub">우리 구</span>
+                                    <div class="bar-container-new">
+                                        <div class="bar-fill-new ${barFillColor}" style="width: ${rateVal}%;"></div>
+                                    </div>
+                                </div>
+                                <!-- 전국 평균 -->
+                                <div class="bar-wrapper">
+                                    <span class="bar-label-sub">전국 평균</span>
+                                    <div class="bar-container-new">
+                                        <div class="bar-fill-new bg-slate-300" style="width: ${natAvg}%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    chartContainer.insertAdjacentHTML('beforeend', rowHtml);
+                });
+                
+                // 5. Update Priority Cards (Top 3)
+                const priorityContainer = document.getElementById('priority-cards-container');
+                priorityContainer.innerHTML = '';
+                
+                // 우선_대상_top3 -> \uc5ec\uc14b_\ub300\uc0c1_top3 가 아니라 \uc544\ub798 \ubcf4\uba74 \uc6b0\uc120_\ub300\uc0c1_top3 이다.
+                // '우선_대상_top3'의 유니코드:
+                // 우 -> \uc6b0
+                // 선 -> \uc120
+                // _ -> _
+                // 대 -> \ub300
+                // 상 -> \uc2b9이 아니라 \uc0ac
+                // 징이 아니라 자 -> \uc790
+                // _ -> _
+                // t -> t
+                // o -> o
+                // p -> p
+                // 3 -> 3
+                // 즉 \uc6b0\uc120_\ub300\uc0ac\uc790_top3? \uc6b0\uc120_\ub300\uc0ac\uc790 가 아니라 '우선_대상_top3' 이었으므로:
+                // 대 -> \ub300, 상 -> \uc0ac, ㅇ -> ㅇ? '대상' -> \ub300\uc0c1
+                // \uc6b0\uc120_\ub300\uc0c1_top3
+                const top3Segments = summaryData["\uc6b0\uc120_\ub300\uc0c1_top3"] || [];
+                
+                if (top3Segments.length === 0) {
+                    priorityContainer.innerHTML = '<p class="text-center py-8 text-on-surface-variant">해당하는 우선순위 대상 세그먼트가 없습니다.</p>';
+                } else {
+                    top3Segments.forEach((item, index) => {
+                        const rankNum = index + 1;
+                        let borderColor = 'border-data-border-gray';
+                        let barColor = 'bg-outline-variant';
+                        let badgeBg = 'bg-data-bg-gray';
+                        let badgeText = 'text-on-surface-variant';
+                        let opacityClass = '';
+                        
+                        if (rankNum === 1) {
+                            borderColor = 'border-data-alert/30';
+                            barColor = 'bg-data-alert';
+                            badgeBg = 'bg-data-alert/10';
+                            badgeText = 'text-data-alert';
+                        } else if (rankNum === 2) {
+                            opacityClass = 'opacity-70';
+                        } else if (rankNum === 3) {
+                            opacityClass = 'opacity-50';
+                        }
+                        
+                        // Extract with Unicode Escape for Safety
+                        const genderVal = item["\uc131\ubcc4"]; // 성별
+                        const ageVal = item["\uc5f0\ub839"]; // 연령
+                        const cancerName = item["\uc554\uc885"]; // 암종
+                        const targetVal = item["\ub300\uc0c1\uc790"]; // 대상자
+                        const rateVal = item["\uc218\uac80\ub960"]; // 수검률
+                        const gapVal = item["\uc794\ucc28"]; // 잔차 (actual - expectation)
+                        const recoveryVal = item["\ud68c\ubcf5\uc5ec\uc9c0"]; // 회복여지
+                        
+                        // Calculate unscreened count for this segment
+                        const unscreenedCount = Math.round(targetVal * (1 - rateVal / 100));
+                        const gapSign = gapVal >= 0 ? '+' : '';
+                        const gapColor = gapVal < 0 ? 'text-data-alert' : 'text-data-secondary';
+                        
+                        const cardHtml = `
+                            <div class="bg-white border ${borderColor} rounded-card p-5 relative overflow-hidden shadow-sm ${opacityClass}">
+                                <div class="absolute top-0 left-0 w-1 h-full ${barColor}"></div>
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <span class="inline-block ${badgeBg} ${badgeText} font-label-sm text-label-sm px-2 py-0.5 rounded mr-2">${rankNum}순위</span>
+                                        <h4 class="inline-block font-title-md text-title-md text-on-background">${genderVal} ${ageVal} · ${cancerName}</h4>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">미수검 인원</p>
+                                        <p class="font-number-data text-number-data text-on-background">${unscreenedCount.toLocaleString()}명</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">기대치 대비 격차</p>
+                                        <p class="font-number-data text-number-data ${gapColor}">${gapSign}${gapVal.toFixed(1)}%p</p>
+                                    </div>
+                                </div>
+                                <div class="bg-data-bg-gray p-3 rounded flex justify-between items-center">
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant">수검 독려 시 기대 회복 인원</span>
+                                    <span class="font-number-data text-number-data text-data-secondary">${recoveryVal.toLocaleString()}명</span>
+                                </div>
+                            </div>
+                        `;
+                        priorityContainer.insertAdjacentHTML('beforeend', cardHtml);
+                    });
+                }
+                
+            } catch (error) {
+                console.error('Error fetching dashboard summary:', error);
+                document.getElementById('header-region-year').innerText = '데이터 로드 실패';
+                document.getElementById('cancer-chart-container').innerHTML = `
+                    <p class="text-center text-data-alert py-8">데이터를 불러오는 중 오류가 발생했습니다.<br>${error.message}</p>
+                `;
+                document.getElementById('priority-cards-container').innerHTML = `
+                    <p class="text-center text-data-alert py-8">오류: ${error.message}</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
