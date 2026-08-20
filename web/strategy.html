@@ -9,11 +9,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>온코케어 - 무엇을 할까</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
-    <script src="js/responsive.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -25,7 +24,6 @@
                       "primary": "var(--onco-navy)",
                       "background": "#fcf9f8",
                       "on-background": "var(--ink)",
-                      
                       "data-primary": "var(--onco-navy)",
                       "data-secondary": "var(--care-teal)",
                       "data-alert": "var(--alert-coral)",
@@ -161,6 +159,24 @@
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
             <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="onco-main">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">무엇을 할까 (권장 개입 전략)</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="onco-content bg-white flex flex-col justify-between">
+            <!-- Subtitle Section -->
             <div class="bg-data-bg-gray border border-data-border-gray rounded-card p-4 mb-4 flex-shrink-0 flex flex-col gap-4">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -201,7 +217,57 @@
                     </div>
                     <span class="text-label-sm text-slate-500 font-bold select-none">* 건강보험 가입자 기준</span>
                 </div>
+
+                <!-- 세그먼트 상세 데이터 표 -->
+                <div class="w-full bg-white rounded border border-data-border-gray overflow-hidden shadow-sm">
+                    <table class="w-full text-label-sm text-left border-collapse">
+                        <thead>
+                            <tr class="bg-data-table-header text-slate-600 font-bold border-b border-data-border-gray">
+                                <th class="p-2 border-r border-data-border-gray w-[25%]">조회 세그먼트</th>
+                                <th class="p-2 border-r border-data-border-gray text-right">우리 구 수검률 (A)</th>
+                                <th class="p-2 border-r border-data-border-gray text-right">여건 기대치 (B)</th>
+                                <th class="p-2 border-r border-data-border-gray text-right">유사 20곳 평균 (C)</th>
+                                <th class="p-2 border-r border-data-border-gray text-right">전국 평균</th>
+                                <th class="p-2 text-right">격차 (A - C)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-slate-50 font-medium">
+                                <td class="p-2.5 border-r border-data-border-gray font-bold text-slate-700" id="tbl-segment-name">로딩 중...</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-800 text-body-md" id="tbl-our-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-body-md" id="tbl-expected-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-body-md" id="tbl-similar-rate">-</td>
+                                <td class="p-2.5 border-r border-data-border-gray text-right font-number-data text-slate-600 text-body-md" id="tbl-national-rate">-</td>
+                                <td class="p-2.5 text-right font-number-data text-body-md" id="tbl-gap-rate">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2-Column layout for actions and survey questions -->
+            <div class="flex-1 flex gap-grid_gap mb-4 overflow-hidden">
+                <!-- Left: Intervention Recommendations (62%) -->
+                <div class="w-[62%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-title-md text-title-md text-primary font-bold">맞춤 권장 개입 전략</h3>
+                        <span class="font-label-sm text-slate-500" id="rule-badge">적용 규칙: 로딩 중...</span>
+                    </div>
+                    
                     <!-- Intervention Cards Container -->
+                    <div class="space-y-4 overflow-y-auto pr-1" id="actions-container">
+                        <!-- Cards dynamically rendered here -->
+                        <p class="text-center py-12 text-slate-400">데이터를 불러오는 중...</p>
+                    </div>
+                </div>
+
+                <!-- Right: Survey Questions (38%) -->
+                <div class="w-[38%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto justify-between">
+                    <div>
+                        <h3 class="font-title-md text-title-md text-primary font-bold mb-2">통화 수집용 표준 3문항</h3>
+                        <p class="font-label-sm text-label-sm text-data-secondary font-bold mb-6">
+                            💡 응답이 쌓이면 내년 기대치 모델링과 요인 분석의 정밀도가 올라갑니다.
+                        </p>
                         
                         <div class="space-y-4" id="survey-container">
                             <!-- Questions dynamically rendered here -->
@@ -228,6 +294,21 @@
             <span class="font-label-sm text-label-sm text-outline mr-6">데이터 출처: 질병관리청 국가건강검진 수검행태 분석 / 국립암센터 권장기준</span>
             <div class="flex gap-4">
                 <a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">이용약관</a>
+                <a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">개인정보처리방침</a>
+            </div>
+        </footer>
+    </div>
+
+        <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        <span class="text-[10px] font-bold mt-0.5">온코</span>
+    </div>
+
+
+
+    <script src="js/api.js"></script>
+    <script src="js/chatbot.js?v=1.0.1"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const defaultRegion = '서울특별시|양천구';

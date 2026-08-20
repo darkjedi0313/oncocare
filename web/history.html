@@ -9,11 +9,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>온코케어 - 실행 기록</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
-    <script src="js/responsive.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -25,7 +24,6 @@
                       "primary": "var(--onco-navy)",
                       "background": "#fcf9f8",
                       "on-background": "var(--ink)",
-                      
                       "data-primary": "var(--onco-navy)",
                       "data-secondary": "var(--care-teal)",
                       "data-alert": "var(--alert-coral)",
@@ -146,6 +144,38 @@
                 <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="history.html">
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
                     실행 기록
+                </a>
+            </li>
+        </ul>
+        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
+        <div class="mt-auto pt-4 border-t border-data-border-gray">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="onco-main">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">실행 기록 (캠페인 성과 및 사유 집계)</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">서울특별시|양천구 · 2024년</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="onco-content bg-white flex flex-col justify-between">
+            <!-- Split Grid Layout -->
+            <div class="flex-1 flex flex-col gap-4 overflow-hidden mb-4">
+                <!-- Top Section: Campaigns Table (60% height) -->
+                <div class="h-[55%] border border-data-border-gray rounded-card flex flex-col bg-white overflow-hidden">
+                    <div class="p-4 border-b border-data-border-gray bg-data-bg-gray flex justify-between items-center select-none">
+                        <span class="font-body-md-bold text-primary text-body-md">구 등록 캠페인 목록 (최신순)</span>
+                        <div class="text-label-sm text-data-alert font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-body-md">shield</span>
+                            <span>개인 식별정보를 저장하지 않습니다. 세그먼트 단위 집계로만 기록됩니다.</span>
                         </div>
                     </div>
                     
@@ -159,6 +189,34 @@
                                     <th class="p-3 text-right">연락군 (Target)</th>
                                     <th class="p-3 text-right">대기군 (Control)</th>
                                     <th class="p-3 text-right">연락 시도</th>
+                                    <th class="p-3 text-right">통화 성공</th>
+                                    <th class="p-3 text-right">문자 발송</th>
+                                    <th class="p-3">발송 일자</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-campaigns-body" class="divide-y divide-data-border-gray">
+                                <!-- Generated Dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Bottom Section: Update Form (45% height) -->
+                <div class="h-[45%] border border-data-border-gray rounded-card bg-white p-5 flex flex-col justify-between overflow-y-auto">
+                    <div id="form-empty-state" class="flex-1 flex flex-col justify-center items-center text-slate-400 select-none">
+                        <span class="material-symbols-outlined text-[48px] mb-2 text-slate-300">task_alt</span>
+                        <span class="text-label-sm">수정 및 기록할 캠페인 행을 테이블에서 선택해 주십시오.</span>
+                    </div>
+                    
+                    <div id="form-editor-container" class="hidden flex-1 flex flex-col justify-between">
+                        <div class="flex justify-between items-center border-b border-data-border-gray pb-2 mb-3 select-none">
+                            <span class="font-body-md-bold text-slate-700 text-body-md">캠페인 ID <span id="lbl-campaign-id" class="text-primary font-bold">#12</span> 상세 정보 기입</span>
+                            <span class="text-label-sm text-slate-500" id="lbl-segment-info">대장암 · 여자 65~69세</span>
+                        </div>
+                        
+                        <!-- Inputs Grid -->
+                        <div class="grid grid-cols-3 gap-6">
+                            <!-- 1. 연락 성과 -->
                             <div class="space-y-3">
                                 <span class="font-body-md-bold text-label-sm text-primary block border-b border-slate-100 pb-1 select-none">📞 1. 전화 연락 성과</span>
                                 <div class="flex items-center gap-4">
@@ -223,6 +281,21 @@
             <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-label-sm text-slate-500 mt-2">
                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                 <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Floating UI for 2nd stage development -->
+            <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        <span class="text-[10px] font-bold mt-0.5">온코</span>
+    </div>
+
+
+
+    <script src="js/api.js"></script>
+    <script src="js/chatbot.js?v=1.0.1"></script>
     <script>
         let currentRegion = '서울특별시|양천구';
         let currentYear = 2024;
@@ -280,15 +353,15 @@
                     const smsDateText = c.sms_date !== null ? c.sms_date : '-';
                     
                     row.innerHTML = `
-                        <td class="p-3 font-bold text-primary" data-label="ID">#${c.id}</td>
-                        <td class="p-3 text-slate-500" data-label="생성일">${c.created}</td>
-                        <td class="p-3 font-bold text-slate-800" data-label="세그먼트">${segText}</td>
-                        <td class="p-3 text-right font-number-data text-slate-600" data-label="연락군 (Target)">${c.contact_n}명</td>
-                        <td class="p-3 text-right font-number-data text-slate-400" data-label="대기군 (Control)">${c.control_n}명</td>
-                        <td class="p-3 text-right font-number-data text-slate-600" data-label="연락 시도">${contactedText}</td>
-                        <td class="p-3 text-right font-number-data text-data-secondary" data-label="통화 성공">${reachedText}</td>
-                        <td class="p-3 text-right font-number-data text-slate-600" data-label="문자 발송">${smsSentText}</td>
-                        <td class="p-3 text-slate-500" data-label="발송 일자">${smsDateText}</td>
+                        <td class="p-3 font-bold text-primary">#${c.id}</td>
+                        <td class="p-3 text-slate-500">${c.created}</td>
+                        <td class="p-3 font-bold text-slate-800">${segText}</td>
+                        <td class="p-3 text-right font-number-data text-slate-600">${c.contact_n}명</td>
+                        <td class="p-3 text-right font-number-data text-slate-400">${c.control_n}명</td>
+                        <td class="p-3 text-right font-number-data text-slate-600">${contactedText}</td>
+                        <td class="p-3 text-right font-number-data text-data-secondary">${reachedText}</td>
+                        <td class="p-3 text-right font-number-data text-slate-600">${smsSentText}</td>
+                        <td class="p-3 text-slate-500">${smsDateText}</td>
                     `;
                     
                     row.addEventListener('click', () => handleRowSelection(c.id));

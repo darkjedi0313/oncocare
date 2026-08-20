@@ -9,11 +9,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>온코케어 - 전국 모니터링</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
-    <script src="js/responsive.js"></script>
+    
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -25,7 +25,6 @@
                       "primary": "var(--onco-navy)",
                       "background": "#fcf9f8",
                       "on-background": "var(--ink)",
-                      
                       "data-primary": "var(--onco-navy)",
                       "data-secondary": "var(--care-teal)",
                       "data-alert": "var(--alert-coral)",
@@ -145,6 +144,36 @@
             <li>
                 <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html">
                     <span class="material-symbols-outlined">history</span>
+                    실행 기록
+                </a>
+            </li>
+        </ul>
+        <div class="mt-auto pt-4 border-t border-data-border-gray">
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
+                이 값은 평가가 아니라<br>검토 시작점입니다.
+            </p>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="onco-main">
+        <!-- TopNavBar -->
+        <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
+            <div class="font-title-md text-title-md text-primary font-bold">전국 모니터링 (상급기관 종합 모니터링)</div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md">국립암센터 · 보건복지부 권한</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="onco-content bg-white flex flex-col justify-between">
+            <!-- Top Dashboard Stats -->
+            <div class="grid grid-cols-4 gap-grid_gap mb-6 flex-shrink-0">
+                <div class="bg-data-bg-gray rounded-card p-5 border border-data-border-gray">
+                    <h2 class="font-title-md text-body-md text-slate-500 mb-1 font-bold">격차 최하위 지역</h2>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-[28px] font-bold text-data-alert" id="stat-worst-region">-</span>
+                    </div>
                     <p class="text-label-sm text-slate-400 mt-2">유사 평균 대비 수검 격차 기준</p>
                 </div>
                 <div class="bg-data-bg-gray rounded-card p-5 border border-data-border-gray">
@@ -286,8 +315,8 @@
         </div>
     </div>
 
-    <!-- Floating Action Button for '온코' — 챗봇 연동 -->
-    <div id="floating-btn" class="fixed bottom-8 right-8 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+        <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
         <span class="text-[10px] font-bold mt-0.5">온코</span>
     </div>
@@ -456,6 +485,13 @@
                 
                 const rowHtml = `
                     <tr class="border-b border-slate-100 hover:bg-slate-50 cursor-pointer" onclick="showDetails('${r.sido}|${r.sgg}')">
+                        <td class="p-4 border-r border-data-border-gray text-center font-bold text-slate-500">${rank}</td>
+                        <td class="p-4 border-r border-data-border-gray font-bold text-slate-700">${r.sido}</td>
+                        <td class="p-4 border-r border-data-border-gray font-bold text-primary">${r.sgg}</td>
+                        <td class="p-4 border-r border-data-border-gray text-center">${cancerBadge}</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data">${r.rate.toFixed(1)}%</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data text-slate-500">${r.expected.toFixed(1)}%</td>
+                        <td class="p-4 border-r border-data-border-gray text-right font-number-data text-slate-500">${r.similar.toFixed(1)}%</td>
                         <td class="p-4 border-r border-data-border-gray text-right font-number-data ${gapColor}">${gapSign}${r.gap.toFixed(1)}%p</td>
                         <td class="p-4 text-right font-number-data text-data-secondary pr-6">${r.recovery.toLocaleString()}명</td>
                     </tr>
