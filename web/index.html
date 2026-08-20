@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
+    <script src="js/responsive.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -240,7 +241,13 @@
     <div class="onco-main">
         <!-- TopNavBar -->
         <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
-            <div class="font-title-md text-title-md text-primary font-bold">우리 지역 현황</div>
+            <div class="flex items-center gap-3">
+                <!-- 햄버거 메뉴 버튼 (모바일 전용) -->
+                <button id="mobile-menu-btn" class="lg:hidden p-1 text-primary focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+                <div class="font-title-md text-title-md text-primary font-bold">우리 지역 현황</div>
+            </div>
             <div class="flex items-center gap-6">
                 <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
             </div>
@@ -249,7 +256,7 @@
         <!-- Main Workspace -->
         <main class="onco-content bg-white flex flex-col">
             <!-- Top Summary Cards -->
-            <div class="grid grid-cols-3 gap-grid_gap mb-section_margin flex-shrink-0">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-grid_gap mb-section_margin flex-shrink-0">
                 <!-- Card 1 -->
                 <div class="bg-data-bg-gray rounded-card p-6 border border-data-border-gray">
                     <h2 class="font-title-md text-title-md text-on-background mb-2">6대암 통합 수검률</h2>
@@ -282,9 +289,9 @@
             </div>
 
             <!-- 2-Column Layout (62:38) -->
-            <div class="flex gap-grid_gap flex-1 overflow-hidden">
+            <div class="flex-1 flex flex-col lg:flex-row gap-grid_gap lg:overflow-hidden">
                 <!-- Left Column (62%) - Charts -->
-                <div class="w-[62%] bg-white border border-data-border-gray rounded-card p-6 flex flex-col h-full overflow-y-auto">
+                <div class="w-full lg:w-[62%] bg-white border border-data-border-gray rounded-card p-6 flex flex-col lg:h-full lg:overflow-y-auto">
                     <div class="flex justify-between items-center mb-3">
                         <h3 class="font-title-md text-title-md text-on-background">암종별 수검률</h3>
                         <div class="flex gap-5 font-label-sm text-label-sm">
@@ -301,7 +308,7 @@
                 </div>
 
                 <!-- Right Column (38%) - Action Items -->
-                <div class="w-[38%] flex flex-col gap-4 h-full overflow-y-auto">
+                <div class="w-full lg:w-[38%] flex flex-col gap-4 lg:h-full lg:overflow-y-auto">
                     <div class="flex justify-between items-center bg-white border border-data-border-gray rounded-card p-4">
                         <h3 class="font-title-md text-title-md text-on-background">지금 연락해야 할 곳</h3>
                         <a class="font-label-sm text-label-sm text-data-primary hover:underline" href="priority.html">전체 순위 보기 →</a>
@@ -324,8 +331,8 @@
         </footer>
     </div>
 
-        <!-- Floating Action Button for '온코' — 챗봇 연동 -->
-    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+    <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" class="fixed w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
         <span class="text-[10px] font-bold mt-0.5">온코</span>
     </div>

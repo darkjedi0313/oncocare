@@ -1,23 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <script src="js/auth_guard.js"></script>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>온코케어 - 보고서 만들기</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
-    
-    <!-- PDF Export Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-    <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
           theme: {
@@ -157,38 +144,6 @@
                 <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html">
                     <span class="material-symbols-outlined">history</span>
                     실행 기록
-                </a>
-            </li>
-        </ul>
-        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
-        <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
-                이 값은 평가가 아니라<br>검토 시작점입니다.
-            </p>
-        </div>
-    </nav>
-
-    <!-- Main Content Area -->
-    <div class="onco-main">
-        <!-- TopNavBar -->
-        <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
-            <div class="font-title-md text-title-md text-primary font-bold">보고서 만들기 (공공 기안문 서식 보고서 생성)</div>
-            <div class="flex items-center gap-6">
-                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">서울특별시|양천구 · 2024년</span>
-            </div>
-        </header>
-
-        <!-- Main Workspace -->
-        <main class="onco-content bg-white flex flex-col justify-between">
-            <!-- 2-Column layout -->
-            <div class="flex-1 flex gap-grid_gap mb-4 overflow-hidden">
-                <!-- Left: Document Preview (62%) -->
-                <div class="w-[62%] border border-data-border-gray rounded-card p-8 flex flex-col bg-slate-50 overflow-y-auto">
-                    <!-- Paper Mockup (A4 Ratio styling & Government style) -->
-                    <div id="report-paper-container" class="w-full bg-white p-12 border border-data-border-gray shadow-md rounded flex-1 flex flex-col justify-between min-h-[750px] myeongjo-style relative text-slate-900">
-                        
-                        <!-- Top Header (Internal draft metadata) -->
-                        <div class="flex justify-between items-start text-label-sm text-slate-500 font-serif border-b border-slate-300 pb-3 mb-6 select-none w-full leading-normal">
                             <div class="space-y-1">
                                 <div>[시행구분] 내부결재</div>
                                 <div>[기안부서] 건강증진과-3482호</div>
@@ -255,18 +210,6 @@
                             <div class="flex justify-between text-label-sm text-slate-500 mt-2 select-none font-serif">
                                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                                 <span class="font-bold text-data-alert">이 값은 평가가 아니라 검토 시작점입니다.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Metadata & Actions (38%) -->
-                <div class="w-[38%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto justify-between">
-                    <div>
-                        <h3 class="font-title-md text-title-md text-primary font-bold mb-6">사용된 분석 데이터 출처</h3>
-                        
-                        <div class="space-y-4 mb-6">
-                            <div class="p-4 bg-data-bg-gray border border-data-border-gray rounded">
                                 <h4 class="text-label-sm text-slate-500 font-bold mb-1.5 block">1. 국민건강보험공단 검진 결과 데이터</h4>
                                 <p class="text-label-sm text-slate-700 leading-normal">양천구 지자체 세그먼트별(성별/연령대/암종) 대상자 수 대비 실제 수검 통계 정보 일체 반영</p>
                             </div>
@@ -306,21 +249,6 @@
             <footer class="h-[48px] border-t border-data-border-gray flex-shrink-0 flex justify-between items-center text-label-sm text-label-sm text-slate-500 mt-2">
                 <span>데이터 출처 — 국민건강보험공단 / 국민연금공단 / 질병관리청</span>
                 <span>보건소 성과평가와 건강보험 가입자 기준 분모가 상이할 수 있습니다.</span>
-            </footer>
-        </main>
-    </div>
-
-    <!-- Floating UI for 2nd stage development -->
-            <!-- Floating Action Button for '온코' — 챗봇 연동 -->
-    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
-        <span class="material-symbols-outlined text-[24px]">support_agent</span>
-        <span class="text-[10px] font-bold mt-0.5">온코</span>
-    </div>
-
-
-
-    <script src="js/api.js"></script>
-    <script src="js/chatbot.js?v=1.0.1"></script>
     <script>
         let currentRegion = '서울특별시|양천구';
         let currentYear = 2024;

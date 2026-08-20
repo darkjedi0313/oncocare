@@ -162,3 +162,146 @@ p, span, li, div {
   left: auto !important;
   z-index: 9999 !important; /* 항상 최상위에 뜨도록 처리 */
 }
+
+/* ---------- 모바일/태블릿 반응형 미디어 쿼리 (1024px 이하) ---------- */
+@media (max-width: 1024px) {
+  body.onco-layout {
+    flex-direction: column;
+    overflow: auto;
+    height: auto;
+  }
+
+  nav.onco-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 260px !important;
+    height: 100vh !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100 !important;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
+  }
+
+  nav.onco-sidebar.active {
+    transform: translateX(0);
+  }
+
+  /* 사이드바 열렸을 때 뒷배경 딤처리 */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 90;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  .onco-main {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
+
+  .onco-content {
+    overflow: visible !important;
+    padding: 16px !important;
+  }
+
+  .onco-header {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    width: 100%;
+    z-index: 40;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  #floating-btn {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+}
+
+/* ---------- 모바일 전용 반응형 미디어 쿼리 (768px 이하) ---------- */
+@media (max-width: 768px) {
+  /* 1. 테이블 카드화 (Cardification) */
+  .table-scroll {
+    overflow: visible !important;
+  }
+  .table-scroll table {
+    min-width: 100% !important;
+  }
+  
+  table.w-full, 
+  table.w-full thead, 
+  table.w-full tbody, 
+  table.w-full th, 
+  table.w-full td, 
+  table.w-full tr {
+    display: block !important;
+  }
+
+  table.w-full thead {
+    display: none !important; /* 헤더 숨김 */
+  }
+
+  table.w-full tr {
+    margin-bottom: 16px !important;
+    border: 1px solid var(--data-border-gray, #DDE2E8) !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  table.w-full td {
+    padding: 8px 0 !important;
+    border: none !important;
+    text-align: left !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: var(--fs-label) !important;
+    border-bottom: 1px dashed #f1f5f9 !important;
+  }
+
+  table.w-full td:last-child {
+    border-bottom: none !important;
+  }
+
+  /* td 왼쪽에 항목명을 띄우기 위해 data-label 활용 */
+  table.w-full td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #64748b;
+    margin-right: 16px;
+    display: inline-block;
+  }
+
+  /* 2. 유사지역 모달을 모바일에서 바텀 시트로 전환 */
+  #similar-modal {
+    align-items: flex-end !important; /* 아래쪽에 붙임 */
+  }
+
+  #similar-modal > div {
+    width: 100% !important;
+    max-height: 80vh !important;
+    border-radius: 24px 24px 0 0 !important; /* 상단만 둥글게 */
+    margin: 0 !important;
+    transform: translateY(100%) scale(1) !important; /* 아래에서 위로 트랜지션 */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  #similar-modal:not(.hidden):not(.opacity-0) > div {
+    transform: translateY(0) scale(1) !important;
+  }
+}
+
+

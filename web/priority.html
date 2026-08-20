@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <script src="js/auth_guard.js"></script>
@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
+    <script src="js/responsive.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -173,7 +174,13 @@
     <div class="onco-main">
         <!-- TopNavBar -->
         <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
-            <div class="font-title-md text-title-md text-primary font-bold">어디부터 할까 (우선순위 요약)</div>
+            <div class="flex items-center gap-3">
+                <!-- 햄버거 메뉴 버튼 (모바일 전용) -->
+                <button id="mobile-menu-btn" class="lg:hidden p-1 text-primary focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+                <div class="font-title-md text-title-md text-primary font-bold">어디부터 할까 (우선순위 요약)</div>
+            </div>
             <div class="flex items-center gap-6">
                 <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
             </div>
@@ -310,8 +317,8 @@
         </div>
     </div>
 
-        <!-- Floating Action Button for '온코' — 챗봇 연동 -->
-    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+    <!-- Floating Action Button for '온코' — 챗봇 연동 -->
+    <div id="floating-btn" class="fixed w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
         <span class="text-[10px] font-bold mt-0.5">온코</span>
     </div>
@@ -406,17 +413,17 @@
                     tr.className = `cursor-pointer transition-colors duration-150 ${rowBgClass} segment-row`;
                     tr.dataset.index = index;
                     tr.innerHTML = `
-                        <td class="p-4 text-center ${activeBorderClass}">${rankNum}</td>
-                        <td class="p-4">${item.시군구}</td>
-                        <td class="p-4">${item.암종}</td>
-                        <td class="p-4">${item.성별} · ${item.연령}</td>
-                        <td class="p-4 text-right">${unscreenedCount.toLocaleString()}명</td>
-                        <td class="p-4 text-right text-data-secondary">${item.수검률.toFixed(1)}%</td>
-                        <td class="p-4 text-right font-medium">${item.유사_평균.toFixed(1)}%</td>
-                        <td class="p-4 text-right text-outline">${item.전국_평균.toFixed(1)}%</td>
-                        <td class="p-4 text-right ${gapColorClass}">${gapSign}${item.잔차.toFixed(1)}%p</td>
-                        <td class="p-4 text-right text-data-secondary font-bold">${item.회복여지.toLocaleString()}명</td>
-                        <td class="p-4 text-center">
+                        <td class="p-4 text-center ${activeBorderClass}" data-label="순위">${rankNum}</td>
+                        <td class="p-4" data-label="시군구">${item.시군구}</td>
+                        <td class="p-4" data-label="암종">${item.암종}</td>
+                        <td class="p-4" data-label="대상군">${item.성별} · ${item.연령}</td>
+                        <td class="p-4 text-right" data-label="미수검 인원">${unscreenedCount.toLocaleString()}명</td>
+                        <td class="p-4 text-right text-data-secondary" data-label="우리 구 수검률">${item.수검률.toFixed(1)}%</td>
+                        <td class="p-4 text-right font-medium" data-label="유사평균">${item.유사_평균.toFixed(1)}%</td>
+                        <td class="p-4 text-right text-outline" data-label="전국평균">${item.전국_평균.toFixed(1)}%</td>
+                        <td class="p-4 text-right ${gapColorClass}" data-label="격차">${gapSign}${item.잔차.toFixed(1)}%p</td>
+                        <td class="p-4 text-right text-data-secondary font-bold" data-label="회복여지">${item.회복여지.toLocaleString()}명</td>
+                        <td class="p-4 text-center" data-label="유사 20곳">
                             <button class="px-2 py-1 bg-data-bg-gray hover:bg-data-border-gray rounded border border-data-border-gray text-label-sm font-medium transition-colors btn-view-similar" data-index="${index}">
                                 [목록]
                             </button>

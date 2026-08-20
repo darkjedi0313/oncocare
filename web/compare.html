@@ -1,23 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <script src="js/auth_guard.js"></script>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>온코케어 - 다른 지역은</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
-    <script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
               "colors": {
                       "primary-container": "var(--onco-navy)",
                       "outline-variant": "var(--bg-light)",
@@ -150,24 +137,6 @@
         <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
             <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
-                이 값은 평가가 아니라<br>검토 시작점입니다.
-            </p>
-        </div>
-    </nav>
-
-    <!-- Main Content Area -->
-    <div class="onco-main">
-        <!-- TopNavBar -->
-        <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
-            <div class="font-title-md text-title-md text-primary font-bold">다른 지역은 (여건 유사 지자체 비교)</div>
-            <div class="flex items-center gap-6">
-                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
-            </div>
-        </header>
-
-        <!-- Main Workspace -->
-        <main class="onco-content bg-white flex flex-col justify-between">
-            <!-- Subtitle Section -->
             <div class="bg-data-bg-gray border border-data-border-gray rounded-card p-4 mb-4 flex-shrink-0 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <span class="font-title-md text-title-md text-primary font-bold mr-2" id="region-label">양천구</span>
@@ -198,21 +167,6 @@
                         <option value="65~69">65~69세</option>
                         <option value="70~74">70~74세</option>
                     </select>
-                </div>
-                <div class="font-body-md text-body-md text-on-background" id="segment-rates-title">
-                    우리 구 -% │ 유사 20곳 -% │ 차이 -%p (건강보험 가입자 기준)
-                </div>
-            </div>
-
-            <!-- 2-Column layout for profile/list and stats -->
-            <div class="flex-1 flex gap-grid_gap mb-4 overflow-hidden">
-                <!-- Left: Profile and List (62%) -->
-                <div class="w-[62%] flex flex-col gap-4 overflow-hidden">
-                    <!-- Our Region Profile Cards -->
-                    <div class="border border-data-border-gray rounded-card p-4 bg-white flex-shrink-0">
-                        <h3 class="font-body-md-bold text-body-md-bold text-primary mb-3">우리 구 지역 여건 프로필</h3>
-                        <div class="grid grid-cols-4 gap-4">
-                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
                                 <span class="font-label-sm text-label-sm text-slate-500 mb-1">평균소득월액</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-income">- 만원</span>
                             </div>
@@ -250,18 +204,6 @@
                                 <tbody class="divide-y divide-data-border-gray" id="similar-list-tbody">
                                     <!-- Dynamic rows loaded here -->
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Statistics and Action (38%) -->
-                <div class="w-[38%] border border-data-border-gray rounded-card p-6 flex flex-col bg-white overflow-y-auto justify-between">
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="font-title-md text-title-md text-primary font-bold mb-4">여건 유사 20곳 통계 요약</h3>
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center py-2 border-b border-dashed border-data-border-gray">
                                     <span class="text-slate-600 font-medium">유사 지역 가중 평균</span>
                                     <span class="font-body-md-bold text-[16px] text-on-background" id="stat-mean">- %</span>
                                 </div>
@@ -327,7 +269,7 @@
     </div>
 
         <!-- Floating Action Button for '온코' — 챗봇 연동 -->
-    <div id="floating-btn" style="position:fixed !important; bottom:32px !important; right:32px !important; top:auto !important; left:auto !important; z-index:9999 !important;" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
+    <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
         <span class="text-[10px] font-bold mt-0.5">온코</span>
     </div>
