@@ -232,16 +232,16 @@ p, span, li, div {
 /* ---------- 모바일 전용 반응형 미디어 쿼리 (768px 이하) ---------- */
 @media (max-width: 768px) {
   :root {
-    --fs-display:  clamp(20px, 4vw, 24px);
-    --fs-title:    clamp(16px, 3.5vw, 18px);
-    --fs-body:     clamp(14px, 3vw, 15px);
-    --fs-label:    clamp(12px, 2.5vw, 13px);
-    --fs-number:   clamp(14px, 3vw, 15px);
-    --fs-data-lg:  clamp(32px, 8vw, 40px);
+    --fs-display:  clamp(18px, 3.5vw, 20px);
+    --fs-title:    clamp(14px, 3vw, 15px);
+    --fs-body:     clamp(12px, 2.5vw, 13px);
+    --fs-label:    clamp(11px, 2vw, 12px);
+    --fs-number:   clamp(12px, 2.5vw, 13px);
+    --fs-data-lg:  clamp(28px, 6vw, 32px);
   }
 
   html, body {
-    font-size: 14px !important;
+    font-size: 13px !important;
   }
 
   /* 1. 테이블 카드화 (Cardification) */
@@ -347,7 +347,7 @@ p, span, li, div {
     width: auto !important;
   }
   .bar-set-wrapper {
-    grid-template-columns: 80px 1fr 50px !important;
+    grid-template-columns: 65px 1fr 45px !important;
     gap: 8px !important;
   }
 }
