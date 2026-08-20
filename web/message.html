@@ -1,16 +1,31 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <script src="js/auth_guard.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>온코케어 - 안내문 만들기</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/responsive.css?v=1.0.1">
+    <script src="js/responsive.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
               "colors": {
                       "primary-container": "var(--onco-navy)",
                       "outline-variant": "var(--bg-light)",
                       "primary": "var(--onco-navy)",
                       "background": "#fcf9f8",
                       "on-background": "var(--ink)",
+                      
                       "data-primary": "var(--onco-navy)",
                       "data-secondary": "var(--care-teal)",
                       "data-alert": "var(--alert-coral)",
