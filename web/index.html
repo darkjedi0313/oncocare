@@ -292,9 +292,9 @@
             <div class="flex-1 flex flex-col lg:flex-row gap-grid_gap lg:overflow-hidden">
                 <!-- Left Column (62%) - Charts -->
                 <div class="w-full lg:w-[62%] bg-white border border-data-border-gray rounded-card p-6 flex flex-col lg:h-full lg:overflow-y-auto">
-                    <div class="flex justify-between items-center mb-3">
+                    <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                         <h3 class="font-title-md text-title-md text-on-background">암종별 수검률</h3>
-                        <div class="flex gap-5 font-label-sm text-label-sm">
+                        <div class="flex flex-wrap gap-3 sm:gap-5 font-label-sm text-label-sm justify-start sm:justify-end">
                             <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-300"></div>전국 평균</div>
                             <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-data-secondary"></div>우리 구</div>
                             <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-data-alert"></div>주의 필요</div>
@@ -524,7 +524,7 @@
                                         <h4 class="inline-block font-title-md text-title-md text-on-background">${genderVal} ${ageVal} · ${cancerName}</h4>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                                     <div>
                                         <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">미수검 인원</p>
                                         <p class="font-number-data text-number-data text-on-background">${unscreenedCount.toLocaleString()}명</p>
@@ -534,7 +534,7 @@
                                         <p class="font-number-data text-number-data ${gapColor}">${gapSign}${gapVal.toFixed(1)}%p</p>
                                     </div>
                                 </div>
-                                <div class="bg-data-bg-gray p-3 rounded flex justify-between items-center">
+                                <div class="bg-data-bg-gray p-3 rounded flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
                                     <span class="font-label-sm text-label-sm text-on-surface-variant">수검 독려 시 기대 회복 인원</span>
                                     <span class="font-number-data text-number-data text-data-secondary">${recoveryVal.toLocaleString()}명</span>
                                 </div>
