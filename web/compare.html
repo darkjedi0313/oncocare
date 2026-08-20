@@ -25,7 +25,6 @@
                       "primary": "var(--onco-navy)",
                       "background": "#fcf9f8",
                       "on-background": "var(--ink)",
-                      
                       "data-primary": "var(--onco-navy)",
                       "data-secondary": "var(--care-teal)",
                       "data-alert": "var(--alert-coral)",
@@ -33,28 +32,9 @@
                       "data-border-gray": "#DDE2E8",
                       "data-table-header": "#F8F9FA"
               },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem",
-                      "card": "4px"
-              },
-              "spacing": {
-                      "grid_gap": "24px",
-                      "container_padding": "32px",
-                      "section_margin": "40px",
-                      "main_content_width": "1660px",
-                      "sidebar_width": "260px"
-              },
-              "fontFamily": {
-                      "body-md-bold": ["Public Sans"],
-                      "number-data": ["Public Sans"],
-                      "display-lg": ["Public Sans"],
-                      "body-md": ["Public Sans"],
-                      "title-md": ["Public Sans"],
-                      "label-sm": ["Public Sans"]
-              },
+              "borderRadius": {"DEFAULT": "0.125rem","lg": "0.25rem","xl": "0.5rem","full": "0.75rem","card": "4px"},
+              "spacing": {"grid_gap": "24px","container_padding": "32px","section_margin": "40px","main_content_width": "1660px","sidebar_width": "260px"},
+              "fontFamily": {"body-md-bold": ["Public Sans"],"number-data": ["Public Sans"],"display-lg": ["Public Sans"],"body-md": ["Public Sans"],"title-md": ["Public Sans"],"label-sm": ["Public Sans"]},
               "fontSize": {
                       "body-md-bold": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700"}],
                       "number-data": ["15px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
@@ -64,13 +44,12 @@
                       "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
                       "data-large": ["48px", {"lineHeight": "1", "fontWeight": "700"}]
               }
-            },
+            }
           }
         }
     </script>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased onco-layout">
-    <!-- SideNavBar -->
     <nav class="bg-data-bg-gray border-r border-data-border-gray onco-sidebar flex flex-col py-6 px-4 z-20">
         <div class="mb-8 px-2">
             <a href="index.html" class="flex items-center gap-3 mb-1 hover:opacity-90 transition-opacity">
@@ -85,128 +64,88 @@
             <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 pl-1">국가암검진데이터 분석</p>
         </div>
         <ul class="space-y-1 flex-1">
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="index.html">
-                    <span class="material-symbols-outlined">dashboard</span>
-                    우리 지역 현황
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="priority.html">
-                    <span class="material-symbols-outlined">analytics</span>
-                    어디부터 할까
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="factors.html">
-                    <span class="material-symbols-outlined">query_stats</span>
-                    왜 낮을까
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="compare.html">
-                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
-                    다른 지역은
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="monitoring.html">
-                    <span class="material-symbols-outlined">monitoring</span>
-                    전국 모니터링
-                </a>
-            </li>
-            <li class="pt-4 pb-2">
-                <div class="border-t border-data-border-gray w-full"></div>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="strategy.html">
-                    <span class="material-symbols-outlined">assignment</span>
-                    무엇을 할까
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="contact.html">
-                    <span class="material-symbols-outlined">group_add</span>
-                    연락 명단 만들기
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="message.html">
-                    <span class="material-symbols-outlined">description</span>
-                    안내문 만들기
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="report.html">
-                    <span class="material-symbols-outlined">assessment</span>
-                    보고서 만들기
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html">
-                    <span class="material-symbols-outlined">history</span>
-                    실행 기록
-                </a>
-            </li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="index.html"><span class="material-symbols-outlined">dashboard</span>우리 지역 현황</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="priority.html"><span class="material-symbols-outlined">analytics</span>어디부터 할까</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="factors.html"><span class="material-symbols-outlined">query_stats</span>왜 낮을까</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 bg-primary text-white font-body-md-bold text-body-md-bold rounded-lg transition-colors duration-200" href="compare.html"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>다른 지역은</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="monitoring.html"><span class="material-symbols-outlined">monitoring</span>전국 모니터링</a></li>
+            <li class="pt-4 pb-2"><div class="border-t border-data-border-gray w-full"></div></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="strategy.html"><span class="material-symbols-outlined">assignment</span>무엇을 할까</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="contact.html"><span class="material-symbols-outlined">group_add</span>연락 명단 만들기</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="message.html"><span class="material-symbols-outlined">description</span>안내문 만들기</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="report.html"><span class="material-symbols-outlined">assessment</span>보고서 만들기</a></li>
+            <li><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md text-body-md hover:bg-data-border-gray rounded-lg transition-colors duration-200" href="history.html"><span class="material-symbols-outlined">history</span>실행 기록</a></li>
         </ul>
-        <!-- Disclaimer Text Fixed at the bottom of the sidebar -->
         <div class="mt-auto pt-4 border-t border-data-border-gray">
-            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">
-            <div class="bg-data-bg-gray border border-data-border-gray rounded-card p-4 mb-4 flex-shrink-0 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <span class="font-title-md text-title-md text-primary font-bold mr-2" id="region-label">양천구</span>
-                    
-                    <!-- 암종 셀렉터 -->
-                    <select id="select-cancer" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[140px] font-bold text-slate-700">
-                        <option value="위암">위암</option>
-                        <option value="대장암">대장암</option>
-                        <option value="간암">간암</option>
-                        <option value="유방암">유방암</option>
-                        <option value="자궁경부암">자궁경부암</option>
-                        <option value="폐암">폐암</option>
-                    </select>
-                    
-                    <!-- 성별 셀렉터 -->
-                    <select id="select-gender" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[100px] font-bold text-slate-700">
-                        <option value="남자">남자</option>
-                        <option value="여자">여자</option>
-                    </select>
-                    
-                    <!-- 연령대 셀렉터 -->
-                    <select id="select-age" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[120px] font-bold text-slate-700">
-                        <option value="40~44">40~44세</option>
-                        <option value="45~49">45~49세</option>
-                        <option value="50~54">50~54세</option>
-                        <option value="55~59">55~59세</option>
-                        <option value="60~64">60~64세</option>
-                        <option value="65~69">65~69세</option>
-                        <option value="70~74">70~74세</option>
-                    </select>
+            <p class="font-label-sm text-label-sm text-data-alert font-bold leading-normal">이 값은 평가가 아니라<br>검토 시작점입니다.</p>
+        </div>
+    </nav>
+
+    <div class="onco-main">
+        <header class="bg-white border-b border-data-border-gray onco-header flex justify-between items-center px-grid_gap z-10">
+            <div class="flex items-center gap-3">
+                <button id="mobile-menu-btn" class="lg:hidden p-1 text-primary focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+                <div class="font-title-md text-title-md text-primary font-bold">다른 지역은</div>
+            </div>
+            <div class="flex items-center gap-6">
+                <span class="text-on-surface-variant font-body-md text-body-md" id="header-region-year">로딩 중...</span>
+            </div>
+        </header>
+
+        <main class="onco-content bg-background flex flex-col overflow-y-auto p-container_padding gap-grid_gap">
+
+            <!-- Filter Bar -->
+            <div class="bg-white border border-data-border-gray rounded-card p-4 flex-shrink-0 flex flex-wrap items-center gap-3 shadow-sm">
+                <span class="font-title-md text-title-md text-primary font-bold mr-2" id="region-label">양천구</span>
+                <select id="select-cancer" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[140px] font-bold text-slate-700">
+                    <option value="위암">위암</option><option value="대장암">대장암</option><option value="간암">간암</option>
+                    <option value="유방암">유방암</option><option value="자궁경부암">자궁경부암</option><option value="폐암">폐암</option>
+                </select>
+                <select id="select-gender" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[100px] font-bold text-slate-700">
+                    <option value="남자">남자</option><option value="여자">여자</option>
+                </select>
+                <select id="select-age" class="rounded border-data-border-gray text-body-md py-1.5 px-3 bg-white focus:outline-none focus:ring-1 focus:ring-primary w-[120px] font-bold text-slate-700">
+                    <option value="40~44">40~44세</option><option value="45~49">45~49세</option><option value="50~54">50~54세</option>
+                    <option value="55~59">55~59세</option><option value="60~64">60~64세</option><option value="65~69">65~69세</option><option value="70~74">70~74세</option>
+                </select>
+                <span class="font-label-sm text-label-sm text-slate-500 ml-auto" id="segment-rates-title">로딩 중...</span>
+            </div>
+
+            <!-- Two-column layout -->
+            <div class="flex flex-col lg:flex-row gap-grid_gap flex-1">
+
+                <!-- Left: Profile + Table -->
+                <div class="flex-1 flex flex-col gap-grid_gap min-w-0">
+                    <div class="bg-white border border-data-border-gray rounded-card p-4 shadow-sm flex-shrink-0">
+                        <h3 class="font-body-md-bold text-body-md-bold text-primary mb-3">우리 구 여건 프로필</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col">
                                 <span class="font-label-sm text-label-sm text-slate-500 mb-1">평균소득월액</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-income">- 만원</span>
                             </div>
-                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
+                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col">
                                 <span class="font-label-sm text-label-sm text-slate-500 mb-1">건강보험 적용인구</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-population">- 명</span>
                             </div>
-                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
+                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col">
                                 <span class="font-label-sm text-label-sm text-slate-500 mb-1">도농 구분</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-urban">-</span>
                             </div>
-                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col justify-center">
+                            <div class="bg-data-bg-gray p-3 rounded border border-data-border-gray flex flex-col">
                                 <span class="font-label-sm text-label-sm text-slate-500 mb-1">검진기관 밀도</span>
                                 <span class="font-title-md text-[16px] text-on-background font-bold" id="profile-density">- 곳/만명</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Similar 20 List Table -->
-                    <div class="flex-1 border border-data-border-gray rounded-card bg-white flex flex-col overflow-hidden">
-                        <div class="p-4 border-b border-data-border-gray bg-data-bg-gray flex justify-between items-center">
+                    <div class="flex-1 border border-data-border-gray rounded-card bg-white shadow-sm flex flex-col overflow-hidden">
+                        <div class="p-4 border-b border-data-border-gray bg-data-bg-gray flex justify-between items-center flex-shrink-0">
                             <h3 class="font-body-md-bold text-body-md-bold text-primary">여건이 비슷한 지자체 20곳 실적 목록</h3>
                             <span class="font-label-sm text-label-sm text-slate-500">정렬: 시군구명 순</span>
                         </div>
-                        <div class="flex-1 overflow-y-auto">
+                        <div class="overflow-y-auto" style="max-height:420px;">
                             <table class="w-full text-left border-collapse font-body-md text-body-md">
                                 <thead>
                                     <tr class="bg-data-table-header border-b border-data-border-gray text-slate-700 sticky top-0 z-10">
@@ -217,63 +156,66 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-data-border-gray" id="similar-list-tbody">
-                                    <!-- Dynamic rows loaded here -->
+                                    <tr><td colspan="4" class="text-center py-6 text-slate-400">로딩 중...</td></tr>
                                 </tbody>
-                                    <span class="text-slate-600 font-medium">유사 지역 가중 평균</span>
-                                    <span class="font-body-md-bold text-[16px] text-on-background" id="stat-mean">- %</span>
-                                </div>
-                                <div class="flex justify-between items-center py-2 border-b border-dashed border-data-border-gray">
-                                    <span class="text-slate-600 font-medium">실적 최소 / 최대 범위</span>
-                                    <span class="font-body-md text-on-background" id="stat-range">- % ~ - %</span>
-                                </div>
-                                <div class="flex justify-between items-center py-2 border-b border-dashed border-data-border-gray">
-                                    <span class="text-slate-600 font-medium">표준오차 (SE)</span>
-                                    <span class="font-body-md text-on-background" id="stat-se">± - %p</span>
-                                </div>
-                            </div>
+                            </table>
                         </div>
+                    </div>
+                </div>
 
-                        <div>
-                            <h3 class="font-title-md text-title-md text-primary font-bold mb-4">우리 구 상대적 성적</h3>
-                            <div class="bg-data-bg-gray rounded p-4 border border-data-border-gray space-y-3">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-600 font-medium">우리 구 실제 수검률</span>
-                                    <span class="font-body-md-bold text-[16px] text-on-background" id="stat-our-rate">- %</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-600 font-medium">유사 20곳 대비 격차</span>
-                                    <span class="font-body-md-bold text-[16px]" id="stat-our-gap">- %p</span>
-                                </div>
-                                <div class="flex justify-between items-center pt-2 border-t border-slate-300">
-                                    <span class="text-slate-600 font-medium">유사 지역 내 순위</span>
-                                    <span class="font-body-md-bold text-[16px] text-primary" id="stat-our-percentile">상위 -% (하위 15% 수준)</span>
-                                </div>
+                <!-- Right: Stats Panel -->
+                <div class="lg:w-[320px] flex flex-col gap-grid_gap flex-shrink-0">
+                    <div class="bg-white border border-data-border-gray rounded-card p-4 shadow-sm">
+                        <h3 class="font-title-md text-title-md text-primary font-bold mb-4">유사 20곳 통계</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center py-2 border-b border-dashed border-data-border-gray">
+                                <span class="text-slate-600 font-medium">유사 지역 가중 평균</span>
+                                <span class="font-body-md-bold text-[16px] text-on-background" id="stat-mean">- %</span>
                             </div>
-                        </div>
-
-                        <!-- Warnings & Limitations -->
-                        <div class="bg-data-alert/5 border border-data-alert/20 rounded p-4">
-                            <h4 class="font-body-md-bold text-data-alert text-body-md mb-2 flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">info</span>
-                                주의 및 한계 사항
-                            </h4>
-                            <p class="font-label-sm text-label-sm text-on-background leading-relaxed">
-                                여건 유사 20곳은 소득·인구·도농·전체 검진기관 밀도가 가장 유사하게 매칭된 지자체 그룹입니다. 다만, 암종별 검진기관 유무는 매칭 변수에 포함되지 않으므로 개별 의료 접근성 차이는 반영되지 않습니다.
-                            </p>
+                            <div class="flex justify-between items-center py-2 border-b border-dashed border-data-border-gray">
+                                <span class="text-slate-600 font-medium">실적 최소 / 최대 범위</span>
+                                <span class="font-body-md text-on-background" id="stat-range">- % ~ - %</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-slate-600 font-medium">표준오차 (SE)</span>
+                                <span class="font-body-md text-on-background" id="stat-se">± - %p</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mt-6 pt-4 border-t border-data-border-gray flex flex-col gap-2">
-                        <a href="strategy.html" class="w-full py-3 bg-primary text-white font-body-md-bold text-body-md-bold rounded hover:bg-primary/90 transition-colors shadow-sm text-center flex items-center justify-center gap-1" id="link-next-action">
-                            <span>권장 개입 전략 수립하기</span>
-                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                        </a>
+                    <div class="bg-white border border-data-border-gray rounded-card p-4 shadow-sm">
+                        <h3 class="font-title-md text-title-md text-primary font-bold mb-4">우리 구 상대적 성적</h3>
+                        <div class="bg-data-bg-gray rounded p-4 border border-data-border-gray space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-600 font-medium">우리 구 실제 수검률</span>
+                                <span class="font-body-md-bold text-[16px] text-on-background" id="stat-our-rate">- %</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-600 font-medium">유사 20곳 대비 격차</span>
+                                <span class="font-body-md-bold text-[16px]" id="stat-our-gap">- %p</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-2 border-t border-slate-300">
+                                <span class="text-slate-600 font-medium">유사 지역 내 순위</span>
+                                <span class="font-body-md-bold text-[16px] text-primary" id="stat-our-percentile">-</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="bg-white border border-data-alert/30 rounded-card p-4 shadow-sm">
+                        <h4 class="font-body-md-bold text-data-alert text-body-md mb-2 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">info</span>주의 및 한계 사항
+                        </h4>
+                        <p class="font-label-sm text-label-sm text-on-background leading-relaxed">여건 유사 20곳은 소득·인구·도농·전체 검진기관 밀도가 가장 유사하게 매칭된 지자체 그룹입니다. 암종별 검진기관 유무는 매칭 변수에 포함되지 않으므로 개별 의료 접근성 차이는 반영되지 않습니다.</p>
+                    </div>
+
+                    <a href="strategy.html" class="w-full py-3 bg-primary text-white font-body-md-bold text-body-md-bold rounded-card hover:bg-primary/90 transition-colors shadow-sm text-center flex items-center justify-center gap-1" id="link-next-action">
+                        <span>권장 개입 전략 수립하기</span>
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
                 </div>
             </div>
         </main>
 
-        <!-- Footer -->
         <footer class="bg-transparent w-full onco-footer border-t border-data-border-gray flex items-center justify-start px-container_padding">
             <span class="font-label-sm text-label-sm text-outline mr-6">데이터 출처: 국민건강보험공단 검진인원 현황 / 국민연금공단 평균소득월액 / 적용인구 통계</span>
             <div class="flex gap-4">
@@ -283,13 +225,10 @@
         </footer>
     </div>
 
-        <!-- Floating Action Button for '온코' — 챗봇 연동 -->
     <div id="floating-btn" class="fixed bottom-6 right-6 w-[72px] h-[72px] bg-primary rounded-full shadow-lg flex flex-col items-center justify-center text-white cursor-pointer z-50 hover:bg-primary/95 transition-transform duration-200 hover:scale-105">
         <span class="material-symbols-outlined text-[24px]">support_agent</span>
         <span class="text-[10px] font-bold mt-0.5">온코</span>
     </div>
-
-
 
     <script src="js/api.js"></script>
     <script src="js/chatbot.js?v=1.0.1"></script>
@@ -301,12 +240,10 @@
             const defaultCancer = '대장암';
             const defaultYear = 2024;
 
-            // UI Elements
             const selectCancer = document.getElementById('select-cancer');
             const selectGender = document.getElementById('select-gender');
             const selectAge = document.getElementById('select-age');
 
-            // Parse URL Parameters (supporting sex and gender aliases)
             const urlParams = new URLSearchParams(window.location.search);
             const region = urlParams.get('region') || defaultRegion;
             const sex = urlParams.get('sex') || urlParams.get('gender') || defaultSex;
@@ -314,7 +251,6 @@
             const cancer = urlParams.get('cancer') || defaultCancer;
             const year = parseInt(urlParams.get('year')) || defaultYear;
 
-            // State variables to hold valid configurations
             let currentRegion = region;
             let currentSex = sex;
             let currentAge = age;
@@ -322,67 +258,43 @@
             let currentYear = year;
 
             async function loadData(targetRegion, targetSex, targetAge, targetCancer, targetYear) {
-                // Sync select boxes values
                 selectCancer.value = targetCancer;
                 selectGender.value = targetSex;
                 selectAge.value = targetAge;
 
-                // Update Header & Region Label
                 const sgg = targetRegion.split('|');
                 document.getElementById('header-region-year').innerText = `${sgg[0]} > ${sgg[1]} | ${targetYear}년`;
                 document.getElementById('region-label').innerText = `${sgg[1]}`;
 
-                // Strategy Link update
                 const nextActionBtn = document.getElementById('link-next-action');
-                const nextActionParams = new URLSearchParams({ 
-                    region: targetRegion, 
-                    sex: targetSex, 
-                    age: targetAge, 
-                    cancer: targetCancer, 
-                    year: targetYear 
-                });
+                const nextActionParams = new URLSearchParams({ region: targetRegion, sex: targetSex, age: targetAge, cancer: targetCancer, year: targetYear });
                 nextActionBtn.href = `strategy.html?${nextActionParams.toString()}`;
 
                 try {
-                    // Fetch Compare API (FastAPI backend uses 'gender' parameter)
                     const compareData = await fetchCompare(targetRegion, targetSex, targetAge, targetCancer, targetYear);
 
-                    // 1. Update Subtitle Rates
                     const diffVal = compareData.실제_수검률 - compareData.유사_평균;
                     const diffSign = diffVal >= 0 ? '+' : '';
                     const diffColor = diffVal < 0 ? 'text-data-alert font-bold' : 'text-data-secondary font-bold';
-                    document.getElementById('segment-rates-title').innerHTML = `
-                        우리 구 <span class="font-bold text-data-secondary">${compareData.실제_수검률.toFixed(1)}%</span> │ 
-                        유사 20곳 <span class="font-bold text-slate-700">${compareData.유사_평균.toFixed(1)}%</span> │ 
-                        차이 <span class="${diffColor}">${diffSign}${diffVal.toFixed(1)}%p</span> (건강보험 가입자 기준)
-                    `;
+                    document.getElementById('segment-rates-title').innerHTML = `우리 구 <span class="font-bold text-data-secondary">${compareData.실제_수검률.toFixed(1)}%</span> │ 유사 20곳 <span class="font-bold text-slate-700">${compareData.유사_평균.toFixed(1)}%</span> │ 차이 <span class="${diffColor}">${diffSign}${diffVal.toFixed(1)}%p</span> (건강보험 가입자 기준)`;
 
-                    // 2. Render Our Region Profile (실 API 데이터)
-                    document.getElementById('profile-income').innerText = compareData.우리_소득 > 0
-                        ? `${Math.round(compareData.우리_소득).toLocaleString()} 만원` : '–';
-                    document.getElementById('profile-population').innerText = compareData.우리_인구 > 0
-                        ? `${compareData.우리_인구.toLocaleString()} 명` : '–';
+                    document.getElementById('profile-income').innerText = compareData.우리_소득 > 0 ? `${Math.round(compareData.우리_소득).toLocaleString()} 만원` : '–';
+                    document.getElementById('profile-population').innerText = compareData.우리_인구 > 0 ? `${compareData.우리_인구.toLocaleString()} 명` : '–';
                     document.getElementById('profile-urban').innerText = compareData.우리_도농 || '–';
-                    document.getElementById('profile-density').innerText = compareData.우리_기관밀도 > 0
-                        ? `${compareData.우리_기관밀도.toFixed(1)} 곳/만명` : '–';
+                    document.getElementById('profile-density').innerText = compareData.우리_기관밀도 > 0 ? `${compareData.우리_기관밀도.toFixed(1)} 곳/만명` : '–';
 
-                    // 3. Render Statistics summary (Right card)
                     document.getElementById('stat-mean').innerText = `${compareData.유사_평균.toFixed(1)} %`;
                     document.getElementById('stat-range').innerText = `${compareData.유사_최소.toFixed(1)} % ~ ${compareData.유사_최대.toFixed(1)} %`;
                     document.getElementById('stat-se').innerText = `± ${compareData.유사_SE.toFixed(2)} %p`;
                     document.getElementById('stat-our-rate').innerText = `${compareData.실제_수검률.toFixed(1)} %`;
-                    
-                    const gapSign = diffVal >= 0 ? '+' : '';
+
                     const gapColorClass = diffVal < 0 ? 'text-data-alert' : 'text-data-secondary';
                     document.getElementById('stat-our-gap').className = `font-body-md-bold text-[16px] ${gapColorClass}`;
-                    document.getElementById('stat-our-gap').innerText = `${gapSign}${diffVal.toFixed(1)} %p`;
-                    
+                    document.getElementById('stat-our-gap').innerText = `${diffSign}${diffVal.toFixed(1)} %p`;
                     document.getElementById('stat-our-percentile').innerText = diffVal < 0 ? '하위 15% 수준' : '상위 30% 수준';
 
-                    // 4. Render Similar List Table (실 API 데이터)
                     const listTbody = document.getElementById('similar-list-tbody');
                     listTbody.innerHTML = '';
-
                     const similarDetails = compareData.유사_지역_상세 || [];
                     if (similarDetails.length === 0) {
                         listTbody.innerHTML = '<tr><td colspan="4" class="text-center py-6 text-slate-400">유사 지자체 목록이 존재하지 않습니다.</td></tr>';
@@ -390,61 +302,34 @@
                         similarDetails.forEach((item) => {
                             const tr = document.createElement('tr');
                             tr.className = 'hover:bg-data-bg-gray/50 border-b border-data-border-gray';
-                            tr.innerHTML = `
-                                <td class="p-3 font-medium text-slate-800">${item.지역명}</td>
-                                <td class="p-3 text-right text-slate-600">${item.소득 > 0 ? Math.round(item.소득).toLocaleString() + ' 만원' : '–'}</td>
-                                <td class="p-3 text-right text-slate-600">${item.인구 > 0 ? item.인구.toLocaleString() + ' 명' : '–'}</td>
-                                <td class="p-3 text-right font-bold text-slate-700">${item.수검률.toFixed(1)}%</td>
-                            `;
+                            tr.innerHTML = `<td class="p-3 font-medium text-slate-800">${item.지역명}</td><td class="p-3 text-right text-slate-600">${item.소득 > 0 ? Math.round(item.소득).toLocaleString() + ' 만원' : '–'}</td><td class="p-3 text-right text-slate-600">${item.인구 > 0 ? item.인구.toLocaleString() + ' 명' : '–'}</td><td class="p-3 text-right font-bold text-slate-700">${item.수검률.toFixed(1)}%</td>`;
                             listTbody.appendChild(tr);
                         });
                     }
 
-                    // On successful load, update local state
-                    currentSex = targetSex;
-                    currentAge = targetAge;
-                    currentCancer = targetCancer;
-                    currentYear = targetYear;
-
-                    // Update browser address bar query parameters (without reloading)
-                    const newParams = new URLSearchParams({ 
-                        region: targetRegion, 
-                        sex: targetSex, 
-                        age: targetAge, 
-                        cancer: targetCancer, 
-                        year: targetYear 
-                    });
+                    currentSex = targetSex; currentAge = targetAge; currentCancer = targetCancer; currentYear = targetYear;
+                    const newParams = new URLSearchParams({ region: targetRegion, sex: targetSex, age: targetAge, cancer: targetCancer, year: targetYear });
                     history.replaceState(null, '', `${window.location.pathname}?${newParams.toString()}`);
 
                 } catch (error) {
                     console.error("Error rendering compare details:", error);
-                    alert("선택한 세그먼트 데이터를 찾을 수 없거나 데이터가 존재하지 않습니다.\n이전 유효한 세그먼트로 복구합니다.");
-                    // Rollback UI values
+                    document.getElementById('segment-rates-title').innerHTML = `<span class="text-data-alert">데이터를 불러올 수 없습니다: ${error.message}</span>`;
                     selectCancer.value = currentCancer;
                     selectGender.value = currentSex;
                     selectAge.value = currentAge;
                 }
             }
 
-            // Bind change events to dropdowns
             function onFilterChange() {
-                const targetCancer = selectCancer.value;
-                const targetSex = selectGender.value;
-                const targetAge = selectAge.value;
-                loadData(currentRegion, targetSex, targetAge, targetCancer, currentYear);
+                loadData(currentRegion, selectGender.value, selectAge.value, selectCancer.value, currentYear);
             }
 
             selectCancer.addEventListener('change', onFilterChange);
             selectGender.addEventListener('change', onFilterChange);
             selectAge.addEventListener('change', onFilterChange);
 
-            // Initial data load
             await loadData(region, sex, age, cancer, year);
         });
     </script>
 </body>
 </html>
-
-
-
-
