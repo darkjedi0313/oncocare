@@ -231,6 +231,19 @@ p, span, li, div {
 
 /* ---------- 모바일 전용 반응형 미디어 쿼리 (768px 이하) ---------- */
 @media (max-width: 768px) {
+  :root {
+    --fs-display:  clamp(20px, 4vw, 24px);
+    --fs-title:    clamp(16px, 3.5vw, 18px);
+    --fs-body:     clamp(14px, 3vw, 15px);
+    --fs-label:    clamp(12px, 2.5vw, 13px);
+    --fs-number:   clamp(14px, 3vw, 15px);
+    --fs-data-lg:  clamp(32px, 8vw, 40px);
+  }
+
+  html, body {
+    font-size: 14px !important;
+  }
+
   /* 1. 테이블 카드화 (Cardification) */
   .table-scroll {
     overflow: visible !important;
